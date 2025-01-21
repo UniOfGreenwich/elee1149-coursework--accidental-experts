@@ -63,10 +63,6 @@ jobs:
               errors.push(`- PR must have at least one assignee.`);
             }
  
-            if (!isLinkedToProject) {
-              errors.push(`- PR must be linked to a project.`);
-            }
- 
             if (errors.length > 0) {
               const message = `## PR Requirements Not Met\n\n${errors.join('\n')}`;
               // Post a comment on the PR

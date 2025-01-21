@@ -1,0 +1,61 @@
+name: 'Check PR Requirements'
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, labeled, unlabeled]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Check PR requirements'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Get pull request data
+            const pr = context.payload.pull_request;
+            const prNumber = pr.number;
+            const baseBranch = pr.base.ref;
+            const labels = pr.labels.map(label => label.name);
+            const requiredLabels = ['defect', 'enhancement', 'new feature'];
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Proceed only if PR is targeting 'main' branch
+            if (baseBranch !== 'main') {
+              console.log(`PR is not targeting the 'main' branch. Skipping checks.`);
+              return;
+            }
+
+            // Get reviews for the PR
+            const { data: reviews } = await github.rest.pulls.listReviews({
+              owner,
+              repo,
+              pull_number: prNumber,
+            });
+
+            // Count unique approvals
+            const approvals = new Set();
+            for (const review of reviews) {
+              if (review.state === 'APPROVED') {
+                approvals.add(review.user.login);
+              }
+            }
+            const approvalsCount = approvals.size;
+
+            // Check for required labels
+            const hasRequiredLabel = labels.some(label => requiredLabels.includes(label));
+
+            // Fail the check if requirements are not met
+            if (approvalsCount < 2) {
+              core.setFailed(`PR must have at least 2 approvals. Current approvals: ${approvalsCount}`);
+            }
+
+            if (!hasRequiredLabel) {
+              core.setFailed(`PR must be labeled with at least one of the following: ${requiredLabels.join(', ')}.`);
+            }
+
+            if (approvalsCount >= 2 && hasRequiredLabel) {
+              console.log('PR meets all the requirements.');
+            }
+          github-token: ${{ secrets.GITHUB_TOKEN }}

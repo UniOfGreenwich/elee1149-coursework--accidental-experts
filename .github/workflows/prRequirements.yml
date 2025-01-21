@@ -1,0 +1,109 @@
+name: 'Check PR Requirements'
+ 
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, assigned, unassigned, labeled, unlabeled]
+ 
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Check PR requirements'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+ 
+            // Get PR data
+            const { data: pr } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: prNumber,
+            });
+ 
+            const labels = pr.labels.map(label => label.name);
+            const assignees = pr.assignees.map(assignee => assignee.login);
+ 
+            // Check for labels
+            const hasLabel = labels.length > 0;
+ 
+            // Check for assignees
+            const hasAssignee = assignees.length > 0;
+ 
+            // Check for linked projects
+            const { data: projects } = await github.rest.projects.listForRepo({
+              owner,
+              repo,
+            });
+ 
+            let isLinkedToProject = false;
+ 
+            // Fetch all project cards for the PR
+            const { data: projectCards } = await github.rest.projects.listCards({
+              // The column_id is required, but since we don't have it, we'll leave this empty and handle errors
+            }).catch(() => ({ data: [] }));
+ 
+            if (projectCards.length > 0) {
+              isLinkedToProject = true;
+            } else {
+              // Alternative method to check project cards
+              const { data: issueProjectCards } = await github.rest.projects.listForIssue({
+                owner,
+                repo,
+                issue_number: prNumber,
+              });
+ 
+              isLinkedToProject = issueProjectCards.length > 0;
+            }
+ 
+            // Get reviews for the PR
+            const { data: reviews } = await github.rest.pulls.listReviews({
+              owner,
+              repo,
+              pull_number: prNumber,
+            });
+ 
+            // Count unique approvals
+            const approvals = new Set();
+            for (const review of reviews) {
+              if (review.state === 'APPROVED') {
+                approvals.add(review.user.login);
+              }
+            }
+            const approvalsCount = approvals.size;
+ 
+            // Collect error messages
+            let errors = [];
+ 
+            if (approvalsCount < 2) {
+              errors.push(`- PR must have at least 2 approvals. Current approvals: ${approvalsCount}`);
+            }
+ 
+            if (!hasLabel) {
+              errors.push(`- PR must have at least one label.`);
+            }
+ 
+            if (!hasAssignee) {
+              errors.push(`- PR must have at least one assignee.`);
+            }
+ 
+            if (!isLinkedToProject) {
+              errors.push(`- PR must be linked to a project.`);
+            }
+ 
+            if (errors.length > 0) {
+              const message = `## PR Requirements Not Met\n\n${errors.join('\n')}`;
+              // Post a comment on the PR
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: message,
+              });
+              core.setFailed('PR does not meet the required checks.');
+            } else {
+              console.log('PR meets all the requirements.');
+            }
+          github-token: ${{ secrets.GITHUB_TOKEN }}

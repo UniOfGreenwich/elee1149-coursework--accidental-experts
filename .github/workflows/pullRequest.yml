@@ -1,4 +1,4 @@
-name: 'Merge to main Github Action'
+name: 'Merge to Main GitHub Action'
 
 on:
   pull_request:
@@ -12,10 +12,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            // Get pull request data
             const pr = context.payload.pull_request;
             const prNumber = pr.number;
             const baseBranch = pr.base.ref;
+            const headBranch = pr.head.ref;
             const labels = pr.labels.map(label => label.name);
             const requiredLabels = ['defect', 'enhancement', 'new feature'];
             const owner = context.repo.owner;
@@ -27,6 +27,11 @@ jobs:
               return;
             }
 
+            // New requirement: Only 'develop' branch can be merged into 'main'
+            if (headBranch !== 'develop') {
+              core.setFailed(`Only the 'develop' branch can be merged into 'main'. Current branch is '${headBranch}'.`);
+            }
+
             // Get reviews for the PR
             const { data: reviews } = await github.rest.pulls.listReviews({
               owner,
@@ -34,17 +39,34 @@ jobs:
               pull_number: prNumber,
             });
 
-            // Count unique approvals
-            const approvals = new Set();
+            // Map to track the latest review state per reviewer
+            const reviewStates = {};
+
             for (const review of reviews) {
-              if (review.state === 'APPROVED') {
-                approvals.add(review.user.login);
+              const username = review.user.login;
+              const submittedAt = new Date(review.submitted_at);
+
+              // If we don't have a review from this user yet, or this review is newer, update it
+              if (
+                !reviewStates[username] ||
+                submittedAt > new Date(reviewStates[username].submittedAt)
+              ) {
+                reviewStates[username] = {
+                  state: review.state,
+                  submittedAt: review.submitted_at,
+                };
               }
             }
-            const approvalsCount = approvals.size;
+
+            // Count the number of reviewers whose latest review is 'APPROVED'
+            const approvalsCount = Object.values(reviewStates).filter(
+              (review) => review.state === 'APPROVED'
+            ).length;
 
             // Check for required labels
-            const hasRequiredLabel = labels.some(label => requiredLabels.includes(label));
+            const hasRequiredLabel = labels.some((label) =>
+              requiredLabels.includes(label)
+            );
 
             // Fail the check if requirements are not met
             if (approvalsCount < 2) {
@@ -52,7 +74,9 @@ jobs:
             }
 
             if (!hasRequiredLabel) {
-              core.setFailed(`PR must be labeled with at least one of the following: ${requiredLabels.join(', ')}.`);
+              core.setFailed(
+                `PR must be labeled with at least one of the following: ${requiredLabels.join(', ')}.`
+              );
             }
 
             if (approvalsCount >= 2 && hasRequiredLabel) {

@@ -1,4 +1,4 @@
-name: 'Check PR Requirements'
+name: 'Merge to main Github Action'
 
 on:
   pull_request:

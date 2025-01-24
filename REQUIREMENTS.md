@@ -1,41 +1,45 @@
 # Requirements Engineering 
 
 ## Checklist
-1. Introduction - IN PROGRESS
-2. Project Goals and Needs - FINISHED
-3. Software Process Model - TODO
-4. System Architecture - TODO
-5. Frontend - IN PROGRESS
-6. Backend - IN PROGRESS
-7. Performance Requirements - TODO
-8. Security Requirements - TODO
-9. Testing Requirements - IN PROGRESS
-10. Future Work and Product Maintenance - TODO
-11. References and Appendices - TODO
+1. [x] Introduction
+2. [x] Project Goals and Needs 
+3. [ ] Software Process Model - TODO
+4. [ ] System Architecture - TODO
+5. [ ] Frontend - IN PROGRESS
+6. [ ] Backend - IN PROGRESS
+7. [ ] Performance Requirements - TODO
+8. [ ] Security Requirements - TODO
+9. [ ] Testing Requirements - IN PROGRESS
+10. [ ] Future Work and Product Maintenance - TODO
+11. [ ] References and Appendices - TODO
 
 
 ## 1. Introduction
-REQUIREMENTS.md contains the requirements engineering process for *Set Project Name*.  The functional and non-functional
-requirements for both the frontend and backend will be identified and documented here. We will outline and justify the
-major decisions we made such as hosting our database. 
+Requirements engineering is a key part of the software development process, where we identify, document and maintain requirements for the project.
+A full requirements engineering process involves elicitation, analysis, description and verification to make sure that the project is able to meet all the expectations of the stakeholders (Jędrzejko, 2023).
+With the limited resources we have we are going to create a requirements document that outlines the key requirements for ***Set Project name***. The document will act as a reference for the developers when creating features and components for the project.
+Requirements are not always set in stone and this document may dynamically update over time as the development team learns more about the requirements and how feasible they are.
 
-The Document contains the following sections:
+The functional and non-functional requirements for both the frontend and backend will be identified and documented here. We will outline and justify the
+major decisions we made such as hosting our database, why we chose a certain approach or framework, the application design process and how we will ensure the system is secure and performs well.
 
-* **Project Goals and Needs:** A brief description of what the project aims to achieve.
-* **Software Process Model:** What is our Software Process Model and why did we choose it?
-* **System Architecture:** An overview of the systems structure and dependencies.
-* **Frontend:** Requirements for the Frontend
-* **Backend:** Requirements for the Backend
+This Document contains the following sections:
+
+* **Project Goals and Needs:** A brief description of what the project aims to achieve and create. 
+* **Software Process Model:** What is our chosen Software Process Model and why did we choose it?
+* **System Architecture:** An overview of the systems structure and dependencies and how the components and features will work with each other.
+* **Frontend:** Requirements for the Frontend website
+* **Backend:** Requirements for the Backend database and API tools
 * **Performance Requirements:** How will we ensure our system performs well?
 * **Security Requirements:** How will we keep our system secure?
 * **Testing Requirements:** What testing will we do and why?
-* **Future Work and Product Maintenance:** How will we uphold and maintain the product.
+* **Future Work and Product Maintenance:** How will we uphold and maintain the product as well as how we can improve the product with features.
 * **References and Appendices:** A place to document any references or additional information.
 
 ## 2. Project Goals and Needs
   - Host a postgress SQL database externally so that it is always live and ready to be updated whenever we develop or 
   use the website.
-  - Have a fully functioning front end with a user interface that is user friendly, responsive, accessible and visually 
+  - Have a fully functioning front end with a user interface that is user-friendly, responsive, accessible and visually 
 appealing.
   - Have a stable backend that runs our endpoints and allows our front end to communicate with the database.
 
@@ -108,3 +112,5 @@ We will be making a backend using React
     front end are working as expected and not impacting any other areas of the app
 ## 10. Future Work and Product Maintenance
 ## 11. References and Appendices 
+
+Jędrzejko, K. (2023) 'The importance of software requirements engineering in IT projects,' Software Mind, 6 July. https://softwaremind.com/blog/software-requirements-engineering-the-driving-force-behind-successful-and-efficient-it-projects/.

@@ -37,10 +37,20 @@ This Document contains the following sections:
 * **References and Appendices:** A place to document any references or additional information.
 
 ## 2. Project Goals and Needs
-  - Host a postgress SQL database externally so that it is always live and ready to be updated whenever we develop or 
+  - 1.0 - Host a postgress SQL database externally so that it is always live and ready to be updated whenever we develop or 
   use the website.
-  - Have a fully functioning front end with a user interface that is user-friendly, responsive, accessible and visually 
+
+
+  - 2.0 - Have a fully functioning front end with a user interface that is user-friendly, responsive, accessible and visually 
 appealing.
+    - 2.1 - The front end should be done in a way that it meets the coding standards of the web development industry, each page should be semantically correct.
+    - 2.2 - The front end should be responsive and work on all devices, with the aim to create a mobile first application
+    - 2.3 - The front end should be accessible to all users including people with disabilities by utilising tools like screen readers and keyboard navigation.
+    - 2.4 - The front end should be visually appealing and follow a design system that is consistent throughout the application.
+    - 2.5 - The front end application should work with the backend application to send and retrieve data while making sure only the right data is being sent, received and shown.
+    - 2.6 - The front end should be able to display and handle any errors retrieved from the backend
+
+
   - Have a stable backend that runs our endpoints and allows our front end to communicate with the database.
 
 ## 3. Software Process Model
@@ -56,7 +66,6 @@ appealing.
 - Recruiters
   - Recruiters will use the platform to host job listings and view those who 
   apply for the job.
-- 
 
 ## 4. System Architecture
 ### Dependencies

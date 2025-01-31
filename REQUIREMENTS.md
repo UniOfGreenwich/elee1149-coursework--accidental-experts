@@ -4,7 +4,7 @@
 
 1. [x] Introduction
 2. [x] Project Goals and Needs
-3. [ ] Software Process Model - TODO
+3. [ ] Software Process Model - In Progress
 4. [ ] System Architecture - TODO
 5. [ ] Frontend - IN PROGRESS
 6. [ ] Backend - IN PROGRESS
@@ -130,7 +130,11 @@ We will be making a frontend using React
     - A place for the user to land on if an error occurs
 - Contact Us Page
     - Allows the user to see contact information to access our customer support team
-    - ### Non-Functional
+- Log in Page
+  - A place where the user can log in or register an account 
+
+
+### Non-Functional
 
 ## 6. Backend
 

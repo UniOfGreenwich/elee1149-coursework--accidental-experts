@@ -24,6 +24,13 @@ To meet the necessary complexity of the project the application will have a fron
 
 ## Systems Models
 
+### Overview
+The systems models section is used to highlight how the application will connect job-seekers and recruiters together in a smooth and seamless manner.
+These systems are made up of several complicated components and sections that need to work together in order to provide a flawless and immersive user experience while maintaining the key functionality.
+To help explain the systems models, we split the models into three main categories, the first being the **Frontend**, the second being the **Backend**, and the third being the **Database**.
+Each section will have a detailed explanation of how the system works and how it interacts with the other systems, why a certain framework or methodology was chosen, and how it will be implemented.
+
+
 ## UML Models
 
 ## System Architecture

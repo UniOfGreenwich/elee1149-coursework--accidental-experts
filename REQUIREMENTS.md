@@ -86,7 +86,7 @@ This Document contains the following sections:
 
 ### How does Agile align with our project needs and goals?
 
-## 3. Stakeholders
+## 4. Stakeholders
 
 - Job Seekers
     - Job seekers will use the platform to find jobs and interesting opportunities.
@@ -94,11 +94,11 @@ This Document contains the following sections:
     - Recruiters will use the platform to host job listings and view those who
       apply for the job.
 
-## 4. System Architecture
+## 5. System Architecture
 
 ### Dependencies
 
-## 5. Frontend
+## 6. Frontend
 
 ### Functional
 
@@ -108,35 +108,39 @@ We will be making a frontend using React
 
 #### Screens
 
-- A landing page
-    - a place where a user can see the purpose of the
-      website and what it does. Different sections for recruiters and job seekers.
+- Landing Page
+    - User can see the purpose of the website and what it does. This page will have different
+  view depending on if being used for job-seeking or recruitment.
 - Job Search Page
-    - A place where a user logged in or out can view all available
-      jobs
+    - Allows user to search for jobs, regardless of whether they are logged in or out.
 - Job Seeker Dashboard
-    - Allows user to set up, edit and view their profile
-    - Allows user to upload and delete CV
-    - Allows user to review jobs applied for
-    - Allows user to view favourite jobs
-    - Allows user to view favourite companies
-    - Allows user to view their own feedback provided by recruiters
+    - Allows user to set up, edit and view their profile.
+    - Allows user to upload and delete their CV.
+    - Allows user to leave company or job reviews.
+    - Allows user to view favourite jobs.
+    - Allows user to view favourite companies.
+    - Allows user to view their feedback provided by recruiters on applications.
 - Recruiter Dashboard
-    - Allows recruiter to review Job listings
-    - Allows recruiter to see candidates who applied for jobs
-    - Allows recruiter to create a job listings
-    - Allows recruiter to give feedback for job seekers
+    - Allows recruiter to review job listings.
+    - Allows recruiter to view the candidates that have applied to the jobs.
+    - Allows recruiter to create job listings for their organisation(s).
+    - Allows recruiter to give feedback to applicants.
 - Error Screen
-    - A place for the user to land on if an error occurs
+    - The user will be directed here if an error occurs, informing them that an error has occured,
+  as an alternative to dropping them on a blank page.
 - Contact Us Page
-    - Allows the user to see contact information to access our customer support team
+    - Allows the user to see contact information for .
 - Log in Page
-  - A place where the user can log in or register an account 
+    - Users can log in or register for an account here.
 
 
 ### Non-Functional
 
-## 6. Backend
+- Error messages should be clear and informative, guiding users on how to resolve the issue.
+- Website should adapt to different size screens.
+- The system should be reliable and consistent, giving the users trust that it works correctly.
+
+## 7. Backend
 
 ### Functional
 
@@ -158,11 +162,19 @@ We will be making a frontend using React
 
 ### Non-Functional
 
-## 7. Performance Requirements
+## 8. Performance Requirements
 
-## 8. Security Requirements
+- Job search results should load in under 2 seconds.
+- Pages should load in under 3 seconds, for user retention.
+- The system should be able to handle a large number of concurrent users and job postings without performance degradation.
 
-## 9. Testing Requirements
+## 9. Security Requirements
+
+- Passwords should be encrypted and not be stored as plaintext.
+- Passwords should require at least one number and capital letter.
+- Only authorised users should be able to access their sensitive information.
+
+## 10. Testing Requirements
 
 - Unit Tests
     - Adding unit test will allow us to make sure that when somebody makes a change they have not unexpectedly caused a
@@ -171,9 +183,9 @@ We will be making a frontend using React
     - We want to have additional testing to ensure all features that we add to the
       front end are working as expected and not impacting any other areas of the app
 
-## 10. Future Work and Product Maintenance
+## 11. Future Work and Product Maintenance
 
-## 11. References and Appendices
+## 12. References and Appendices
 
 Jędrzejko, K. (2023) 'The importance of software requirements engineering in IT projects,' Software Mind, 6
 July. https://softwaremind.com/blog/software-requirements-engineering-the-driving-force-behind-successful-and-efficient-it-projects/.

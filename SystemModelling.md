@@ -11,9 +11,18 @@
 
 ## Introduction
 
+This document aims to provide a detailed guide on how the systems modelling process that has gone behind the job search application.
+The document aims to outline the architecture and implementation fo the system, with the designs of the application and how it will look being help in Designs.md file.
+We aim to create a comprehensive job recruitment app that allows two sets of users, the first being the recruiter the second being a job-seeker.
+
+The app aims to allow Recruiters to post jobs, look at metrics such as how many users applied and how many users viewed the job, as well as amend the job details if necessary.
+Meanwhile, job-seekers can create a profile, store documentation like CV's and apply for job postings.
+
+To meet the necessary complexity of the project the application will have a front end that is designed and created using React.JS in order to provide a dynamic and interactive interface that actively engages the users.
+
+**Harry to do backend intro** 
+
 ## Systems Models
-
-
 
 ## UML Models
 

@@ -4,13 +4,13 @@
 
 1. [x] Introduction
 2. [x] Project Goals and Needs
-3. [ ] Software Process Model - In Progress
-4. [ ] System Architecture - TODO
+3. [x] Software Process Model - In Progress
+4. [x] System Architecture - TODO
 5. [ ] Frontend - IN PROGRESS
-6. [ ] Backend - IN PROGRESS
+6. [x] Backend - IN PROGRESS
 7. [ ] Performance Requirements - TODO
 8. [ ] Security Requirements - TODO
-9. [ ] Testing Requirements - IN PROGRESS
+9. [x] Testing Requirements - IN PROGRESS
 10. [ ] Future Work and Product Maintenance - TODO
 11. [ ] References and Appendices - TODO
 
@@ -75,16 +75,25 @@ This Document contains the following sections:
 
 ### What did we choose?
 
-- We have chosen to use the Agile model with the scrum methodology framework we will be using 1-week sprints/iterations
+- We have chosen to use the Agile model with the scrum methodology framework we will be using 2-week sprints/iterations
 
 ### Why did we choose Agile?
 
-- We chose the Agile methodology because it allows us to be flexible and adapt to changes in the project as we go along.
+- We chose the Agile methodology because it allows us to be flexible and adapt to changes in the project as we go along. 
+    This means we will be able to quickly adapt to any feedback from other team members or Seb as he monitors our progress 
+    through PRs as well as any unexpected changes in our requirements. 
 - Agile allows us to work in short iterations which means we can get feedback from stakeholders and make changes
   quickly.
-- Agile allows us to work in a team and collaborate on the project together.
+- Agile allows us to work in a team and collaborate on the project together. Collaboration is good to practice within 
+  building a product allowing the team to stay on the same page and mention when something isn't how it should be. 
+- Select ceremonies allow us to stay communicated and plan for the weeks ahead, this allows us to stay on top of our
+      work and not fall behind.
 
 ### How does Agile align with our project needs and goals?
+Using an agile methodology with 2-week sprints allows us to prioritise our most valuable features and plan our spritns
+    so that we can build the application step by step. If we wasn't using agile we could see tickets start being picked 
+    up where prior work hadn't been completed leading to unstable and untidy code. 
+
 
 ## 3. Stakeholders
 
@@ -93,8 +102,9 @@ This Document contains the following sections:
 - Recruiters
     - Recruiters will use the platform to host job listings and view those who
       apply for the job.
+- The Project Team
+  - the team working on the project want to deliver a high quality, well documented application 
 
-## 4. System Architecture
 
 ### Dependencies
 
@@ -140,23 +150,52 @@ We will be making a frontend using React
 
 ### Functional
 
-#### Programming Language
+Our backend service will act as a secure API gateway between the front end application and the database. There will be a
+collection of endpoints to allow interaction between the Postgres database and React frontend. All interactions will be 
+protected using authentication to ensure no 'outsiders' gain access to the contents of our database
 
-- We will be making a backend using Springboot and Java
-- We will be using a Postgres SQL database
+#### Programming Language and Database
+
+- We will be making a backend using Springboot and Java. We feel that the features of Java combined with the teams 
+    experience with using the programming language just gives the edge over Kotlin 
+- We will be using a Postgres SQL database. We chose postgresSQl due some of the features that it offered. Such as the
+  fact it has ACID properties which ensure the integrity and reliability of our data
 
 #### Tools
 
-- We will be using Swagger for API documentation
-- We will be using Junit for testing
-- We will be using Maven for dependency management
-- We will be using GCP to host our database
-- We will be using SonarQube for code quality
-- We will be using Postman/Hoppscotch for API testing
+Database Hosting: Google Cloud Platform
+Website Hosting: GitHub Pages
+Backend Hosting: Locally
+API Documentation: Swagger
+API Testing Hopscotch
+Code Quality; SonarQube
+Testing: Junit
+Dependency Management: Maven
+Continuous Implementation Pipeline: GitHub Actions
 
 #### Data Requirements
+### 1. Users
+| Attribute Name      | Data Type                       | Constraints       | Description                                      |
+|----------------------|---------------------------------|-------------------|--------------------------------------------------|
+| `user_id`           | INT                             | PRIMARY KEY,      | Each Users unique identification Number          |
+| `username`          | VARCHAR(255)                    | UNIQUE, NOT NULL  | Unique users Username                            |
+| `email`             | VARCHAR(255)                    | UNIQUE, NOT NULL, | Unique Users Email                               |
+| `password_hash`     | VARCHAR(255)                    | NOT NULL          | Hashed password for security                     |
+| `first_name`        | VARCHAR(255)                    |                   | Unique user's first name                         |
+| `last_name`         | VARCHAR(255)                    |                   | Unique user's last name                          |
+| `role`              | ENUM ('jobSeeker', 'recruiter') | NOT NULL          | User's role/ account type                        |
+| `registration_date` | TIMESTAMP                       |                   | Date of Users registration                       |
+| `profile_picture`   | VARCHAR(255)                    |                   | URL/storage destination of Users profile picture |
 
 ### Non-Functional
+Please see section 7, 8, and 9 for our combined performance, security and testing requirements.
+
+- The application should be resistant to errors to allow a good integration with the user. however, any errors should be
+well handled allowing the user to understand the issue.
+- The codebase should have a high level of documentation and a well-structured design which is easily able to be kept up
+to date
+- All APIs should have good documentation and well-designed to allow other developers to understand what they do allowing
+front-end engineers to easily integrate them within the system
 
 ## 7. Performance Requirements
 
@@ -166,10 +205,13 @@ We will be making a frontend using React
 
 - Unit Tests
     - Adding unit test will allow us to make sure that when somebody makes a change they have not unexpectedly caused a
-    - problem somewhere else in the application
+        problem somewhere else in the application
 - QA Testing
     - We want to have additional testing to ensure all features that we add to the
-      front end are working as expected and not impacting any other areas of the app
+        front end are working as expected and not impacting any other areas of the app
+- End to End Testing 
+    - End to End testing covers the whole application flow from start to finish, this will allow us to make sure there
+        are no errors in our application and to ensure that the features are working seamlessly  
 
 ## 10. Future Work and Product Maintenance
 

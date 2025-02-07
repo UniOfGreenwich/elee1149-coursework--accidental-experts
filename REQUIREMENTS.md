@@ -133,7 +133,7 @@ We will be making a frontend using React
     - Allows recruiter to create job listings for their organisation(s).
     - Allows recruiter to give feedback to applicants.
 - Error Screen
-    - The user will be directed here if an error occurs, informing them that an error has occured,
+    - The user will be directed here if an error occurs, informing them that an error has occurred,
       as an alternative to dropping them on a blank page.
 - Contact Us Page
     - Allows the user to see contact information for .

@@ -30,6 +30,17 @@ These systems are made up of several complicated components and sections that ne
 To help explain the systems models, we split the models into three main categories, the first being the **Frontend**, the second being the **Backend**, and the third being the **Database**.
 Each section will have a detailed explanation of how the system works and how it interacts with the other systems, why a certain framework or methodology was chosen, and how it will be implemented.
 
+### Frontend:
+The frontend side of this application is designed to be created using the React.js framework, often referred to as React. 
+React is a javascript library developed by Meta, formally Facebook, in order to create dynamic, interactive and engaging user interfaces for websites using the Single Page Application (SPA) methodology.
+
+An SPA is a web development methodology that dynamically rewrites the contents of a site instead of using the traditional method of redirecting a user to a new page (Codecademy, 2025).
+The primary reason for picking React as the framework to develop the frontend was the ability to create an SPA. 
+The benefits of an SPA are directly linked to the React framework, one of these benefits is the ability to create reusable components.
+Components like buttons and forms can be reused in multiple aspects of the application which reduces the development time as well as increasing the efficiency of the application.
+
+Although there are other frameworks like Vue.js and Angular.js that can also create SPAs, React was finally chosen due to the ease of use that it offers, the large amount of documentation, community support as well as being the current industry standard for web development.
+
 
 ## UML Models
 
@@ -41,4 +52,7 @@ Each section will have a detailed explanation of how the system works and how it
 
 ## References
 ```
+Codecademy (2025) What is a SPA?, Codecademy. 
+Available at: https://www.codecademy.com/article/fecp-what-is-a-spa 
+(Accessed: 3 February 2025).
 ```

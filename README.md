@@ -8,7 +8,7 @@ Navigate to the the following directory usinng the commands below:
 cd Frontend/accidental-experts-frontend
 ```
 
-Before running the project it is imprtant to have NPM(Node Package Manager) installed on your device. Once you have NPM and node.js configured on your device run the following command in your terminal.
+Before running the project it is important to have NPM(Node Package Manager) installed on your device. Once you have NPM and node.js configured on your device run the following command in your terminal.
 
 ### Recommended node version
 

@@ -175,5 +175,8 @@ We will be making a frontend using React
 
 ## 11. References and Appendices
 
-Jędrzejko, K. (2023) 'The importance of software requirements engineering in IT projects,' Software Mind, 6
-July. https://softwaremind.com/blog/software-requirements-engineering-the-driving-force-behind-successful-and-efficient-it-projects/.
+```
+Jędrzejko, K. (2023) 'The importance of software requirements engineering in IT projects,' 
+Software Mind, 6 July. 
+https://softwaremind.com/blog/software-requirements-engineering-the-driving-force-behind-successful-and-efficient-it-projects/.
+```

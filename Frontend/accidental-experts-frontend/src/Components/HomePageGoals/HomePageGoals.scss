@@ -1,35 +1,42 @@
 @import '../../global.scss';
 
 .homePageGoalsContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    .homePageGoalsHeadingWrapper {
+    .homepageGoalsInnerWrapper {
         display: flex;
-        flex-direction: column;
-        .homePageGoalsHeading {
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 40px;
-            text-align: left;
-            color: $text-green;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        padding: 0 150px;
+        .homePageGoalsHeadingWrapper {
+            display: flex;
+            flex-direction: column;
+            .homePageGoalsHeading {
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 40px;
+                text-align: left;
+                color: $text-green;
+                padding: 35px 0;
+            }
+            .homePageGoalsDescription {
+                padding: 0 150px 55px 0;
+            }
         }
     }
 }
 .jaguarGreen {
     background: $jaguar-green;
-    .homePageGoalsHeadingWrapper {
-        color: $white;
-        display: flex;
-        flex-direction: column;
-        .homePageGoalsHeading {
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 40px;
-            text-align: left;
+    .homepageGoalsInnerWrapper {
+        .homePageGoalsHeadingWrapper {
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            .homePageGoalsHeading {
+                color: $white;
+            }
+        }
+        .homePageGoalsImage {
             color: $white;
         }
     }

@@ -4,7 +4,7 @@ import LoginComponent from '../Components/LoginComponent/LoginComponent.tsx';
 export default function LoginAndRegistration() {
     return (
         <div>
-            <LoginComponent heading={'Login'} />
+            <LoginComponent heading={'Sign In'} />
         </div>
     );
 }

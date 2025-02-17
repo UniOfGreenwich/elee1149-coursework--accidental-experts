@@ -14,6 +14,8 @@ const LoginComponent: React.FC = () => {
         formState: { errors },
     } = useForm<Inputs>();
 
+    const [showPassword, setShowPassword] = React.useState(false);
+
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
     return (
@@ -22,8 +24,15 @@ const LoginComponent: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input placeholder={"Email"} type="email" {...register('email', {required: true})} />
                 {errors.email && <span>Email is required</span>}
-                <input placeholder={"Password"} type="password" {...register('password', {required: true})} />
-                {errors.password && <span>Password is required</span>}
+                <input
+                    placeholder={"Password"}
+                    type={showPassword ? "text" : "password"} {...register('password', {required: true})}
+                />
+                <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? "Hide" : "Show"}
+                </button>
+                {errors.password &&
+                    <span>Password is required</span>}
                 <label>
                     <input type="checkbox" {...register('rememberMe')}
                            style={{display: 'inline-block', marginRight: '5px'}}/>
@@ -31,10 +40,11 @@ const LoginComponent: React.FC = () => {
                 </label>
                 <a href="/login-and-registration">Forgot Password?</a>
                 <input type="submit"/>
+
             </form>
             <div className="separator">
                 <div className="separator-line"/>
-                    <span className="separator-text">or</span>
+                <span className="separator-text">or</span>
                 <div className="separator-line"/>
             </div>
             <div>

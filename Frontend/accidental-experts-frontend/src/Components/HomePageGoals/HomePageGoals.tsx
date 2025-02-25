@@ -17,8 +17,8 @@ class HomePageGoals extends Component<HomePageGoalsProps> {
     };
     render() {
         const { heading, text, imageUrl, backGroundColor } = this.props;
-            <div className={`homePageGoalsContainer ${backGroundColor}`}>
         return (
+            <div className={`homePageGoalsContainer ${backGroundColor}`}>
                 <div className="homepageGoalsInnerWrapper">
                     <div className={'homePageGoalsHeadingWrapper'}>
                         <h2 className="homePageGoalsHeading">{heading}</h2>

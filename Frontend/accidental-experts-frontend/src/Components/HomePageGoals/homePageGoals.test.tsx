@@ -9,14 +9,21 @@ describe('HomePageGoals Component', () => {
             heading: 'Test Heading',
             text: 'Test Text',
             imageUrl: 'test-image-url.jpg',
-            backGroundColor: 'testBackgroundColor'
+            backGroundColor: 'testBackgroundColor',
         };
 
-        const { getByText, getByAltText, container } = render(<HomePageGoals {...props} />);
+        const { getByText, getByAltText, container } = render(
+            <HomePageGoals {...props} />
+        );
 
         expect(getByText('Test Heading')).toBeInTheDocument();
         expect(getByText('Test Text')).toBeInTheDocument();
-        expect(getByAltText('Home Page Goal')).toHaveAttribute('src', 'test-image-url.jpg');
-        expect(container.firstChild).toHaveClass('homePageGoalsContainer testBackgroundColor');
+        expect(getByAltText('Home Page Goal')).toHaveAttribute(
+            'src',
+            'test-image-url.jpg'
+        );
+        expect(container.firstChild).toHaveClass(
+            'homePageGoalsContainer testBackgroundColor'
+        );
     });
 });

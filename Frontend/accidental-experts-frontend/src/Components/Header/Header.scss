@@ -25,7 +25,7 @@
                     height: 100%; // Logo uses 100% of the height available in logo-area
 
                     @media (max-width: 768px) {
-                        height: 50px;  // Adjust the height for mobile view
+                        height: 50px; // Adjust the height for mobile view
                         margin-right: 15px; // Adds space between logo and website name
                     }
                 }
@@ -45,7 +45,7 @@
             }
 
             @media (max-width: 768px) {
-                max-height: 80px;  // Adjust the max-height for mobile view
+                max-height: 80px; // Adjust the max-height for mobile view
             }
         }
 
@@ -90,7 +90,7 @@
 
             @media (max-width: 768px) {
                 align-items: center;
-                gap: 15px
+                gap: 15px;
                 /* Adds more space for narrow/mobile view.
                  Before this it was far too cluttered when
                  login/signup and the urls where shown above
@@ -101,7 +101,7 @@
         @media (max-width: 768px) {
             flex-direction: column;
             align-items: center;
-            gap: 15px // Gap also added here for reason above
+            gap: 15px; // Gap also added here for reason above
         }
     }
 
@@ -113,5 +113,3 @@
         padding: 0 20px;
     }
 }
-
-

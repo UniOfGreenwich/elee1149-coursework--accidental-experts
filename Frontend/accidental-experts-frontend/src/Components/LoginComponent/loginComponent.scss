@@ -1,0 +1,20 @@
+@import "../../global.scss";
+
+.loginComponentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 250px 110px;
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+    .loginFormWrapper {
+        padding: 100px 0 50px;
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}

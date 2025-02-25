@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import './loginComponent.scss';
 
 type Inputs = {
     email: string;
@@ -19,7 +20,7 @@ const LoginComponent: React.FC = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
     return (
-        <div>
+        <div className="loginComponentWrapper">
             <h2>Sign In</h2>
             <div className="loginFormWrapper">
                 <form onSubmit={handleSubmit(onSubmit)}>

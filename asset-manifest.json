@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/elee1149-coursework--accidental-experts/static/css/main.a3e8324f.css",
+    "main.js": "/elee1149-coursework--accidental-experts/static/js/main.426328b5.js",
+    "index.html": "/elee1149-coursework--accidental-experts/index.html",
+    "main.a3e8324f.css.map": "/elee1149-coursework--accidental-experts/static/css/main.a3e8324f.css.map",
+    "main.426328b5.js.map": "/elee1149-coursework--accidental-experts/static/js/main.426328b5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3e8324f.css",
+    "static/js/main.426328b5.js"
+  ]
+}

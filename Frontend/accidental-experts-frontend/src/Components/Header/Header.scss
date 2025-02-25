@@ -1,6 +1,55 @@
-// TODO
-
-.header{
-    height : 100px;
-    background-color: #1c4532;
+.headerWrapper {
+    padding: 0 150px;
+    background-color: #22543D;
+    .header {
+        color: white;
+        padding: 35px 0;
+        display: flex;
+        justify-content: space-between;
+        .logoWrapper {
+            max-height: 150px;
+            flex: 1;
+            .logo-area {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                .logo {
+                    margin-right: 30px;
+                    object-fit: contain;
+                    height: 100%;
+                }
+                .website-name {
+                    font-size: 40px;
+                    font-weight: bold;
+                }
+            }
+        }
+        .linksWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex: 1.1;
+            .nav-links {
+                font-size: 1em;
+                font-weight: bolder;
+                display: flex;
+                justify-content: flex-end;
+                a {
+                    color: white;
+                    margin: 0 15px;
+                    text-decoration: none;
+                }
+            }
+            .login-signup {
+                font-weight: bolder;
+                display: flex;
+                justify-content: flex-end;
+                a {
+                    padding-right: 15px;
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }

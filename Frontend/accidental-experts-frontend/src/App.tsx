@@ -4,11 +4,12 @@ import './destyle.css';
 import HomePage from './Pages/home.tsx';
 
 function App() {
+    const baseUrl = "elee1149-coursework--accidental-experts";
     return (
         <div className="App">
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+                    <Route path={baseUrl+"/"} element={<HomePage />} />
                 </Routes>
             </Router>
         </div>

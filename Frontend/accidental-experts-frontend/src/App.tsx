@@ -7,6 +7,7 @@ import Header from "./Components/Header/Header.tsx";
 function App() {
     return (
         <div className="App">
+            <Header/>
             <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />} />

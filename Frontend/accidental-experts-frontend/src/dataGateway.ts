@@ -3,7 +3,7 @@ function getStandardRequestHeaders() {
 }
 
 export async function retrieveJobs() {
-    let url = "http://localhost:3000/elee1149-coursework--accidental-experts/Tests/jobs.json"
+    let url = origin + "/elee1149-coursework--accidental-experts/Tests/jobs.json"
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),

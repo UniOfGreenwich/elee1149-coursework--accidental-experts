@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './destyle.css';
-import HomePage from './Pages/home.tsx';
+import HomePage from './Pages/HomePage/home.tsx';
+import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
 import Header from './Components/Header/Header.tsx';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
             <Router>
                 <Routes>
                     <Route path={baseUrl+"/"} element={<HomePage />} />
+                    <Route path={baseUrl+"/job-search"} element={<JobSearchPage/>} />
                 </Routes>
             </Router>
         </div>

@@ -29,8 +29,8 @@ export default function Header() {
                         <a href="#">Sign up</a>
                     </Col>
                     <Col xs={6} className="nav-links">
-                        <a href="#">Home</a>
-                        <a href="#">Job Search</a>
+                        <a href="/elee1149-coursework--accidental-experts">Home</a>
+                        <a href="/elee1149-coursework--accidental-experts/job-search">Job Search</a>
                         <a href="#">Dashboard</a>
                     </Col>
                 </div>

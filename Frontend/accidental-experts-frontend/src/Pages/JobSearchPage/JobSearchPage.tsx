@@ -21,7 +21,6 @@ function JobSearchPage() {
 
     return (
         <Container fluid="xxl" className="enrollment-page">
-            {/*<Header/>*/}
             <JobSearchCard jobs={jobs} numOfJobs={numOfJobs} />
             {/*<FooterPanel/>*/}
         </Container>

@@ -1,6 +1,7 @@
 import './JobSearchCard.scss';
 import React, {JSX, useState} from "react";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface JobSearchCardProps {
     jobs: any[];
@@ -94,7 +95,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     };
 
     return (
-        <Container fluid={true} className="pt-6 pb-6 vehicle-selection-panel">
+        <Container fluid={true} className="pt-6 pb-6 job-search-panel">
             {generateJobCards(numOfJobs)}
         </Container>
     );

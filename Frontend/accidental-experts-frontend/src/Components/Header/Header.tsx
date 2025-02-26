@@ -30,7 +30,7 @@ export default function Header() {
                     </Col>
                     <Col xs={6} className="nav-links">
                         <a href="#">Home</a>
-                        <a href="#">Job Search</a>
+                        <a href="/job-search">Job Search</a>
                         <a href="#">Dashboard</a>
                     </Col>
                 </div>

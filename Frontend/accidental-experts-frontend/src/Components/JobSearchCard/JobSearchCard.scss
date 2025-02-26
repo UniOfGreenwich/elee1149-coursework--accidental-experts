@@ -21,25 +21,27 @@
     text-align: right;
     margin-top: 10px;
   }
-}
-.image{
-  height: 24px;
-  width: 24px;
-  border: 1px solid #ddd;
-}
-.left-padding{
-  padding-left: 5px;
-}
 
-.button-style{
-  display: flex !important;
-  align-self: end;
-  justify-self: end;
-  background-color: #196357 !important;
-  border-color: #196357 !important;
-}
-.bottom-padding{
-  padding-bottom: 1.5rem;
+  .image{
+    height: 24px;
+    width: 24px;
+    border: 1px solid #ddd;
+  }
+  .button-style{
+    display: flex !important;
+    align-self: end;
+    justify-self: end;
+    background-color: #196357 !important;
+    border-color: #196357 !important;
+  }
+  .left-padding{
+    padding-left: 5px;
+  }
+
+  .bottom-padding{
+    padding-bottom: 1.5rem;
+  }
+
 }
 
 .text-colour{

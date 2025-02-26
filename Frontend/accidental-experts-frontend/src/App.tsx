@@ -6,13 +6,14 @@ import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
 import Header from './Components/Header/Header.tsx';
 
 function App() {
+    const baseUrl = "elee1149-coursework--accidental-experts";
     return (
         <div className="App">
             <Header />
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/job-search" element={<JobSearchPage/>} />
+                    <Route path={baseUrl+"/"} element={<HomePage />} />
+                    <Route path={baseUrl+"/job-search"} element={<JobSearchPage/>} />
                 </Routes>
             </Router>
         </div>

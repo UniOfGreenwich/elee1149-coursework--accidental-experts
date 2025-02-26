@@ -37,13 +37,28 @@
   .left-padding{
     padding-left: 5px;
   }
+}
 
-  .bottom-padding{
-    padding-bottom: 1.5rem;
-  }
-
+.bottom-padding{
+  padding-bottom: 1.5rem;
 }
 
 .text-colour{
   color: #196357 !important;
+}
+
+.pagination {
+
+  li a {
+    color: #196357;
+  }
+
+  li a:hover {
+    color: #196357;
+  }
+
+  li.active a {
+    background-color: #196357;
+    border-color: #196357;
+  }
 }

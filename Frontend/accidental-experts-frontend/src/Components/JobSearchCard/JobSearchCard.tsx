@@ -11,23 +11,29 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
 
     const { jobs, numOfJobs } = props;
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    function generateJobCards(numOfJobs: number) {
+    const jobsPerPage = 20;
+    const indexOfLastJob = currentPage * jobsPerPage;
+    const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+    const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+    const totalPages = Math.ceil(numOfJobs / jobsPerPage);
 
+    const generateJobCards = () => {
         let jobCards = [];
-        for (let i = 0; i < numOfJobs; i++) {
+        for (let i = 0; i < currentJobs.length; i++) {
             jobCards.push(
                 <Row key={i}>
                     <Col xs={6} md={10} className={"bottom-padding"}>
-                        {infoGraphic(jobs[i])}
+                        {infoGraphic(currentJobs[i])}
                     </Col>
                 </Row>
             );
         }
         return jobCards;
-    }
+    };
 
-    const infoGraphic =(job) => {
+    const infoGraphic =(job : { expiry_date: any; description: string; company_name: string ; title: string; salary: string | number; employment_type: string ; }) => {
 
         const date = new Date();
         const expiry_date_string = job.expiry_date
@@ -58,15 +64,15 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     <Card.Title className={'card-title text-colour'}>{job.title}</Card.Title>
 
                     {isDescriptionLong ? (
-                    <div onClick={toggleDescription} style={{ cursor: 'pointer' }}>
-                        {isDescriptionExpanded ? (
-                            <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
-                        ) : (
-                            <Card.Text className={"card-text text-colour"}>{job.description.substring(0, 100)}... </Card.Text>
-                        )}
-                    </div>
+                        <div onClick={toggleDescription} style={{ cursor: 'pointer' }}>
+                            {isDescriptionExpanded ? (
+                                <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
+                            ) : (
+                                <Card.Text className={"card-text text-colour"}>{job.description.substring(0, 100)}... </Card.Text>
+                            )}
+                        </div>
                     ) : (
-                    <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
+                        <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
                     )}
 
                     <Row className={'xxx'}>
@@ -90,13 +96,47 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
         )
     }
 
-    const onApply = () => {
-        //TODO
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
+
+    const onApply = () => {
+        console.log("Apply button clicked");
+        //TODO;
+    };
+
+    const renderPagination = () => {
+        if (totalPages <= 1) {
+            return null;
+        }
+
+        let navigationPanelItem = [];
+        for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+            navigationPanelItem.push(
+                <li key={pageNumber} className={`page-item ${pageNumber === currentPage ? 'active' : ''}`}>
+                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handlePageChange(pageNumber); }}>
+                        {pageNumber}
+                    </a>
+                </li>
+            );
+        }
+        return (
+            <nav>
+                <ul className="pagination justify-content-center mt-3">
+                    {navigationPanelItem}
+                </ul>
+            </nav>
+        );
+    };
+
+
 
     return (
         <Container fluid={true} className="pt-6 pb-6 job-search-panel">
-            {generateJobCards(numOfJobs)}
+            {generateJobCards()}
+            {renderPagination()}
         </Container>
     );
 }
+
+

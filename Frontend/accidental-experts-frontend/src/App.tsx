@@ -4,9 +4,13 @@ import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
 import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from './Pages/home.tsx';
+import Header from './Components/Header/Header.tsx';
+
 function App() {
     return (
         <div className="App">
+            <Header />
             <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />} />

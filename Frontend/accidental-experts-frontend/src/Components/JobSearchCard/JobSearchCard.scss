@@ -1,64 +1,78 @@
-.job-search-panel {
-  padding-top: 1.5rem;
-}
-.info-box {
-  width: 100%;
-  margin: 1px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.job-search-card-container {
+  @import "bootstrap";
 
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
+  .job-search-panel {
+    padding-top: 1.5rem;
   }
 
-  .card-text {
-    margin-bottom: 0.5rem;
-  }
-
-  .apply-button {
-    text-align: right;
-    margin-top: 10px;
-  }
-
-  .image{
-    height: 24px;
-    width: 24px;
+  .info-box {
+    width: 75%;
+    margin: 1px;
     border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .card-text {
+      margin-bottom: 0.5rem;
+    }
+
+    .apply-button {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .image {
+      height: 24px;
+      width: 24px;
+      border: 1px solid #ddd;
+    }
+
+    .button-style {
+      display: flex !important;
+      align-self: end;
+      justify-self: end;
+      background-color: #196357 !important;
+      border-color: #196357 !important;
+    }
+
+    .left-padding {
+      padding-left: 8px;
+    }
+
   }
-  .button-style{
-    display: flex !important;
-    align-self: end;
-    justify-self: end;
-    background-color: #196357 !important;
-    border-color: #196357 !important;
-  }
-  .left-padding{
-    padding-left: 5px;
-  }
-}
 
-.bottom-padding{
-  padding-bottom: 1.5rem;
-}
-
-.text-colour{
-  color: #196357 !important;
-}
-
-.pagination {
-
-  li a {
-    color: #196357;
+  .row-control {
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  li a:hover {
-    color: #196357;
+  .text-colour {
+    color: #196357 !important;
   }
 
-  li.active a {
-    background-color: #196357;
-    border-color: #196357;
+  $primary: #196357; // Use Bootstrap's primary color variable
+
+  .pagination {
+    .page-item {
+      &.active .page-link {
+        background-color: $primary;
+        border-color: $primary;
+        color: white;
+      }
+    }
+
+    .page-link {
+      border-radius: 0.25rem
+    }
   }
 }

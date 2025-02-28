@@ -11,6 +11,14 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    @media (max-width: 1024px) and (min-width: 768px) {
+      width: 90%;
+    }
+
+    @media (max-width: 768px) {
+      width: 95%;
+    }
+  }
 
 
     .card-title {
@@ -19,7 +27,7 @@
     }
 
     .card-text {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem !important;
     }
 
     .apply-button {
@@ -41,11 +49,9 @@
       border-color: #196357 !important;
     }
 
-    .left-padding {
-      padding-left: 8px;
+    .rounded-icon {
+      border-radius: 6px;
     }
-
-  }
 
   .row-control {
     padding-bottom: 1.5rem;
@@ -54,6 +60,9 @@
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    @media (max-width: 1024px) {
+      width: auto;
+    }
   }
 
   .text-colour {

@@ -76,16 +76,16 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
 
                     <Row className={'xxx'}>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Salary: £{job.salary}</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Salary:</strong> £{job.salary}</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Employment Type: {job.employment_type}</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Employment Type:</strong> {job.employment_type}</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Job Posted {days} days ago</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Job Posted</strong> {days} days ago</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Applications Close in {days} days {hours} hours and {minutes} minutes</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Applications Close in: </strong> {days} days {hours} hours and {minutes} minutes</Card.Text>
                         </Col>
                     </Row>
                     <br/>

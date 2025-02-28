@@ -1,7 +1,6 @@
 import './JobSearchCard.scss';
 import React, {JSX, useState} from "react";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface JobSearchCardProps {
     jobs: any[];
@@ -11,15 +10,21 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
 
     const { jobs, numOfJobs } = props;
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    function generateJobCards(numOfJobs: number) {
+    const jobsPerPage = 20;
+    const indexOfLastJob = currentPage * jobsPerPage;
+    const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+    const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+    const totalPages = Math.ceil(numOfJobs / jobsPerPage);
 
+    function generateJobCards() {
         let jobCards = [];
-        for (let i = 0; i < numOfJobs; i++) {
+        for (let i = 0; i < currentJobs.length; i++) {
             jobCards.push(
                 <Row key={i}>
-                    <Col xs={6} md={10} className={"bottom-padding"}>
-                        {infoGraphic(jobs[i])}
+                    <Col xs={6} md={10} className={"row-control"}>
+                        {infoGraphic(currentJobs[i])}
                     </Col>
                 </Row>
             );
@@ -27,7 +32,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
         return jobCards;
     }
 
-    const infoGraphic =(job) => {
+    const infoGraphic =(job : { expiry_date: any; description: string; company_name: string ; title: string; salary: string | number; employment_type: string ; }) => {
 
         const date = new Date();
         const expiry_date_string = job.expiry_date
@@ -48,7 +53,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     <Row>
                         <Col>
                             <img
-                                className="image rounded-5"
+                                className="image rounded-icon"
                                 src={process.env.PUBLIC_URL + '/logo512.png'}
                                 alt="Company Image"
                             />
@@ -58,45 +63,79 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     <Card.Title className={'card-title text-colour'}>{job.title}</Card.Title>
 
                     {isDescriptionLong ? (
-                    <div onClick={toggleDescription} style={{ cursor: 'pointer' }}>
-                        {isDescriptionExpanded ? (
-                            <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
-                        ) : (
-                            <Card.Text className={"card-text text-colour"}>{job.description.substring(0, 100)}... </Card.Text>
-                        )}
-                    </div>
+                        <div onClick={toggleDescription} style={{ cursor: 'pointer' }}>
+                            {isDescriptionExpanded ? (
+                                <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
+                            ) : (
+                                <Card.Text className={"card-text text-colour"}>{job.description.substring(0, 100)}... </Card.Text>
+                            )}
+                        </div>
                     ) : (
-                    <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
+                        <Card.Text className={"card-text text-colour"}>{job.description}</Card.Text>
                     )}
 
                     <Row className={'xxx'}>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Salary: £{job.salary}</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Salary:</strong> £{job.salary}</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Employment Type: {job.employment_type}</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Employment Type:</strong> {job.employment_type}</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Job Posted {days} days ago</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Job Posted</strong> {days} days ago</Card.Text>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">Applications Close in {days} days {hours} hours and {minutes} minutes</Card.Text>
+                            <Card.Text className="card-text text-colour"><strong>Applications Close in: </strong> {days} days {hours} hours and {minutes} minutes</Card.Text>
                         </Col>
                     </Row>
                     <br/>
-                    <Button className={'rounded-6 button-font button-style'} onClick={onApply}>Apply Now!</Button>
+                    <Button className={'rounded-icon button-font button-style'} onClick={onApply}>Apply Now!</Button>
                 </Card.Body>
             </Card>
         )
     }
 
-    const onApply = () => {
-        //TODO
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
 
+    const onApply = () => {
+        console.log("Apply button clicked");
+        //TODO;
+    };
+
+    const renderPagination = () => {
+        if (totalPages <= 1) {
+            return null;
+        }
+
+        let navigationPanelItem = [];
+        for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+            navigationPanelItem.push(
+                <li key={pageNumber} className={`page-item ${pageNumber === currentPage ? 'active' : ''}`}>
+                    <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handlePageChange(pageNumber); }}>
+                        {pageNumber}
+                    </a>
+                </li>
+            );
+        }
+        return (
+            <nav>
+                <ul className="pagination justify-content-center mt-3">
+                    {navigationPanelItem}
+                </ul>
+            </nav>
+        );
+    };
+
+
+
     return (
-        <Container fluid={true} className="pt-6 pb-6 job-search-panel">
-            {generateJobCards(numOfJobs)}
+        <Container className="pt-6 pb-6 job-search-card-container">
+            <Container fluid={true} className="pt-6 pb-6 job-search-panel">
+                {generateJobCards()}
+                {renderPagination()}
+            </Container>
         </Container>
     );
 }

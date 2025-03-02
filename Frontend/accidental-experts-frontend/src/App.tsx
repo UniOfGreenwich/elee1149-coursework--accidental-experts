@@ -4,7 +4,7 @@ import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
 import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
 import Header from './Components/Header/Header.tsx';
-import LoginAndRegistration from './Pages/login-and-registration.tsx';
+import LoginAndRegistration from './Pages/LoginAndRegistrationPage/login-and-registration.tsx';
 
 function App() {
     const baseUrl = "elee1149-coursework--accidental-experts";
@@ -15,9 +15,8 @@ function App() {
                 <Routes>
                     <Route path={baseUrl+"/"} element={<HomePage />} />
                     <Route path={baseUrl+"/job-search"} element={<JobSearchPage/>} />
-
                     <Route
-                        path="/login-and-registration"
+                        path={baseUrl+"/login-and-registration"}
                         element={<LoginAndRegistration />}
                     />
                 </Routes>

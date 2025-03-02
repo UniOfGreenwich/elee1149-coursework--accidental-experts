@@ -1,11 +1,10 @@
 import * as React from 'react';
 import JobSearchCard from '../../Components/JobSearchCard/JobSearchCard.tsx';
-import {Container} from "react-bootstrap";
-import {useEffect, useState} from "react";
-import {retrieveJobs} from "../../dataGateway.ts";
+import { Container } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { retrieveJobs } from '../../dataGateway.ts';
 
 function JobSearchPage() {
-
     const [numOfJobs, setNumOfJobs] = useState(0);
     const [jobs, setJobs] = useState([]);
 
@@ -17,7 +16,6 @@ function JobSearchPage() {
         }
         fetchJobs();
     }, [numOfJobs]);
-
 
     return (
         <Container fluid="xxl" className="enrollment-page">

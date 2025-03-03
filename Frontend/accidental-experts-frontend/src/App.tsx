@@ -4,6 +4,7 @@ import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
 import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
 import Header from './Components/Header/Header.tsx';
+import Footer from "./Components/Footer/Footer.tsx";
 
 function App() {
     const baseUrl = "elee1149-coursework--accidental-experts";
@@ -16,6 +17,7 @@ function App() {
                     <Route path={baseUrl+"/job-search"} element={<JobSearchPage/>} />
                 </Routes>
             </Router>
+            <Footer />
         </div>
     );
 }

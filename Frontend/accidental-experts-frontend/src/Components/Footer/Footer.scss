@@ -1,0 +1,85 @@
+@import '../../global.scss';
+
+.footerWrapper {
+  padding: 0 150px;
+  background-color: $jaguar-green;
+
+  .footer {
+    color: white;
+    padding: 35px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .website-nameWrapper {
+      max-height: 150px;
+      flex: 1;
+      .website-name {
+        font-size: 28px;
+        font-weight: bolder;
+
+        @media (max-width: 1024px) and (min-width: 768px) {
+          font-size: 36px;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 32px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        max-height: 80px; // TODO: double check whether these need changing
+      }
+    }
+
+    .linksWrapper {
+      display: flex;
+      flex-direction: column;
+
+      .links {
+        font-weight: normal;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 25px;
+
+        .linkDetail {
+          display: flex;
+          flex-direction: column;
+          padding-right: 25px;
+        }
+
+          a {
+            font-weight: bolder;
+            padding-bottom: 30px;
+            color: white;
+            text-decoration: none;
+          }
+
+          div {
+            font-weight: normal;
+            padding-bottom: 8px;
+            color: white;
+            text-decoration: none;
+          }
+      }
+
+      @media (max-width: 768px) {
+        align-items: center;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 768px) {
+    padding: 0 50px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}

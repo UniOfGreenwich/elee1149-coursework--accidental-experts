@@ -1,4 +1,4 @@
-import './JobSearchCard.scss';
+import './JobSearchCard.scss'; // Import the jobSearchCard styling
 import React, {JSX, useState} from "react";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 

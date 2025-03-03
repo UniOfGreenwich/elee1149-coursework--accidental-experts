@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import './Header.scss'; // Import the SCSS file
+import './Header.scss'; // Import the header styling
 
 export default function Header() {
     const logoURL =

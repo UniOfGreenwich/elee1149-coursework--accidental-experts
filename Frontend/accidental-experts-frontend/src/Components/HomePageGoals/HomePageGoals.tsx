@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './HomePageGoals.scss';
+import './HomePageGoals.scss'; // Import the goals styling
 
 interface HomePageGoalsProps {
     heading: string;

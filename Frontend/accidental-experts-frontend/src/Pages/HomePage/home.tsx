@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePageGoals from '../Components/HomePageGoals/HomePageGoals.tsx';
+import HomePageGoals from '../../Components/HomePageGoals/HomePageGoals.tsx';
 
 export default function HomePage() {
     return (

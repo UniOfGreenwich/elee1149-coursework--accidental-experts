@@ -2,27 +2,37 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
-import JobSearchPage from "./Pages/JobSearchPage/JobSearchPage.tsx";
+import JobSearchPage from './Pages/JobSearchPage/JobSearchPage.tsx';
 import Header from './Components/Header/Header.tsx';
 import LoginAndRegistration from './Pages/LoginAndRegistrationPage/login-and-registration.tsx';
+import { RoutesProvider, useRoutes } from './RoutesContext';
 
 function App() {
-    const baseUrl = "elee1149-coursework--accidental-experts";
     return (
-        <div className="App">
-            <Header />
+        <RoutesProvider>
             <Router>
-                <Routes>
-                    <Route path={baseUrl+"/"} element={<HomePage />} />
-                    <Route path={baseUrl+"/job-search"} element={<JobSearchPage/>} />
-                    <Route
-                        path={baseUrl+"/login-and-registration"}
-                        element={<LoginAndRegistration />}
-                    />
-                </Routes>
+                <div className="App">
+                    <Header />
+                    <RoutesComponent />
+                </div>
             </Router>
-        </div>
+        </RoutesProvider>
     );
 }
+
+const RoutesComponent = () => {
+    const { homePath, jobSearchPath } = useRoutes();
+
+    return (
+        <Routes>
+            <Route path={homePath} element={<HomePage />} />
+            <Route path={jobSearchPath} element={<JobSearchPage />} />
+            <Route
+                path={""}
+                element={<LoginAndRegistration />}
+            />
+        </Routes>
+    );
+};
 
 export default App;

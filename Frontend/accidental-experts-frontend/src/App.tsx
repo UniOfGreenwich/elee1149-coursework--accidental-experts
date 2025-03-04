@@ -21,14 +21,14 @@ function App() {
 }
 
 const RoutesComponent = () => {
-    const { homePath, jobSearchPath } = useRoutes();
+    const { homePath, jobSearchPath, loginAndRegistrationPath } = useRoutes();
 
     return (
         <Routes>
             <Route path={homePath} element={<HomePage />} />
             <Route path={jobSearchPath} element={<JobSearchPage />} />
             <Route
-                path={""}
+                path={loginAndRegistrationPath}
                 element={<LoginAndRegistration />}
             />
         </Routes>

@@ -9,6 +9,12 @@ interface HomePageGoalsProps {
 }
 
 class HomePageGoals extends Component<HomePageGoalsProps> {
+    props: {
+        heading: string;
+        text: string;
+        imageUrl: string;
+        backGroundColor: string;
+    };
     render() {
         const { heading, text, imageUrl, backGroundColor } = this.props;
         return (

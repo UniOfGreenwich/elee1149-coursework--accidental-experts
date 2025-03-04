@@ -1,10 +1,13 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import './Header.scss'; // Import the SCSS file
+import {useRoutes} from "../../RoutesContext.tsx";
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const logoURL =
         'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWZvYXg5empwNDhtY3I5ZG5xOTBjOWlqMWNwN2FwaWw1azVqdWVuZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VQXdNn4MMLmNtkhPCV/giphy.gif';
+    const { homePath, jobSearchPath } = useRoutes();
 
     return (
         <div className="headerWrapper">
@@ -29,8 +32,8 @@ export default function Header() {
                         <a href="#">Sign up</a>
                     </Col>
                     <Col xs={6} className="nav-links">
-                        <a href="/elee1149-coursework--accidental-experts">Home</a>
-                        <a href="/elee1149-coursework--accidental-experts/job-search">Job Search</a>
+                        <Link to={homePath}>Home</Link>
+                        <Link to={jobSearchPath}>Job Search</Link>
                         <a href="#">Dashboard</a>
                     </Col>
                 </div>

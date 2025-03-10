@@ -34,12 +34,15 @@ export default function EditAccountInfo(props: EditAccountInfoProps): JSX.Elemen
             setEmail(accountInfo.email || '');
             setPhoneNumber(accountInfo.phoneNumber || '');
             setAccountStatus(accountInfo.accountStatus || '');
-            setIsFirstNameValid(firstName.trim() !== '')
-            setIsLastNameValid(lastName.trim() !== '')
-            setIsEmailValid(emailRegex.test(email))
-            setIsPhoneNumberValid(phoneRegex.test(phoneNumber))
         }
     }, [accountInfo]);
+
+    useEffect(() => {
+        setIsFirstNameValid(firstName.trim() !== '');
+        setIsLastNameValid(lastName.trim() !== '');
+        setIsEmailValid(emailRegex.test(email));
+        setIsPhoneNumberValid(phoneRegex.test(phoneNumber));
+    }, [firstName, lastName, email, phoneNumber]);
 
     function sanitizeData(inputData: string) {
         return DOMPurify.sanitize(inputData)

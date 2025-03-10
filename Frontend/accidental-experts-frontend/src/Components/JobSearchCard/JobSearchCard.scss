@@ -1,16 +1,10 @@
-.job-search-card-container {
-    @import 'bootstrap';
-
     .job-search-panel {
         padding-top: 1.5rem;
     }
 
     .info-box {
-        width: 75%;
-        margin: 1px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
         @media (max-width: 1024px) and (min-width: 768px) {
             width: 90%;
         }
@@ -68,9 +62,10 @@
         color: #196357 !important;
     }
 
-    $primary: #196357; // Use Bootstrap's primary color variable
+    $primary: #196357;
 
     .pagination {
+        padding-bottom: 10px;
         .page-item {
             &.active .page-link {
                 background-color: $primary;
@@ -80,7 +75,6 @@
         }
 
         .page-link {
-            border-radius: 0.25rem;
+            color: $primary;
         }
     }
-}

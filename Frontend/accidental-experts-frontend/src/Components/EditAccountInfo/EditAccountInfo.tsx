@@ -1,135 +1,240 @@
+import React, { JSX, useEffect, useState } from 'react';
+import {Button, Col, Container, Dropdown, DropdownToggle, Form, Row} from 'react-bootstrap';
 import './EditAccountInfo.scss';
-import React, {JSX, useEffect, useState} from 'react';
-import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
-import {post} from "axios";
+import DOMPurify from "dompurify";
 
 interface EditAccountInfoProps {
-    accountInfo: any[];
+    accountInfo: any;
 }
-
 
 export default function EditAccountInfo(props: EditAccountInfoProps): JSX.Element {
     const { accountInfo } = props;
-    const [firstName, setFirstName ] = useState(0);
-    const [lastName, setLastName ] = useState(0);
-    const [email, setEmail] = useState(0);
-    const [phoneNumber, setPhoneNumber] = useState(0);
-    const [accountStatus, setAccountStatus] = useState(0);
-    const [addressLineOne, setAddressLineOne] = useState(0);
-    const [addressLineTwo, setAddressLineTwo] = useState(0);
-    const [city, setCity] = useState(0);
-    const [county, setCounty] = useState(0);
-    const [postcode, setPostcode] = useState(0);
+    const [edit, setEdit] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [accountStatus, setAccountStatus] = useState('');
+    const [isFirstNameValid, setIsFirstNameValid] = useState(false);
+    const [isLastNameValid, setIsLastNameValid] = useState(false);
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const phoneRegex = /^((\+44)|(0)) ?\d{4} ?\d{6}$/;
+
+    const accountStatusOptions = [
+        { value: 'Seeking', label: 'Seeking' },
+        { value: 'Not Seeking', label: 'Not Seeking' },
+    ];
 
     useEffect(() => {
-        // setFirstName(accountInfo.firstName || '')
-        // setLastName(accountInfo.lastName || '')
-        // setEmail(accountInfo.email || '')
-        // setPhoneNumber(accountInfo.phoneNumber || '')
-    }, []);
+        if (accountInfo) {
+            setFirstName(accountInfo.firstName || '');
+            setLastName(accountInfo.lastName || '');
+            setEmail(accountInfo.email || '');
+            setPhoneNumber(accountInfo.phoneNumber || '');
+            setAccountStatus(accountInfo.accountStatus || '');
+            setIsFirstNameValid(firstName.trim() !== '')
+            setIsLastNameValid(lastName.trim() !== '')
+            setIsEmailValid(emailRegex.test(email))
+            setIsPhoneNumberValid(phoneRegex.test(phoneNumber))
+        }
+    }, [accountInfo]);
 
-    function isNameValid(name: number): boolean {
-        return true
-    }
-    function handleFirstNameChange() {
-
-    }
-    function handleLastNameChange() {
-
-    }
-
-    function handleEmailChange() {
-
+    function sanitizeData(inputData: string) {
+        return DOMPurify.sanitize(inputData)
     }
 
-    let isEmailValid = false;
-
-
-    function handlePhoneNumberChange() {
-
+    function handleFirstNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = sanitizeData(event.target.value);
+        setFirstName(value);
+        setIsFirstNameValid(value.trim() !== '')
     }
 
-    let isMobilePhoneValid = false;
-    let isZipcodeValid = false;
-
-    function handlePostcodeChange() {
-
+    function handleLastNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = sanitizeData(event.target.value);
+        setLastName(value);
+        setIsLastNameValid(value.trim() !== '')
     }
 
-    function handleCountyChange() {
+    function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = sanitizeData(event.target.value);
+        setEmail(value);
+        setIsEmailValid(emailRegex.test(value))
 
     }
 
-    let isCountyValid;
-
-    function handleCityChange() {
-
+    function handlePhoneNumberChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = sanitizeData(event.target.value);
+        setPhoneNumber(value);
+        setIsPhoneNumberValid(phoneRegex.test(value))
     }
 
-    let isCityValid;
-    let isAddressLineOnevalid;
+    const handleAccountStatusChange = (event) => {
+        setAccountStatus(event.target.value);
+    };
 
-    function handleAddressLineOneChange() {
-
+    function handleEditProfile() {
+        setEdit(!edit);
     }
 
-    function isAddressLineTwoValid() {
-
+    function handleSaveProfile() {
+        //todo call endpoint to update
+        setEdit(!edit);
     }
 
     return (
-        <Container className={'account-container import'}>
+        <Container className={'accountContainer'}>
             <div className={'header'}>My Profile</div>
-                <Row className="mb-3">
-                    <Col xs={12} md={4} lg={3}>
-                        <div>Name</div>
-                        <div>{firstName + " " + lastName}</div>
-                    </Col>
+            {!edit ? (
+                <>
+                    <Row className="">
+                        <Col xs={12} md={4} lg={3}>
+                            <div className={"account-title"}>Name:</div>
+                            <span>{firstName + ' ' + lastName}</span>
+                        </Col>
+                        <Col xs={12} md={4} lg={3}>
+                            <div className={"account-title"}>Email:</div>
+                            <span>{email}</span>
+                        </Col>
+                    </Row>
+                    <Row className="">
+                        <Col xs={12} md={4} lg={3}>
+                            <div className={"account-title"}>Phone Number:</div>
+                            <span>{phoneNumber}</span>
+                        </Col>
+                        <Col xs={12} md={4} lg={3}>
+                            <div className={"account-title"}>Account Status: </div>
+                            <div>{accountStatus}</div>
+                        </Col>
+                    </Row>
+                    <div className={"top-padding"}>
+                    <Button
+                        className={`${'roundedIcon'} ${'buttonStyle'}`}
+                        onClick={handleEditProfile}>
+                        Edit Profile
+                    </Button>
+                    </div>
+                </>
+            ) : (
+                <Form>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'First Name'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="First Name"
+                                    size="lg"
+                                    value={firstName}
+                                    onChange={handleFirstNameChange}
+                                    isInvalid={!isFirstNameValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'First Name Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Last Name'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Last Name"
+                                    size="lg"
+                                    value={lastName}
+                                    onChange={handleLastNameChange}
+                                    isInvalid={!isLastNameValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Last Name Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Email'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Email"
+                                    size="lg"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    isInvalid={!isEmailValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Email Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Phone Number'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Phone Number"
+                                    size="lg"
+                                    value={phoneNumber}
+                                    onChange={handlePhoneNumberChange}
+                                    isInvalid={!isPhoneNumberValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Phone Number Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Account Status'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
 
-                    <Col xs={12} md={4} lg={3}>
-                        <div>Email</div>
-                        <div>{email}</div>
-                    </Col>
-                </Row>
-            <Row className="mb-3">
-                <Col xs={12} md={4} lg={3}>
-                    <div>Mobile Number</div>
-                    <div>{phoneNumber}</div>
-                </Col>
-
-                <Col xs={12} md={4} lg={3}>
-                    <div>Account Status</div>
-                    <div>{accountStatus}</div>
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col xs={12} md={4} lg={3}>
-                    <div>Home address</div>
-                    <div>{addressLineOne}</div>
-                </Col>
-
-                <Col xs={12} md={4} lg={3}>
-                    <div>Address line two</div>
-                    <div>{addressLineTwo}</div>
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col xs={12} md={4} lg={3}>
-                    <div>City</div>
-                    <div>{city}</div>
-                </Col>
-
-                <Col xs={12} md={4} lg={3}>
-                    <div>County</div>
-                    <div>{county}</div>
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col xs={12} md={4} lg={3}>
-                    <div>Postcode</div>
-                    <div>{postcode}</div>
-                </Col>
-            </Row>
+                                <Form.Select
+                                    aria-label="Account Status"
+                                    value={accountStatus}
+                                    onChange={handleAccountStatusChange}
+                                >
+                                    {accountStatusOptions.map((option) => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <div className={"top-padding"}>
+                        <Button
+                            className={`${'roundedIcon'} ${'buttonStyle'}`}
+                            onClick={handleSaveProfile}
+                            disabled={!isFirstNameValid || !isLastNameValid || !isEmailValid || !isPhoneNumberValid}
+                        >
+                            Save
+                        </Button>
+                    </div>
+                </Form>
+            )}
         </Container>
     );
 }

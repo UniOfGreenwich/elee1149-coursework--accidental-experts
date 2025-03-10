@@ -172,11 +172,9 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     };
 
     return (
-        <Container className="pt-6 pb-6 job-search-card-container">
             <Container fluid={true} className="pt-6 pb-6 job-search-panel">
                 {generateJobCards()}
                 {renderPagination()}
             </Container>
-        </Container>
     );
 }

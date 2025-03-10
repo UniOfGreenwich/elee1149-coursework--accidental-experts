@@ -65,6 +65,7 @@
     $primary: #196357;
 
     .pagination {
+        padding-bottom: 10px;
         .page-item {
             &.active .page-link {
                 background-color: $primary;
@@ -74,6 +75,6 @@
         }
 
         .page-link {
-            border-radius: 0.25rem;
+            color: $primary;
         }
     }

@@ -4,6 +4,7 @@ interface RoutesContextValue {
     baseUrl: string;
     homePath: string;
     jobSearchPath: string;
+    jobSeekerDashboardPath: string;
 }
 
 const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
@@ -17,6 +18,7 @@ export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
         baseUrl,
         homePath: `${baseUrl}/`,
         jobSearchPath: `${baseUrl}/job-search`,
+        jobSeekerDashboardPath: `${baseUrl}/seeker-dashboard`,
     };
 
     return (

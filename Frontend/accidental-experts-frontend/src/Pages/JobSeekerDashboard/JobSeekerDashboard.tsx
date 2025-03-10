@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react';
 import {retrieveAccountInfo} from '../../dataGateway.ts';
 import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo.tsx";
 import LoadingScreen from "../LoadingScreen/LoadingScreen.tsx";
+import JobCarousel from "../../Components/JobCarousel/JobCarousel.tsx";
 
 function JobSeekerDashboard() {
     const [accountInfo, setAccountInfo] = useState(null);
@@ -33,7 +34,10 @@ function JobSeekerDashboard() {
     }
 
     return (
-        <Container fluid="xxl" className="enrollment-page">
+        <Container fluid="xxl">
+            <Row>
+            <JobCarousel accountInfo={accountInfo.applied} />
+            </Row>
             <Row>
                 <Col xs={12} md={6}>
                     <EditAccountInfo accountInfo={accountInfo.profile}/>

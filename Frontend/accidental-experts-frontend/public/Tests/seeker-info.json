@@ -1,10 +1,4 @@
 {
-  "applied" : {
-    "jobId": "1",
-    "jobTitle": "Software Engineer",
-    "companyName": "Example Company",
-    "dateApplied": "2021-01-01"
-  },
   "profile": {
     "firstName": "John",
     "lastName": "Doe",
@@ -16,5 +10,67 @@
     "city": "Anytown",
     "county": "Anycounty",
     "postcode": "12345"
-  }
+  },
+  "applied": [
+    {
+      "jobId": "1",
+      "title": "Senior Software Engineer",
+      "description": "Develop and maintain software for electric vehicles.",
+      "companyName": "Example Company",
+      "dateApplied": "2021-01-01",
+      "employment_type": "Full-time",
+      "address": "1 Electric Avenue",
+      "county": "California",
+      "postcode": "90210",
+      "applicationStatus": "Successful"
+    },
+    {
+      "jobId": "2",
+      "title": "Software Engineer",
+      "description": " hj,vgchm",
+      "companyName": "Example Company",
+      "dateApplied": "2021-01-01",
+      "employment_type": "Full-time",
+      "address": "1 Electric Avenue",
+      "county": "California",
+      "postcode": "90210",
+      "applicationStatus": "Pending"
+    },
+    {
+      "jobId": "3",
+      "title": "Data Scientist",
+      "description": "Analyze data to improve product performance.",
+      "companyName": "Data Insights Inc.",
+      "dateApplied": "2021-01-05",
+      "employment_type": "Full-time",
+      "address": "123 Analytics Lane",
+      "county": "New York",
+      "postcode": "10001",
+      "applicationStatus": "Unsuccessful"
+    },
+    {
+      "jobId": "4",
+      "title": "Project Manager",
+      "description": "Oversee software development projects from start to finish.",
+      "companyName": "Project Solutions Ltd.",
+      "dateApplied": "2021-01-10",
+      "employment_type": "Contract",
+      "address": "456 Project Street",
+      "county": "Texas",
+      "postcode": "75001",
+      "applicationStatus": "Pending"
+    },
+    {
+      "jobId": "5",
+      "title": "UX Designer",
+      "description": "Design user interfaces for web and mobile applications. ",
+      "companyName": "User Experience Group",
+      "dateApplied": "2021-01-15",
+      "employment_type": "Full-time",
+      "address": "789 Design Avenue",
+      "county": "Washington",
+      "postcode": "98101",
+      "applicationStatus": "Pending"
+    }
+  ]
 }

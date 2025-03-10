@@ -118,7 +118,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     </Row>
                     <br />
                     <Button
-                        className={'rounded-icon button-font button-style'}
+                        className={'rounded-icon button-style'}
                         onClick={onApply}
                     >
                         Apply Now!

@@ -9,7 +9,6 @@ interface EditAccountInfoProps {
 
 export default function EditAccountInfo(props: EditAccountInfoProps): JSX.Element {
     const { accountInfo } = props;
-    const [edit, setEdit] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -77,49 +76,14 @@ export default function EditAccountInfo(props: EditAccountInfoProps): JSX.Elemen
         setAccountStatus(event.target.value);
     };
 
-    function handleEditProfile() {
-        setEdit(!edit);
-    }
 
     function handleSaveProfile() {
-        //todo call endpoint to update
-        setEdit(!edit);
+        //todo call endpoint to updat
     }
 
     return (
         <Container className={'accountContainer'}>
             <div className={'header'}>My Profile</div>
-            {!edit ? (
-                <>
-                    <Row className="">
-                        <Col xs={12} md={4} lg={3}>
-                            <div className={"account-title"}>Name:</div>
-                            <span>{firstName + ' ' + lastName}</span>
-                        </Col>
-                        <Col xs={12} md={4} lg={3}>
-                            <div className={"account-title"}>Email:</div>
-                            <span>{email}</span>
-                        </Col>
-                    </Row>
-                    <Row className="">
-                        <Col xs={12} md={4} lg={3}>
-                            <div className={"account-title"}>Phone Number:</div>
-                            <span>{phoneNumber}</span>
-                        </Col>
-                        <Col xs={12} md={4} lg={3}>
-                            <div className={"account-title"}>Account Status: </div>
-                            <div>{accountStatus}</div>
-                        </Col>
-                    </Row>
-                    <div className={"top-padding"}>
-                    <Button
-                        className={`${'roundedIcon'} ${'buttonStyle'}`}
-                        onClick={handleEditProfile}>
-                        Edit Profile
-                    </Button>
-                    </div>
-                </>
-            ) : (
                 <Form>
                     <Row className="mb-3">
                         <Col xs={12} md={6} lg={6}>
@@ -237,7 +201,6 @@ export default function EditAccountInfo(props: EditAccountInfoProps): JSX.Elemen
                         </Button>
                     </div>
                 </Form>
-            )}
         </Container>
     );
 }

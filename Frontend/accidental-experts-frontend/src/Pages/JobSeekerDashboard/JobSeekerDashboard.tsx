@@ -1,36 +1,47 @@
 import * as React from 'react';
 import JobSearchCard from '../../Components/JobSearchCard/JobSearchCard.tsx';
-import { Container } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
-import { retrieveAccountInfo } from '../../dataGateway.ts';
+import {Col, Container, Row} from 'react-bootstrap';
+import {useEffect, useState} from 'react';
+import {retrieveAccountInfo} from '../../dataGateway.ts';
 import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo.tsx";
-import LoadingScreen from "../LoadingScreen/LoaidngScreen.tsx"; // Corrected typo: LoaidngScreen -> LoadingScreen
+import LoadingScreen from "../LoadingScreen/LoadingScreen.tsx";
 
 function JobSeekerDashboard() {
     const [accountInfo, setAccountInfo] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); // Add a loading state
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true)
         async function fetchAccountInfo() {
+            setIsLoading(true);
+            try {
                 const response = await retrieveAccountInfo();
                 setAccountInfo(response);
+            } finally {
+                setIsLoading(false);
+            }
         }
+
         fetchAccountInfo();
-        setIsLoading(false)
     }, []);
 
     if (isLoading) {
         return (
             <Container fluid="xxl" className="enrollment-page">
-                <LoadingScreen text="Loading account information..." />
+                <LoadingScreen text="Loading account information..."/>
             </Container>
         );
     }
 
     return (
         <Container fluid="xxl" className="enrollment-page">
-                <EditAccountInfo accountInfo={accountInfo.profile} />
+            <Row>
+                <Col xs={12} md={6}>
+                    <EditAccountInfo accountInfo={accountInfo.profile}/>
+                </Col>
+                <Col  xs={12} md={6}>
+                    {/*TODO history panel*/}
+                </Col>
+            </Row>
         </Container>
     );
 }

@@ -10,7 +10,7 @@
     "lastName": "Doe",
     "email": "john.doe@example.com",
     "phoneNumber": "123-456-7890",
-    "accountStatus": "Available",
+    "accountStatus": "Not Seeking",
     "addressLineOne": "123 Main Street",
     "addressLineTwo": "Apartment 4B",
     "city": "Anytown",

@@ -8,14 +8,9 @@
     width: 95%;
   }
 
-  .carousel {
-    .carousel-item {
-      .carousel-item-content {
-        //width: 100%;
-        //display: flex;
-        //flex-direction: column;
-        //justify-content: flex-start;
-        //align-items: flex-start;
+  .swiper {
+    .swiper-slide {
+      .swiper-slide-content {
         padding: 25px;
         background-color: #1c4532;
         color: white;
@@ -57,4 +52,11 @@
       }
     }
   }
+
+.icon {
+  width: 32px;
+  height: 32px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
 

@@ -7,6 +7,7 @@ import Header from './Components/Header/Header.tsx';
 import LoginAndRegistration from './Pages/LoginAndRegistrationPage/login-and-registration.tsx';
 import { RoutesProvider, useRoutes } from './RoutesContext';
 import JobSeekerDashboard from './Pages/JobSeekerDashboard/JobSeekerDashboard.tsx';
+import Footer from './Components/Footer/Footer.tsx';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <div className="App">
                     <Header />
                     <RoutesComponent />
+                    <Footer />
                 </div>
             </Router>
         </RoutesProvider>

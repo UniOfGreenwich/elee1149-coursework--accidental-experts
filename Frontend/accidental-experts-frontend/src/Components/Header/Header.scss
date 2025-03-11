@@ -7,6 +7,7 @@
     .header {
         color: white;
         padding: 35px 0;
+        margin-bottom: 0;
         display: flex;
         justify-content: space-between;
 
@@ -33,6 +34,7 @@
                 .website-name {
                     font-size: 40px;
                     font-weight: bold;
+                    line-height: 1.2;
 
                     @media (max-width: 1024px) and (min-width: 768px) {
                         font-size: 36px;
@@ -45,7 +47,7 @@
             }
 
             @media (max-width: 768px) {
-                max-height: 80px; // Adjust the max-height for mobile view
+                max-height: 80px;
             }
         }
 
@@ -53,13 +55,28 @@
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            flex: 1.1; // Provides more space for the links
+            flex: 2;
+            line-height: 1.2;
+            padding: 16px 0;
+
+            .login-signup {
+                font-weight: bolder;
+                display: flex;
+                justify-content: flex-end;
+                font-size: 16px;
+
+                a {
+                    padding-right: 15px;
+                    color: white;
+                    text-decoration: none;
+                }
+            }
 
             .nav-links {
                 font-size: 16px;
                 font-weight: bolder;
                 display: flex;
-                justify-content: flex-end; // Aligns login/signup links with urls
+                justify-content: flex-end;
 
                 a {
                     color: white;
@@ -72,36 +89,19 @@
                 }
 
                 @media (max-width: 768px) {
+                    padding-top: 16px;
                     font-size: 12px;
-                }
-            }
-
-            .login-signup {
-                font-weight: bolder;
-                display: flex;
-                justify-content: flex-end; // Aligns urls with login/signup links
-
-                a {
-                    padding-right: 15px;
-                    color: white;
-                    text-decoration: none;
                 }
             }
 
             @media (max-width: 768px) {
                 align-items: center;
-                gap: 15px;
-                /* Adds more space for narrow/mobile view.
-                 Before this it was far too cluttered when
-                 login/signup and the urls where shown above
-                 each other.*/
             }
         }
 
         @media (max-width: 768px) {
             flex-direction: column;
             align-items: center;
-            gap: 15px; // Gap also added here for reason above
         }
     }
 

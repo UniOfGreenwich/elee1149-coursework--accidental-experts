@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss'; // Import the SCSS file
-import {useRoutes} from "../../RoutesContext.tsx";
+import { useRoutes } from '../../RoutesContext.tsx';
 import { Link } from 'react-router-dom';
 
 export default function Header() {

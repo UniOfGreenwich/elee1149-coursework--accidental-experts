@@ -1,0 +1,690 @@
+[
+  {
+    "employerID": 73,
+    "jobID": 1,
+    "company_name": "Tesla",
+    "title": "Senior Software Engineer",
+    "description": "Develop and maintain software for electric vehicles.",
+    "location": {
+      "address": "1 Electric Avenue",
+      "county": "California",
+      "postcode": "90210"
+    },
+    "salary": 150000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-01-15 12:00:00.000",
+    "expiry_date": "2025-12-31 17:00:00.000"
+  },
+  {
+    "employerID": 18,
+    "jobID": 2,
+    "company_name": "SpaceX",
+    "title": "Aerospace Engineer",
+    "description": "Design and test spacecraft components.",
+    "location": {
+      "address": "Rocket Road",
+      "county": "Texas",
+      "postcode": "77058"
+    },
+    "salary": 130000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-02-01 08:00:00.000",
+    "expiry_date": "2025-01-31 17:00:00.000"
+  },
+  {
+    "employerID": 42,
+    "jobID": 3,
+    "company_name": "Google",
+    "title": "Data Scientist",
+    "description": "Analyze large datasets to provide insights.",
+    "location": {
+      "address": "1600 Amphitheatre Parkway",
+      "county": "California",
+      "postcode": "94043"
+    },
+    "salary": 140000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-02-15 14:00:00.000",
+    "expiry_date": "2025-02-14 17:00:00.000"
+  },
+  {
+    "employerID": 88,
+    "jobID": 4,
+    "company_name": "Microsoft",
+    "title": "Software Developer",
+    "description": "Write and test code for software applications.",
+    "location": {
+      "address": "Microsoft Way",
+      "county": "Washington",
+      "postcode": "98052"
+    },
+    "salary": 120000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-03-01 10:00:00.000",
+    "expiry_date": "2025-02-28 17:00:00.000"
+  },
+  {
+    "employerID": 12,
+    "jobID": 5,
+    "company_name": "Amazon",
+    "title": "Cloud Architect",
+    "description": "Design and implement cloud infrastructure solutions.",
+    "location": {
+      "address": "410 Terry Ave North",
+      "county": "Washington",
+      "postcode": "98109"
+    },
+    "salary": 160000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-03-15 16:00:00.000",
+    "expiry_date": "2025-03-14 17:00:00.000"
+  },
+  {
+    "employerID": 55,
+    "jobID": 6,
+    "company_name": "Apple",
+    "title": "Hardware Engineer",
+    "description": "Design and test electronic components for devices.",
+    "location": {
+      "address": "1 Infinite Loop",
+      "county": "California",
+      "postcode": "95014"
+    },
+    "salary": 145000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-04-01 12:00:00.000",
+    "expiry_date": "2025-03-31 17:00:00.000"
+  },
+  {
+    "employerID": 92,
+    "jobID": 7,
+    "company_name": "Facebook",
+    "title": "AI Researcher",
+    "description": "Develop and implement artificial intelligence algorithms.",
+    "location": {
+      "address": "1 Hacker Way",
+      "county": "California",
+      "postcode": "94025"
+    },
+    "salary": 170000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-04-15 14:00:00.000",
+    "expiry_date": "2025-04-14 17:00:00.000"
+  },
+  {
+    "employerID": 27,
+    "jobID": 8,
+    "company_name": "IBM",
+    "title": "Cybersecurity Analyst",
+    "description": "Monitor and protect computer systems from threats.",
+    "location": {
+      "address": "New Orchard Road",
+      "county": "New York",
+      "postcode": "10504"
+    },
+    "salary": 125000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-05-01 10:00:00.000",
+    "expiry_date": "2025-04-30 17:00:00.000"
+  },
+  {
+    "employerID": 63,
+    "jobID": 9,
+    "company_name": "Oracle",
+    "title": "Database Administrator",
+    "description": "Manage and maintain database systems.",
+    "location": {
+      "address": "Oracle Parkway",
+      "county": "California",
+      "postcode": "94065"
+    },
+    "salary": 135000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-05-15 16:00:00.000",
+    "expiry_date": "2025-05-14 17:00:00.000"
+  },
+  {
+    "employerID": 33,
+    "jobID": 10,
+    "company_name": "Intel",
+    "title": "Semiconductor Engineer",
+    "description": "Design and test integrated circuits.",
+    "location": {
+      "address": "Robert Noyce Building",
+      "county": "California",
+      "postcode": "95054"
+    },
+    "salary": 155000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-06-01 12:00:00.000",
+    "expiry_date": "2025-05-31 17:00:00.000"
+  },
+  {
+    "employerID": 79,
+    "jobID": 11,
+    "company_name": "Nvidia",
+    "title": "GPU Architect",
+    "description": "Design and develop graphics processing units.",
+    "location": {
+      "address": "Santa Clara",
+      "county": "California",
+      "postcode": "95050"
+    },
+    "salary": 180000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-06-15 14:00:00.000",
+    "expiry_date": "2025-06-14 17:00:00.000"
+  },
+  {
+    "employerID": 15,
+    "jobID": 12,
+    "company_name": "AMD",
+    "title": "CPU Designer",
+    "description": "Design and develop central processing units.",
+    "location": {
+      "address": "Sunnyvale",
+      "county": "California",
+      "postcode": "94088"
+    },
+    "salary": 165000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-07-01 10:00:00.000",
+    "expiry_date": "2025-06-30 17:00:00.000"
+  },
+  {
+    "employerID": 48,
+    "jobID": 13,
+    "company_name": "Qualcomm",
+    "title": "Wireless Engineer",
+    "description": "Design and test wireless communication systems.",
+    "location": {
+      "address": "San Diego",
+      "county": "California",
+      "postcode": "92121"
+    },
+    "salary": 140000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-07-15 16:00:00.000",
+    "expiry_date": "2025-07-14 17:00:00.000"
+  },
+  {
+    "employerID": 84,
+    "jobID": 14,
+    "company_name": "Broadcom",
+    "title": "Network Engineer",
+    "description": "Design and maintain computer networks.",
+    "location": {
+      "address": "Irvine",
+      "county": "California",
+      "postcode": "92617"
+    },
+    "salary": 130000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-08-01 12:00:00.000",
+    "expiry_date": "2025-07-31 17:00:00.000"
+  },
+  {
+    "employerID": 21,
+    "jobID": 15,
+    "company_name": "Texas Instruments",
+    "title": "Analog Design Engineer",
+    "description": "Design and test analog circuits.",
+    "location": {
+      "address": "Dallas",
+      "county": "Texas",
+      "postcode": "75243"
+    },
+    "salary": 150000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-08-15 14:00:00.000",
+    "expiry_date": "2025-08-14 17:00:00.000"
+  },
+  {
+    "employerID": 57,
+    "jobID": 16,
+    "company_name": "Micron",
+    "title": "Memory Design Engineer",
+    "description": "Design and test memory chips.",
+    "location": {
+      "address": "Boise",
+      "county": "Idaho",
+      "postcode": "83716"
+    },
+    "salary": 145000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-09-01 10:00:00.000",
+    "expiry_date": "2025-08-31 17:00:00.000"
+  },
+  {
+    "employerID": 93,
+    "jobID": 17,
+    "company_name": "SK Hynix",
+    "title": "NAND Flash Engineer",
+    "description": "Design and test NAND flash memory.",
+    "location": {
+      "address": "San Jose",
+      "county": "California",
+      "postcode": "95131"
+    },
+    "salary": 160000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-09-15 16:00:00.000",
+    "expiry_date": "2025-09-14 17:00:00.000"
+  },
+  {
+    "employerID": 28,
+    "jobID": 18,
+    "company_name": "Western Digital",
+    "title": "Storage Engineer",
+    "description": "Design and test storage devices.",
+    "location": {
+      "address": "San Jose",
+      "county": "California",
+      "postcode": "95119"
+    },
+    "salary": 155000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-10-01 12:00:00.000",
+    "expiry_date": "2025-09-30 17:00:00.000"
+  },
+  {
+    "employerID": 64,
+    "jobID": 19,
+    "company_name": "Seagate",
+    "title": "HDD Engineer",
+    "description": "Design and test hard disk drives.",
+    "location": {
+      "address": "Cupertino",
+      "county": "California",
+      "postcode": "95014"
+    },
+    "salary": 140000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-10-15 14:00:00.000",
+    "expiry_date": "2025-10-14 17:00:00.000"
+  },
+  {
+    "employerID": 34,
+    "jobID": 20,
+    "company_name": "Lam Research",
+    "title": "Etch Engineer",
+    "description": "Design and test etching processes.",
+    "location": {
+      "address": "Fremont",
+      "county": "California",
+      "postcode": "94538"
+    },
+    "salary": 165000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-11-01 10:00:00.000",
+    "expiry_date": "2025-10-31 17:00:00.000"
+  },
+  {
+    "employerID": 80,
+    "jobID": 21,
+    "company_name": "Applied Materials",
+    "title": "Deposition Engineer",
+    "description": "Design and test deposition processes.",
+    "location": {
+      "address": "Santa Clara",
+      "county": "California",
+      "postcode": "95054"
+    },
+    "salary": 170000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-11-15 16:00:00.000",
+    "expiry_date": "2025-11-14 17:00:00.000"
+  },
+  {
+    "employerID": 16,
+    "jobID": 22,
+    "company_name": "KLA Corporation",
+    "title": "Inspection Engineer",
+    "description": "Design and test inspection equipment.",
+    "location": {
+      "address": "Milpitas",
+      "county": "California",
+      "postcode": "95035"
+    },
+    "salary": 150000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-12-01 12:00:00.000",
+    "expiry_date": "2025-11-30 17:00:00.000"
+  },
+  {
+    "employerID": 49,
+    "jobID": 23,
+    "company_name": "ASML",
+    "title": "Lithography Engineer",
+    "description": "Design and test lithography equipment.",
+    "location": {
+      "address": "Wilton",
+      "county": "Connecticut",
+      "postcode": "06897"
+    },
+    "salary": 180000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-12-15 14:00:00.000",
+    "expiry_date": "2025-12-14 17:00:00.000"
+  },
+  {
+    "employerID": 85,
+    "jobID": 24,
+    "company_name": "Tokyo Electron",
+    "title": "Process Engineer",
+    "description": "Design and test semiconductor processes.",
+    "location": {
+      "address": "Austin",
+      "county": "Texas",
+      "postcode": "78741"
+    },
+    "salary": 160000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-01-01 10:00:00.000",
+    "expiry_date": "2025-12-31 17:00:00.000"
+  },
+  {
+    "employerID": 22,
+    "jobID": 25,
+    "company_name": "Screen Holdings",
+    "title": "Equipment Engineer",
+    "description": "Design and test semiconductor equipment.",
+    "location": {
+      "address": "Kyoto",
+      "county": "Kyoto",
+      "postcode": "602-8585"
+    },
+    "salary": 145000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-01-15 16:00:00.000",
+    "expiry_date": "2026-01-14 17:00:00.000"
+  },
+  {
+    "employerID": 58,
+    "jobID": 26,
+    "company_name": "Advantest",
+    "title": "Test Engineer",
+    "description": "Design and test semiconductor testing equipment.",
+    "location": {
+      "address": "Tokyo",
+      "county": "Tokyo",
+      "postcode": "100-0005"
+    },
+    "salary": 155000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-02-01 12:00:00.000",
+    "expiry_date": "2026-01-31 17:00:00.000"
+  },
+  {
+    "employerID": 94,
+    "jobID": 27,
+    "company_name": "Teradyne",
+    "title": "ATE Engineer",
+    "description": "Design and test automated test equipment.",
+    "location": {
+      "address": "North Reading",
+      "county": "Massachusetts",
+      "postcode": "01864"
+    },
+    "salary": 170000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-02-15 14:00:00.000",
+    "expiry_date": "2026-02-14 17:00:00.000"
+  },
+  {
+    "employerID": 29,
+    "jobID": 28,
+    "company_name": "Cohu",
+    "title": "Vision Engineer",
+    "description": "Design and test vision systems.",
+    "location": {
+      "address": "Poway",
+      "county": "California",
+      "postcode": "92064"
+    },
+    "salary": 140000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-03-01 10:00:00.000",
+    "expiry_date": "2026-02-28 17:00:00.000"
+  },
+  {
+    "employerID": 65,
+    "jobID": 29,
+    "company_name": "PDF Solutions",
+    "title": "Data Analyst",
+    "description": "Analyze semiconductor data.",
+    "location": {
+      "address": "San Jose",
+      "county": "California",
+      "postcode": "95110"
+    },
+    "salary": 130000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-03-15 16:00:00.000",
+    "expiry_date": "2026-03-14 17:00:00.000"
+  },
+  {
+    "employerID": 35,
+    "jobID": 30,
+    "company_name": "Onto Innovation",
+    "title": "Metrology Engineer",
+    "description": "Design and test metrology equipment.",
+    "location": {
+      "address": "Wilmington",
+      "county": "Massachusetts",
+      "postcode": "01887"
+    },
+    "salary": 150000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-04-01 12:00:00.000",
+    "expiry_date": "2026-03-31 17:00:00.000"
+  },
+  {
+    "employerID": 81,
+    "jobID": 31,
+    "company_name": "Rudolph Technologies",
+    "title": "Inspection System Engineer",
+    "description": "Design and test inspection systems.",
+    "location": {
+      "address": "Flanders",
+      "county": "New Jersey",
+      "postcode": "07836"
+    },
+    "salary": 145000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-04-15 14:00:00.000",
+    "expiry_date": "2026-04-14 17:00:00.000"
+  },
+  {
+    "employerID": 17,
+    "jobID": 32,
+    "company_name": "Camtek",
+    "title": "AOI Engineer",
+    "description": "Design and test automated optical inspection systems.",
+    "location": {
+      "address": "Migdal HaEmek",
+      "county": "North District",
+      "postcode": "2310601"
+    },
+    "salary": 160000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-05-01 10:00:00.000",
+    "expiry_date": "2026-04-30 17:00:00.000"
+  },
+  {
+    "employerID": 50,
+    "jobID": 33,
+    "company_name": "Nova Measuring Instruments",
+    "title": "Optical Engineer",
+    "description": "Design and test optical measuring instruments.",
+    "location": {
+      "address": "Rehovot",
+      "county": "Central District",
+      "postcode": "7670202"
+    },
+    "salary": 170000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-05-15 16:00:00.000",
+    "expiry_date": "2026-05-14 17:00:00.000"
+  },
+  {
+    "employerID": 86,
+    "jobID": 34,
+    "company_name": "Nanometrics",
+    "title": "Thin Film Engineer",
+    "description": "Design and test thin film measurement equipment.",
+    "location": {
+      "address": "Milpitas",
+      "county": "California",
+      "postcode": "95035"
+    },
+    "salary": 155000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-06-01 12:00:00.000",
+    "expiry_date": "2026-05-31 17:00:00.000"
+  },
+  {
+    "employerID": 23,
+    "jobID": 35,
+    "company_name": "Kokusai Electric",
+    "title": "ALD Engineer",
+    "description": "Design and test atomic layer deposition equipment.",
+    "location": {
+      "address": "Tokyo",
+      "county": "Tokyo",
+      "postcode": "100-0004"
+    },
+    "salary": 180000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-06-15 14:00:00.000",
+    "expiry_date": "2026-06-14 17:00:00.000"
+  },
+  {
+    "employerID": 59,
+    "jobID": 36,
+    "company_name": "Veeco",
+    "title": "MOCVD Engineer",
+    "description": "Design and test metal-organic chemical vapor deposition equipment.",
+    "location": {
+      "address": "Plainview",
+      "county": "New York",
+      "postcode": "11803"
+    },
+    "salary": 165000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-07-01 10:00:00.000",
+    "expiry_date": "2026-06-30 17:00:00.000"
+  },
+  {
+    "employerID": 95,
+    "jobID": 37,
+    "company_name": "Aixtron",
+    "title": "Epitaxy Engineer",
+    "description": "Design and test epitaxy equipment.",
+    "location": {
+      "address": "Herzogenrath",
+      "county": "North Rhine-Westphalia",
+      "postcode": "52134"
+    },
+    "salary": 140000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-07-15 16:00:00.000",
+    "expiry_date": "2026-07-14 17:00:00.000"
+  },
+  {
+    "employerID": 30,
+    "jobID": 38,
+    "company_name": "Riber",
+    "title": "MBE Engineer",
+    "description": "Design and test molecular beam epitaxy equipment.",
+    "location": {
+      "address": "Bezons",
+      "county": "Val-d'Oise",
+      "postcode": "95870"
+    },
+    "salary": 130000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-08-01 12:00:00.000",
+    "expiry_date": "2026-07-31 17:00:00.000"
+  },
+  {
+    "employerID": 66,
+    "jobID": 39,
+    "company_name": "EV Group",
+    "title": "Wafer Bonder Engineer",
+    "description": "Design and test wafer bonding equipment.",
+    "location": {
+      "address": "St. Florian am Inn",
+      "county": "Upper Austria",
+      "postcode": "4782"
+    },
+    "salary": 150000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-08-15 14:00:00.000",
+    "expiry_date": "2026-08-14 17:00:00.000"
+  },
+  {
+    "employerID": 36,
+    "jobID": 40,
+    "company_name": "SUSS MicroTec",
+    "title": "Lithography System Engineer",
+    "description": "Design and test lithography systems.",
+    "location": {
+      "address": "Garching bei München",
+      "county": "Bavaria",
+      "postcode": "85748"
+    },
+    "salary": 145000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-09-01 10:00:00.000",
+    "expiry_date": "2026-08-31 17:00:00.000"
+  },
+  {
+    "employerID": 82,
+    "jobID": 41,
+    "company_name": "Ultratech",
+    "title": "Laser Annealing Engineer",
+    "description": "Design and test laser annealing equipment.",
+    "location": {
+      "address": "San Jose",
+      "county": "California",
+      "postcode": "95134"
+    },
+    "salary": 160000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-09-15 16:00:00.000",
+    "expiry_date": "2026-09-14 17:00:00.000"
+  },
+  {
+    "employerID": 18,
+    "jobID": 42,
+    "company_name": "Mattson Technology",
+    "title": "Rapid Thermal Processing Engineer",
+    "description": "Design and test rapid thermal processing equipment.",
+    "location": {
+      "address": "Fremont",
+      "county": "California",
+      "postcode": "94538"
+    },
+    "salary": 170000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-10-01 12:00:00.000",
+    "expiry_date": "2026-09-30 17:00:00.000"
+  },
+  {
+    "employerID": 51,
+    "jobID": 43,
+    "company_name": "Nordson",
+    "title": "Plasma Etch Engineer",
+    "description": "Design and test plasma etching equipment.",
+    "location": {
+      "address": "Westlake",
+      "county": "Ohio",
+      "postcode": "44145"
+    },
+    "salary": 155000,
+    "employment_type": "Full-time",
+    "posting_date": "2025-10-15 14:00:00.000",
+    "expiry_date": "2026-10-14 17:00:00.000"
+  }
+]

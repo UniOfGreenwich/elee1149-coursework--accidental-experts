@@ -1,80 +1,80 @@
-    .job-search-panel {
-        padding-top: 1.5rem;
+.job-search-panel {
+    padding-top: 1.5rem;
+}
+
+.info-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    @media (max-width: 1024px) and (min-width: 768px) {
+        width: 90%;
     }
 
-    .info-box {
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        @media (max-width: 1024px) and (min-width: 768px) {
-            width: 90%;
-        }
-
-        @media (max-width: 768px) {
-            width: 95%;
-        }
+    @media (max-width: 768px) {
+        width: 95%;
     }
+}
 
-    .card-title {
-        font-size: 1.25rem;
-        font-weight: bold;
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    margin-bottom: 0.5rem !important;
+}
+
+.apply-button {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.image {
+    height: 24px;
+    width: 24px;
+    border: 1px solid #ddd;
+}
+
+.button-style {
+    display: flex !important;
+    align-self: end;
+    justify-self: end;
+    background-color: #196357 !important;
+    border-color: #196357 !important;
+}
+
+.rounded-icon {
+    border-radius: 6px;
+}
+
+.row-control {
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    @media (max-width: 1024px) {
+        width: auto;
     }
+}
 
-    .card-text {
-        margin-bottom: 0.5rem !important;
-    }
+.text-colour {
+    color: #196357 !important;
+}
 
-    .apply-button {
-        text-align: right;
-        margin-top: 10px;
-    }
+$primary: #196357;
 
-    .image {
-        height: 24px;
-        width: 24px;
-        border: 1px solid #ddd;
-    }
-
-    .button-style {
-        display: flex !important;
-        align-self: end;
-        justify-self: end;
-        background-color: #196357 !important;
-        border-color: #196357 !important;
-    }
-
-    .rounded-icon {
-        border-radius: 6px;
-    }
-
-    .row-control {
-        padding-bottom: 1.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-        @media (max-width: 1024px) {
-            width: auto;
-        }
-    }
-
-    .text-colour {
-        color: #196357 !important;
-    }
-
-    $primary: #196357;
-
-    .pagination {
-        padding-bottom: 10px;
-        .page-item {
-            &.active .page-link {
-                background-color: $primary;
-                border-color: $primary;
-                color: white;
-            }
-        }
-
-        .page-link {
-            color: $primary;
+.pagination {
+    padding-bottom: 10px;
+    .page-item {
+        &.active .page-link {
+            background-color: $primary;
+            border-color: $primary;
+            color: white;
         }
     }
+
+    .page-link {
+        color: $primary;
+    }
+}

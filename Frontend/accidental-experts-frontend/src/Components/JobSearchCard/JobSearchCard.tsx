@@ -118,7 +118,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     </Row>
                     <br />
                     <Button
-                        className={'rounded-icon button-font button-style'}
+                        className={'rounded-icon button-style'}
                         onClick={onApply}
                     >
                         Apply Now!
@@ -172,11 +172,9 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     };
 
     return (
-        <Container className="pt-6 pb-6 job-search-card-container">
-            <Container fluid={true} className="pt-6 pb-6 job-search-panel">
-                {generateJobCards()}
-                {renderPagination()}
-            </Container>
+        <Container fluid={true} className="pt-6 pb-6 job-search-panel">
+            {generateJobCards()}
+            {renderPagination()}
         </Container>
     );
 }

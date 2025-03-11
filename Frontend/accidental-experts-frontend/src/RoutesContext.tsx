@@ -4,6 +4,7 @@ interface RoutesContextValue {
     baseUrl: string;
     homePath: string;
     jobSearchPath: string;
+    jobSeekerDashboardPath: string;
     loginAndRegistrationPath: string;
 }
 
@@ -18,6 +19,7 @@ export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
         baseUrl,
         homePath: `${baseUrl}/`,
         jobSearchPath: `${baseUrl}/job-search`,
+        jobSeekerDashboardPath: `${baseUrl}/seeker-dashboard`,
         loginAndRegistrationPath: `${baseUrl}/login-and-registration`,
     };
 

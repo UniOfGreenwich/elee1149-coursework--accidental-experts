@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<Integer> authenticateUser(@RequestBody User user) {
-        Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
+        Optional<User> foundUser = userRepository.findByEmail(user.getEmail());
         if (foundUser.isPresent() &&
                 foundUser.get().getPassword().equals(PasswordUtil.hashPassword(user.getPassword()))) {
             return ResponseEntity.ok(foundUser.get().getId());

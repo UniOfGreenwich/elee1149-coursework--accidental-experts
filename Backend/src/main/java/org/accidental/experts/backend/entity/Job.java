@@ -15,14 +15,23 @@ public class Job {
     @Column(name = "job_id", nullable = false)
     private Integer id;
 
+    @Column(name = "employer_id", nullable = false)
+    private Integer employer_id;
+
     @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description", nullable = false, length = Integer.MAX_VALUE)
     private String description;
 
-    @Column(name = "location", nullable = false)
-    private String location;
+    @Column(name = "address", nullable = false)
+    private String address;
+
+    @Column(name="county", nullable = true)
+    private String county;
+
+    @Column(name="postcode", nullable = true)
+    private String postcode;
 
     @Column(name = "salary", precision = 10, scale = 2)
     private BigDecimal salary;
@@ -45,6 +54,15 @@ public class Job {
         this.id = id;
     }
 
+    public Integer getEmployer_id() {
+        return employer_id;
+    }
+
+    public void setEmployer_id(Integer employer_id) {
+        this.employer_id = employer_id;
+    }
+
+
     public String getTitle() {
         return title;
     }
@@ -61,12 +79,28 @@ public class Job {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public BigDecimal getSalary() {

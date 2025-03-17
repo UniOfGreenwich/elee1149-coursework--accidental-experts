@@ -1,15 +1,16 @@
 import * as React from 'react';
-import JobSearchCard from '../../Components/JobSearchCard/JobSearchCard.tsx';
-import { Col, Container, Row } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
-import { retrieveAccountInfo } from '../../dataGateway.ts';
-import EditAccountInfo from '../../Components/EditAccountInfo/EditAccountInfo.tsx';
-import LoadingScreen from '../LoadingScreen/LoadingScreen.tsx';
-import JobCarousel from '../../Components/JobCarousel/JobCarousel.tsx';
+import {useEffect, useState} from "react";
+import {retrieveAccountInfo} from "../../dataGateway.ts";
+import {Col, Container, Row} from "react-bootstrap";
+import LoadingScreen from "../LoadingScreen/LoadingScreen.tsx";
+import JobCarousel from "../../Components/JobCarousel/JobCarousel.tsx";
+import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo.tsx";
+
 
 function JobSeekerDashboard() {
     const [accountInfo, setAccountInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [hasUserApplied, setHasUserApplied] = useState(false);
 
     useEffect(() => {
         async function fetchAccountInfo() {
@@ -25,6 +26,16 @@ function JobSeekerDashboard() {
         fetchAccountInfo();
     }, []);
 
+    useEffect(() => {
+        try {
+            if (accountInfo.applied.length > 0) {
+                setHasUserApplied(true);
+            }
+        } catch (e) {
+            setHasUserApplied(false);
+        }
+    }, [accountInfo]);
+
     if (isLoading) {
         return (
             <Container fluid="xxl" className="enrollment-page">
@@ -34,16 +45,18 @@ function JobSeekerDashboard() {
     }
 
     return (
-        <Container fluid="xxl">
+        <Container fluid="xxl" style={{marginTop: '2rem'}}>
+            {hasUserApplied && (
             <Row>
                 <JobCarousel accountInfo={accountInfo.applied} />
             </Row>
+            )}
             <Row>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={6} style={{ margin: '0 0 2rem 0' }}>
                     <EditAccountInfo accountInfo={accountInfo.profile} />
                 </Col>
-                <Col xs={12} md={6}>
-                    {/*TODO history panel*/}
+                <Col  xs={12} md={6}>
+                    {/* TODO Seeker Support */}
                 </Col>
             </Row>
         </Container>

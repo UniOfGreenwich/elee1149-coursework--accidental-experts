@@ -35,6 +35,7 @@ public class AccountInfoService {
         appliedJobInfo.setCompanyName(employer.getCompanyName());
         appliedJobInfo.setDateApplied(application.getApplicationDate());
         appliedJobInfo.setEmploymentType(job.getEmploymentType());
+        appliedJobInfo.setAddress(job.getAddress());
         appliedJobInfo.setCounty(job.getCounty());
         appliedJobInfo.setPostcode(job.getPostcode());
         appliedJobInfo.setApplicationStatus(application.getApplicationStatus());

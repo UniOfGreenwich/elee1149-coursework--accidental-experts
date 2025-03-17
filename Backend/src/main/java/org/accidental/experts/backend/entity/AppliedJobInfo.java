@@ -13,6 +13,7 @@ public class AppliedJobInfo {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant dateApplied;
     private String employmentType;
+    private String address;
     private String county;
     private String postcode;
     private String applicationStatus;
@@ -64,6 +65,14 @@ public class AppliedJobInfo {
 
     public void setEmploymentType(String employmentType) {
         this.employmentType = employmentType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCounty() {

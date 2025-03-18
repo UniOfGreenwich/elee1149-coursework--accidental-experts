@@ -67,7 +67,9 @@ const SignupComponent: React.FC = () => {
                                 value === password || 'Passwords do not match',
                         })}
                     />
-                    {errors.passwordCheck && <span>{errors.passwordCheck.message}</span>}
+                    {errors.passwordCheck && (
+                        <span>{errors.passwordCheck.message}</span>
+                    )}
 
                     <div className="sliderWrapper">
                         <label className="sliderLabel">I am a:</label>
@@ -87,7 +89,9 @@ const SignupComponent: React.FC = () => {
                                 {...register('userType', { required: true })}
                             />
                             <label htmlFor="recruiter">Recruiter</label>
-                            <div className={`sliderControl ${userType === 'recruiter' ? 'recruiter' : 'job_seeker'}`}></div>
+                            <div
+                                className={`sliderControl ${userType === 'recruiter' ? 'recruiter' : 'job_seeker'}`}
+                            ></div>
                         </div>
                         {errors.userType && <span>User type is required</span>}
                     </div>
@@ -98,6 +102,10 @@ const SignupComponent: React.FC = () => {
                         value="Sign Up"
                     />
                 </form>
+                <div className="loginWrapper">
+                    <p>Already have an account?</p>
+                    <button className={'loginButton'}>Sign In</button>
+                </div>
             </div>
         </div>
     );

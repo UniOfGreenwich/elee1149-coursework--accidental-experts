@@ -1,6 +1,6 @@
 import React, { JSX, useEffect, useState } from 'react';
 import {
-    Button,
+    Button, Card,
     Col,
     Container,
     Dropdown,
@@ -93,6 +93,7 @@ export default function EditAccountInfo(
 
     return (
         <Container className={'accountContainer'}>
+            <Card className={"account-info-card"}>
             <div className={'header'}>My Profile</div>
             <Form>
                 <Row className="mb-3">
@@ -219,6 +220,7 @@ export default function EditAccountInfo(
                     </Button>
                 </div>
             </Form>
+            </Card>
         </Container>
     );
 }

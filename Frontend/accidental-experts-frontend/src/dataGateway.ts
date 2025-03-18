@@ -21,6 +21,7 @@ export async function retrieveAccountInfo() {
     let url =
         origin +
         '/elee1149-coursework--accidental-experts/Tests/seeker-info.json';
+        // "http://localhost:8080/accountInfo/1";
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),

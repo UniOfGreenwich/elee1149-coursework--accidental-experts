@@ -5,6 +5,8 @@ import {Col, Container, Row} from "react-bootstrap";
 import LoadingScreen from "../LoadingScreen/LoadingScreen.tsx";
 import JobCarousel from "../../Components/JobCarousel/JobCarousel.tsx";
 import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo.tsx";
+import SeekerSupport from "../../Components/SeekerSupport/SeekerSupport.tsx";
+
 
 
 function JobSeekerDashboard() {
@@ -56,7 +58,7 @@ function JobSeekerDashboard() {
                     <EditAccountInfo accountInfo={accountInfo.profile} />
                 </Col>
                 <Col  xs={12} md={6}>
-                    {/* TODO Seeker Support */}
+                    <SeekerSupport />
                 </Col>
             </Row>
         </Container>

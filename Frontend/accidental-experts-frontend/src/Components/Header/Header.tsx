@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
     const logoURL =
         'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWZvYXg5empwNDhtY3I5ZG5xOTBjOWlqMWNwN2FwaWw1azVqdWVuZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VQXdNn4MMLmNtkhPCV/giphy.gif';
-    const { homePath, jobSearchPath } = useRoutes();
+    const { homePath, jobSearchPath, loginAndRegistrationPath } = useRoutes();
 
     return (
         <div className="headerWrapper">
@@ -27,8 +27,8 @@ export default function Header() {
                 </div>
                 <div className="linksWrapper">
                     <div className="login-signup">
-                        <a href="#">Log in</a>
-                        <a href="#">Sign up</a>
+                        <a href={loginAndRegistrationPath}>Log in</a>
+                        <a href={loginAndRegistrationPath}>Sign up</a>
                     </div>
                     <div className="nav-links">
                         <Link to={homePath}>Home</Link>

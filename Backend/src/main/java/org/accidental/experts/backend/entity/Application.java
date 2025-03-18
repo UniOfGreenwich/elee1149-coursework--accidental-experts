@@ -1,5 +1,6 @@
 package org.accidental.experts.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -16,10 +17,17 @@ public class Application {
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "application_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant applicationDate;
 
     @Column(name = "application_status", nullable = false, length = Integer.MAX_VALUE)
     private String applicationStatus;
+
+    @Column(name = "job_id", nullable = false, length = Integer.MAX_VALUE)
+    private Integer job_id;
+
+    @Column(name = "user_id", nullable = false, length = Integer.MAX_VALUE)
+    private Integer user_id;
 
     public Integer getId() {
         return id;
@@ -45,4 +53,19 @@ public class Application {
         this.applicationStatus = applicationStatus;
     }
 
+    public Integer getJob_id() {
+        return job_id;
+    }
+
+    public void setJob_id(Integer job_id) {
+        this.job_id = job_id;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
 }

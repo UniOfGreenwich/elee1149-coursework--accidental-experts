@@ -30,7 +30,7 @@ interface Job {
     companyName: string;
     description: string;
     dateApplied: string;
-    employment_type: string;
+    employmentType: string;
     address: string;
     county: string;
     postcode: string;
@@ -87,7 +87,7 @@ export default function JobCarousel(props: JobCarouselProps): JSX.Element {
                                 <p>
                                     <CiBatteryFull className={'icon'} />
                                     <strong>Employment Type:</strong>{' '}
-                                    {job.employment_type}
+                                    {job.employmentType}
                                 </p>
                                 <p>
                                     <FaLocationDot className={'icon'} />

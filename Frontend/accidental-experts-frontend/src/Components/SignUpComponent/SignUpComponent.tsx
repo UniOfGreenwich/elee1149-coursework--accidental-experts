@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import '../LoginComponent/loginComponent.scss';
+import './signUpComponent.scss';
 
 type Inputs = {
     email: string;
@@ -8,6 +8,7 @@ type Inputs = {
     surname: string;
     password: string;
     passwordCheck: string;
+    userType: string;
 };
 
 const SignupComponent: React.FC = () => {
@@ -21,6 +22,7 @@ const SignupComponent: React.FC = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
     const password = watch('password');
+    const userType = watch('userType', 'job_seeker');
 
     return (
         <div className="SignupComponentWrapper">
@@ -66,6 +68,30 @@ const SignupComponent: React.FC = () => {
                         })}
                     />
                     {errors.passwordCheck && <span>{errors.passwordCheck.message}</span>}
+
+                    <div className="sliderWrapper">
+                        <label className="sliderLabel">I am a:</label>
+                        <div className="slider">
+                            <input
+                                type="radio"
+                                id="job_seeker"
+                                value="job_seeker"
+                                {...register('userType', { required: true })}
+                                defaultChecked
+                            />
+                            <label htmlFor="job_seeker">Job Seeker</label>
+                            <input
+                                type="radio"
+                                id="recruiter"
+                                value="recruiter"
+                                {...register('userType', { required: true })}
+                            />
+                            <label htmlFor="recruiter">Recruiter</label>
+                            <div className={`sliderControl ${userType === 'recruiter' ? 'recruiter' : 'job_seeker'}`}></div>
+                        </div>
+                        {errors.userType && <span>User type is required</span>}
+                    </div>
+
                     <input
                         className={'submitFormButton'}
                         type="submit"

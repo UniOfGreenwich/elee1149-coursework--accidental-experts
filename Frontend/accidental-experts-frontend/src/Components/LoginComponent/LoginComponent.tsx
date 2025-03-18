@@ -65,16 +65,6 @@ const LoginComponent: React.FC = () => {
                     />
                 </form>
             </div>
-            <div className="separator">
-                <div className="separator-line" />
-                <span className="separator-text">OR</span>
-                <div className="separator-line" />
-            </div>
-            <div className="googleSignInWrapper">
-                <button className="google-signin-button">
-                    Sign in with Google
-                </button>
-            </div>
         </div>
     );
 };

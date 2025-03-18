@@ -27,8 +27,8 @@ export default function Header() {
                 </div>
                 <div className="linksWrapper">
                     <div className="login-signup">
-                        <a href={loginAndRegistrationPath}>Log in</a>
-                        <a href={loginAndRegistrationPath}>Sign up</a>
+                        <Link to={loginAndRegistrationPath}>Log in</Link>
+                        <Link to={loginAndRegistrationPath}>Sign up</Link>
                     </div>
                     <div className="nav-links">
                         <Link to={homePath}>Home</Link>

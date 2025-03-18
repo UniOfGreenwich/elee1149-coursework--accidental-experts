@@ -1,14 +1,13 @@
 package org.accidental.experts.backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "employers")
 public class Employer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "employers_id_gen", sequenceName = "employers_employer_id_seq", allocationSize = 1)
     @Column(name = "employer_id", nullable = false)
     private Integer id;
 

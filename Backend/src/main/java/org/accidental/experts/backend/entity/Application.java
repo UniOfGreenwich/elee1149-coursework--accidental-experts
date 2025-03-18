@@ -1,5 +1,6 @@
 package org.accidental.experts.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -16,6 +17,7 @@ public class Application {
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "application_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant applicationDate;
 
     @Column(name = "application_status", nullable = false, length = Integer.MAX_VALUE)

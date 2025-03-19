@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
 import JobSearchPage from './Pages/JobSearchPage/JobSearchPage.tsx';

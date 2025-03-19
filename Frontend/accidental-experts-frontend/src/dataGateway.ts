@@ -1,10 +1,9 @@
 function getStandardRequestHeaders() {
-    return new Headers({ 'Content-Type': 'application/json' });
+    return new Headers({ 'Accept': 'application/json' });
 }
 
 export async function retrieveJobs() {
-    let url =
-        origin + '/elee1149-coursework--accidental-experts/Tests/jobs.json';
+    let url = "https://backend-744513217594.europe-west1.run.app/jobs";
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),
@@ -19,14 +18,13 @@ export async function retrieveJobs() {
 }
 export async function retrieveAccountInfo() {
     let url =
-        origin +
-        '/elee1149-coursework--accidental-experts/Tests/seeker-info.json';
-        // "http://localhost:8080/accountInfo/1";
+        "https://backend-744513217594.europe-west1.run.app/accountInfo/1";
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),
     };
     try {
+        console.log("hello")
         return await fetch(url, requestConfig).then((response) =>
             response.json()
         );

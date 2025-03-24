@@ -13,7 +13,7 @@ const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
 export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
     children,
 }) => {
-    const baseUrl = 'elee1149-coursework--accidental-experts';
+    const baseUrl = '';
 
     const value = {
         baseUrl,

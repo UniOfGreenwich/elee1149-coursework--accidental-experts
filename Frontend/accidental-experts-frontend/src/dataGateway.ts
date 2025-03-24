@@ -34,11 +34,11 @@ export async function retrieveAccountInfo() {
     }
 }
 
-export async function login(password: string, email: string) {
+export async function authenticate(password: string, email: string) {
     let url = 'https://backend-744513217594.europe-west1.run.app/users/authenticate';
     let requestConfig = {
         method: 'POST',
-        headers: getStandardRequestHeaders(),
+        headers: {    'Content-Type': 'application/json'   },
         body: JSON.stringify({
             password: password,
             email: email
@@ -51,5 +51,27 @@ export async function login(password: string, email: string) {
     } catch (error) {
         console.log(error);
         //navigate to error page
+    }
+}
+
+export async function registerNewUser(password: string, email: string, firstName: string, lastName: string, userType: string) {
+    let url = 'https://backend-744513217594.europe-west1.run.app/users';
+    let requestConfig = {
+        method: 'POST',
+        headers: {    'Content-Type': 'application/json'   },
+        body: JSON.stringify({
+            password: password,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            userType: userType
+        })
+    };
+    try {
+        return await fetch(url, requestConfig).then((response) =>
+            response.json()
+        );
+    } catch (error) {
+        //TODO
     }
 }

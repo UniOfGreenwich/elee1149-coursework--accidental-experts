@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
+import { registerNewUser } from '../../dataGateway.ts';
 
 type Inputs = {
     email: string;
@@ -19,7 +20,7 @@ const SignupComponent: React.FC = () => {
         watch,
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data) => registerNewUser(data.password, data.email, data.firstName, data.surname, data.userType);
 
     const password = watch('password');
     const userType = watch('userType', 'job_seeker');

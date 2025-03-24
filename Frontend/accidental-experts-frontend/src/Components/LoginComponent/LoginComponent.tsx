@@ -66,16 +66,10 @@ const LoginComponent: React.FC = () => {
                         value="Sign In"
                     />
                 </form>
-            </div>
-            <div className="separator">
-                <div className="separator-line" />
-                <span className="separator-text">OR</span>
-                <div className="separator-line" />
-            </div>
-            <div className="googleSignInWrapper">
-                <button className="google-signin-button">
-                    Sign in with Google
-                </button>
+                <div className="registerButtonWrapper">
+                    <p>Need to make an account?</p>
+                    <button className={'registerButton'}>Sign In</button>
+                </div>
             </div>
         </div>
     );

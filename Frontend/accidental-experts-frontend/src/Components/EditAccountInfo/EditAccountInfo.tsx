@@ -1,6 +1,7 @@
 import React, { JSX, useEffect, useState } from 'react';
 import {
-    Button, Card,
+    Button,
+    Card,
     Col,
     Container,
     Dropdown,
@@ -93,133 +94,133 @@ export default function EditAccountInfo(
 
     return (
         <Container className={'accountContainer'}>
-            <Card className={"account-info-card"}>
-            <div className={'header'}>My Profile</div>
-            <Form>
-                <Row className="mb-3">
-                    <Col xs={12} md={6} lg={6}>
-                        <Form.Group as={Col}>
-                            <Form.Label className="form-label">
-                                {'First Name'}
-                                <span className="form-asterisk"> *</span>
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                className="form-input"
-                                placeholder="First Name"
-                                size="lg"
-                                value={firstName}
-                                onChange={handleFirstNameChange}
-                                isInvalid={!isFirstNameValid}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {'First Name Invalid'}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                    <Col xs={12} md={6} lg={6}>
-                        <Form.Group as={Col}>
-                            <Form.Label className="form-label">
-                                {'Last Name'}
-                                <span className="form-asterisk"> *</span>
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                className="form-input"
-                                placeholder="Last Name"
-                                size="lg"
-                                value={lastName}
-                                onChange={handleLastNameChange}
-                                isInvalid={!isLastNameValid}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {'Last Name Invalid'}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row className="mb-3">
-                    <Col xs={12} md={6} lg={6}>
-                        <Form.Group as={Col}>
-                            <Form.Label className="form-label">
-                                {'Email'}
-                                <span className="form-asterisk"> *</span>
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                className="form-input"
-                                placeholder="Email"
-                                size="lg"
-                                value={email}
-                                onChange={handleEmailChange}
-                                isInvalid={!isEmailValid}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {'Email Invalid'}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                    <Col xs={12} md={6} lg={6}>
-                        <Form.Group as={Col}>
-                            <Form.Label className="form-label">
-                                {'Phone Number'}
-                                <span className="form-asterisk"> *</span>
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                className="form-input"
-                                placeholder="Phone Number"
-                                size="lg"
-                                value={phoneNumber}
-                                onChange={handlePhoneNumberChange}
-                                isInvalid={!isPhoneNumberValid}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {'Phone Number Invalid'}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row className="mb-3">
-                    <Col xs={12} md={6} lg={6}>
-                        <Form.Group as={Col}>
-                            <Form.Label className="form-label">
-                                {'Account Status'}
-                                <span className="form-asterisk"> *</span>
-                            </Form.Label>
+            <Card className={'account-info-card'}>
+                <div className={'header'}>My Profile</div>
+                <Form>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'First Name'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="First Name"
+                                    size="lg"
+                                    value={firstName}
+                                    onChange={handleFirstNameChange}
+                                    isInvalid={!isFirstNameValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'First Name Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Last Name'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Last Name"
+                                    size="lg"
+                                    value={lastName}
+                                    onChange={handleLastNameChange}
+                                    isInvalid={!isLastNameValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Last Name Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Email'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Email"
+                                    size="lg"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    isInvalid={!isEmailValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Email Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Phone Number'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Phone Number"
+                                    size="lg"
+                                    value={phoneNumber}
+                                    onChange={handlePhoneNumberChange}
+                                    isInvalid={!isPhoneNumberValid}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {'Phone Number Invalid'}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col xs={12} md={6} lg={6}>
+                            <Form.Group as={Col}>
+                                <Form.Label className="form-label">
+                                    {'Account Status'}
+                                    <span className="form-asterisk"> *</span>
+                                </Form.Label>
 
-                            <Form.Select
-                                aria-label="Account Status"
-                                value={accountStatus}
-                                onChange={handleAccountStatusChange}
-                            >
-                                {accountStatusOptions.map((option) => (
-                                    <option
-                                        key={option.value}
-                                        value={option.value}
-                                    >
-                                        {option.label}
-                                    </option>
-                                ))}
-                            </Form.Select>
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <div className={'top-padding'}>
-                    <Button
-                        className={`${'roundedIcon'} ${'buttonStyle'}`}
-                        onClick={handleSaveProfile}
-                        disabled={
-                            !isFirstNameValid ||
-                            !isLastNameValid ||
-                            !isEmailValid ||
-                            !isPhoneNumberValid
-                        }
-                    >
-                        Save
-                    </Button>
-                </div>
-            </Form>
+                                <Form.Select
+                                    aria-label="Account Status"
+                                    value={accountStatus}
+                                    onChange={handleAccountStatusChange}
+                                >
+                                    {accountStatusOptions.map((option) => (
+                                        <option
+                                            key={option.value}
+                                            value={option.value}
+                                        >
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <div className={'top-padding'}>
+                        <Button
+                            className={`${'roundedIcon'} ${'buttonStyle'}`}
+                            onClick={handleSaveProfile}
+                            disabled={
+                                !isFirstNameValid ||
+                                !isLastNameValid ||
+                                !isEmailValid ||
+                                !isPhoneNumberValid
+                            }
+                        >
+                            Save
+                        </Button>
+                    </div>
+                </Form>
             </Card>
         </Container>
     );

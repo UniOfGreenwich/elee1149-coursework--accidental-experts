@@ -19,7 +19,16 @@ const LoginComponent: React.FC = () => {
 
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => authenticate(data.password, data.email)
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        authenticate(data.password, data.email)
+        .then(responseData => {
+            console.log(responseData);
+            sessionStorage.setItem("userID", responseData)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className="loginComponentWrapper">

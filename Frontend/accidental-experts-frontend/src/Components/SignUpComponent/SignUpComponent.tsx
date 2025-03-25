@@ -20,7 +20,16 @@ const SignupComponent: React.FC = () => {
         watch,
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => registerNewUser(data.password, data.email, data.firstName, data.surname, data.userType);
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        registerNewUser(data.password, data.email, data.firstName, data.surname, data.userType)
+            .then(responseData => {
+                console.log(responseData);
+                sessionStorage.setItem("userID", responseData.id)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     const password = watch('password');
     const userType = watch('userType', 'job_seeker');

@@ -1,9 +1,9 @@
 function getStandardRequestHeaders() {
-    return new Headers({ 'Accept': 'application/json' });
+    return new Headers({ Accept: 'application/json' });
 }
 
 export async function retrieveJobs() {
-    let url = "https://backend-744513217594.europe-west1.run.app/jobs";
+    let url = 'https://backend-744513217594.europe-west1.run.app/jobs';
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),
@@ -17,14 +17,13 @@ export async function retrieveJobs() {
     }
 }
 export async function retrieveAccountInfo() {
-    let url =
-        "https://backend-744513217594.europe-west1.run.app/accountInfo/1";
+    let url = 'https://backend-744513217594.europe-west1.run.app/accountInfo/1';
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),
     };
     try {
-        console.log("hello")
+        console.log('hello');
         return await fetch(url, requestConfig).then((response) =>
             response.json()
         );
@@ -35,14 +34,15 @@ export async function retrieveAccountInfo() {
 }
 
 export async function authenticate(password: string, email: string) {
-    let url = 'https://backend-744513217594.europe-west1.run.app/users/authenticate';
+    let url =
+        'https://backend-744513217594.europe-west1.run.app/users/authenticate';
     let requestConfig = {
         method: 'POST',
-        headers: {    'Content-Type': 'application/json'   },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             password: password,
-            email: email
-        })
+            email: email,
+        }),
     };
     try {
         return await fetch(url, requestConfig).then((response) =>
@@ -54,18 +54,24 @@ export async function authenticate(password: string, email: string) {
     }
 }
 
-export async function registerNewUser(password: string, email: string, firstName: string, lastName: string, userType: string) {
+export async function registerNewUser(
+    password: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    userType: string
+) {
     let url = 'https://backend-744513217594.europe-west1.run.app/users';
     let requestConfig = {
         method: 'POST',
-        headers: {    'Content-Type': 'application/json'   },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             password: password,
             email: email,
             firstName: firstName,
             lastName: lastName,
-            userType: userType
-        })
+            userType: userType,
+        }),
     };
     try {
         return await fetch(url, requestConfig).then((response) =>

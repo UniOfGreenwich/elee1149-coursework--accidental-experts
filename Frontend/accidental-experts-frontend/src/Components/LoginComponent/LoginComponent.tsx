@@ -21,14 +21,14 @@ const LoginComponent: React.FC = () => {
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         authenticate(data.password, data.email)
-        .then(responseData => {
-            console.log(responseData);
-            sessionStorage.setItem("userID", responseData)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+            .then((responseData) => {
+                console.log(responseData);
+                sessionStorage.setItem('userID', responseData);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div className="loginComponentWrapper">

@@ -1,6 +1,6 @@
 import './JobSearchCard.scss';
-import React, { JSX, useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import React, {JSX, useState} from 'react';
+import {Button, Card, Col, Container, Row} from 'react-bootstrap';
 
 interface Job {
     id: number;
@@ -60,8 +60,7 @@ const calculateDaysAgo = (dateString: string | null): number | null => {
         const now = new Date();
         const difference = now.getTime() - postDate.getTime();
         if (difference < 0) return 0;
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        return days;
+        return Math.floor(difference / (1000 * 60 * 60 * 24));
     } catch (e) {
         console.error("Error parsing posting date:", dateString, e);
         return null;

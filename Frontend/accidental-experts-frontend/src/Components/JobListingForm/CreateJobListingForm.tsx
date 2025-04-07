@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import './CreateJobListing.scss'
+import './CreateJobListing.scss';
 import LoadingSpinnerOverlay from '../Common/LoadingSpinnerOverlay';
 import ResponseModal from '../Common/ResponseModal';
 
@@ -28,13 +28,17 @@ const initialFormData: JobListingFormData = {
 };
 
 const CreateJobListingForm: React.FC = () => {
-    const [formData, setFormData] = useState<JobListingFormData>(initialFormData);
+    const [formData, setFormData] =
+        useState<JobListingFormData>(initialFormData);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [responseStatus, setResponseStatus] = useState<ResponseStatus>('idle');
+    const [responseStatus, setResponseStatus] =
+        useState<ResponseStatus>('idle');
     const [responseMessage, setResponseMessage] = useState<string>('');
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+        e: React.ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
     ) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -60,13 +64,14 @@ const CreateJobListingForm: React.FC = () => {
             ...formData,
             employer_id: employerId,
             salary: formData.salary ? parseFloat(formData.salary) : null,
-            expiryDate: formData.expiryDate ? new Date(formData.expiryDate).toISOString() : null,
+            expiryDate: formData.expiryDate
+                ? new Date(formData.expiryDate).toISOString()
+                : null,
         };
 
         if (payload.county === '') payload.county = null;
         if (payload.postcode === '') payload.postcode = null;
         if (payload.salary === '') payload.salary = null;
-
 
         const apiUrl = 'https://backend-744513217594.europe-west1.run.app/jobs';
 
@@ -80,23 +85,27 @@ const CreateJobListingForm: React.FC = () => {
             });
 
             if (!response.ok) {
-                let errorData:any = {};
+                let errorData: any = {};
                 try {
                     errorData = await response.json();
                 } catch (parseError) {
                     console.error('Error parsing error response:', parseError);
                 }
-                const errorMessage = errorData?.message || `HTTP error! Status: ${response.status}`;
+                const errorMessage =
+                    errorData?.message ||
+                    `HTTP error! Status: ${response.status}`;
                 throw new Error(errorMessage);
             }
 
             setResponseMessage('Job listing created successfully!');
             setResponseStatus('success');
             setFormData(initialFormData);
-
         } catch (error: any) {
             console.error('API Error:', error);
-            setResponseMessage(error?.message || 'An unexpected error occurred while creating the job listing.');
+            setResponseMessage(
+                error?.message ||
+                    'An unexpected error occurred while creating the job listing.'
+            );
             setResponseStatus('error');
         } finally {
             setIsLoading(false);
@@ -115,7 +124,9 @@ const CreateJobListingForm: React.FC = () => {
             )}
             <form onSubmit={handleSubmit} className="jobForm">
                 <div className="formGroup">
-                    <label htmlFor="title">Job Title <span className="required">*</span></label>
+                    <label htmlFor="title">
+                        Job Title <span className="required">*</span>
+                    </label>
                     <input
                         type="text"
                         id="title"
@@ -129,7 +140,9 @@ const CreateJobListingForm: React.FC = () => {
                 </div>
 
                 <div className="formGroup">
-                    <label htmlFor="description">Job Description <span className="required">*</span></label>
+                    <label htmlFor="description">
+                        Job Description <span className="required">*</span>
+                    </label>
                     <textarea
                         id="description"
                         name="description"
@@ -143,7 +156,10 @@ const CreateJobListingForm: React.FC = () => {
                 </div>
 
                 <div className="formGroup">
-                    <label htmlFor="address">Street Address / Location <span className="required">*</span></label>
+                    <label htmlFor="address">
+                        Street Address / Location{' '}
+                        <span className="required">*</span>
+                    </label>
                     <input
                         type="text"
                         id="address"
@@ -200,7 +216,9 @@ const CreateJobListingForm: React.FC = () => {
                 </div>
 
                 <div className="formGroup">
-                    <label htmlFor="employmentType">Employment Type <span className="required">*</span></label>
+                    <label htmlFor="employmentType">
+                        Employment Type <span className="required">*</span>
+                    </label>
                     <select
                         id="employmentType"
                         name="employmentType"
@@ -218,7 +236,10 @@ const CreateJobListingForm: React.FC = () => {
                 </div>
 
                 <div className="formGroup">
-                    <label htmlFor="expiryDate">Application Expiry Date <span className="required">*</span></label>
+                    <label htmlFor="expiryDate">
+                        Application Expiry Date{' '}
+                        <span className="required">*</span>
+                    </label>
                     <input
                         type="date"
                         id="expiryDate"
@@ -228,11 +249,15 @@ const CreateJobListingForm: React.FC = () => {
                         onChange={handleChange}
                         required
                         disabled={isLoading}
-                        min={new Date().toISOString().split("T")[0]}
+                        min={new Date().toISOString().split('T')[0]}
                     />
                 </div>
 
-                <button type="submit" className="submitButton" disabled={isLoading}>
+                <button
+                    type="submit"
+                    className="submitButton"
+                    disabled={isLoading}
+                >
                     {isLoading ? 'Creating...' : 'Create Job Listing'}
                 </button>
             </form>

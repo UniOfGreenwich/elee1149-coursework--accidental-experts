@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './loginComponent.scss';
-import axios from 'axios';
-import { authenticate, login } from '../../dataGateway.ts';
+import { authenticate, login, retrieveAccountInfo } from '../../dataGateway.ts';
+import { Link } from 'react-router-dom';
 
 type Inputs = {
     email: string;
@@ -24,6 +24,21 @@ const LoginComponent: React.FC = () => {
             .then((responseData) => {
                 console.log(responseData);
                 sessionStorage.setItem('userID', responseData);
+                const currentUserId = sessionStorage.getItem('userID');
+                authUser(currentUserId);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const authUser = (userid) => {
+        retrieveAccountInfo(userid)
+            .then((responseData) => {
+                console.log(responseData);
+                const profile = responseData.profile;
+                sessionStorage.setItem('firstName', profile.firstName);
+                sessionStorage.setItem('lastName', profile.lastName);
             })
             .catch((error) => {
                 console.log(error);
@@ -83,5 +98,4 @@ const LoginComponent: React.FC = () => {
         </div>
     );
 };
-
 export default LoginComponent;

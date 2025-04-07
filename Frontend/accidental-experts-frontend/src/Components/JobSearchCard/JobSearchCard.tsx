@@ -1,6 +1,6 @@
 import './JobSearchCard.scss';
-import React, {JSX, useState} from 'react';
-import {Button, Card, Col, Container, Row} from 'react-bootstrap';
+import React, { JSX, useState } from 'react';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 
 interface Job {
     id: number;
@@ -29,17 +29,26 @@ const formatSalary = (salary: number | null): string => {
 
 const formatEmploymentType = (type: string): string => {
     if (!type) return 'N/A';
-    return type.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return type.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 };
 
-const calculateTimeDifference = (dateString: string | null): { days: number | null, hours: number | null, minutes: number | null, totalSeconds: number | null } => {
-    if (!dateString) return { days: null, hours: null, minutes: null, totalSeconds: null };
+const calculateTimeDifference = (
+    dateString: string | null
+): {
+    days: number | null;
+    hours: number | null;
+    minutes: number | null;
+    totalSeconds: number | null;
+} => {
+    if (!dateString)
+        return { days: null, hours: null, minutes: null, totalSeconds: null };
     try {
         const targetDate = new Date(dateString);
         const now = new Date();
         const difference = targetDate.getTime() - now.getTime();
 
-        if (difference < 0) return { days: 0, hours: 0, minutes: 0, totalSeconds: 0 };
+        if (difference < 0)
+            return { days: 0, hours: 0, minutes: 0, totalSeconds: 0 };
 
         const totalSeconds = Math.floor(difference / 1000);
         const days = Math.floor(totalSeconds / (60 * 60 * 24));
@@ -48,7 +57,7 @@ const calculateTimeDifference = (dateString: string | null): { days: number | nu
 
         return { days, hours, minutes, totalSeconds };
     } catch (e) {
-        console.error("Error parsing date:", dateString, e);
+        console.error('Error parsing date:', dateString, e);
         return { days: null, hours: null, minutes: null, totalSeconds: null };
     }
 };
@@ -62,14 +71,16 @@ const calculateDaysAgo = (dateString: string | null): number | null => {
         if (difference < 0) return 0;
         return Math.floor(difference / (1000 * 60 * 60 * 24));
     } catch (e) {
-        console.error("Error parsing posting date:", dateString, e);
+        console.error('Error parsing posting date:', dateString, e);
         return null;
     }
-}
+};
 
 export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     const { jobs, numOfJobs } = props;
-    const [expandedDescriptions, setExpandedDescriptions] = useState<Record<number, boolean>>({});
+    const [expandedDescriptions, setExpandedDescriptions] = useState<
+        Record<number, boolean>
+    >({});
     const [currentPage, setCurrentPage] = useState(1);
 
     const jobsPerPage = 20;
@@ -79,9 +90,9 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     const totalPages = Math.ceil(numOfJobs / jobsPerPage);
 
     const toggleDescription = (jobId: number) => {
-        setExpandedDescriptions(prev => ({
+        setExpandedDescriptions((prev) => ({
             ...prev,
-            [jobId]: !prev[jobId]
+            [jobId]: !prev[jobId],
         }));
     };
 
@@ -89,7 +100,11 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
         return currentJobs.map((job) => (
             <Row key={job.id}>
                 <Col xs={12} md={10} lg={8} className={'row-control mx-auto'}>
-                    {infoGraphic(job, expandedDescriptions[job.id] || false, toggleDescription)}
+                    {infoGraphic(
+                        job,
+                        expandedDescriptions[job.id] || false,
+                        toggleDescription
+                    )}
                 </Col>
             </Row>
         ));
@@ -108,7 +123,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
             <Card className={'info-box mb-3'}>
                 <Card.Body>
                     <Row className="mb-2 align-items-center">
-                        <Col xs={"auto"}>
+                        <Col xs={'auto'}>
                             <img
                                 className="image rounded-icon company-logo-placeholder"
                                 src={process.env.PUBLIC_URL + '/logo512.png'}
@@ -127,7 +142,9 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                             aria-expanded={isExpanded}
                         >
                             <Card.Text className={'card-text text-colour'}>
-                                {isExpanded ? job.description : `${job.description.substring(0, 100)}...`}
+                                {isExpanded
+                                    ? job.description
+                                    : `${job.description.substring(0, 100)}...`}
                             </Card.Text>
                         </div>
                     ) : (
@@ -139,33 +156,43 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     <Row className={'job-details-row mt-3'}>
                         <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Salary:</strong> {formatSalary(job.salary)}
+                                <strong>Salary:</strong>{' '}
+                                {formatSalary(job.salary)}
                             </Card.Text>
                         </Col>
                         <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Type:</strong> {formatEmploymentType(job.employmentType)}
+                                <strong>Type:</strong>{' '}
+                                {formatEmploymentType(job.employmentType)}
                             </Card.Text>
                         </Col>
                         <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Location:</strong> {job.address}{job.county ? `, ${job.county}` : ''} {job.postcode ? `(${job.postcode})` : ''}
+                                <strong>Location:</strong> {job.address}
+                                {job.county ? `, ${job.county}` : ''}{' '}
+                                {job.postcode ? `(${job.postcode})` : ''}
                             </Card.Text>
                         </Col>
                         {daysPostedAgo !== null && (
                             <Col xs={12} sm={6} className="mb-2">
                                 <Card.Text className="card-text text-colour">
-                                    <strong>Posted:</strong> {daysPostedAgo === 0 ? 'Today' : `${daysPostedAgo} day${daysPostedAgo !== 1 ? 's' : ''} ago`}
+                                    <strong>Posted:</strong>{' '}
+                                    {daysPostedAgo === 0
+                                        ? 'Today'
+                                        : `${daysPostedAgo} day${daysPostedAgo !== 1 ? 's' : ''} ago`}
                                 </Card.Text>
                             </Col>
                         )}
-                        {expiryTime.totalSeconds !== null && expiryTime.totalSeconds > 0 && (
-                            <Col xs={12} sm={6} className="mb-2">
-                                <Card.Text className="card-text text-colour">
-                                    <strong>Closes in:</strong> {expiryTime.days}d {expiryTime.hours}h {expiryTime.minutes}m
-                                </Card.Text>
-                            </Col>
-                        )}
+                        {expiryTime.totalSeconds !== null &&
+                            expiryTime.totalSeconds > 0 && (
+                                <Col xs={12} sm={6} className="mb-2">
+                                    <Card.Text className="card-text text-colour">
+                                        <strong>Closes in:</strong>{' '}
+                                        {expiryTime.days}d {expiryTime.hours}h{' '}
+                                        {expiryTime.minutes}m
+                                    </Card.Text>
+                                </Col>
+                            )}
                         {expiryTime.totalSeconds === 0 && (
                             <Col xs={12} sm={6} className="mb-2">
                                 <Card.Text className="card-text text-danger">
@@ -229,7 +256,11 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
 
     return (
         <Container fluid={true} className="pt-4 pb-4 job-search-panel">
-            {jobs.length > 0 ? generateJobCards() : <p className="text-center">No jobs found.</p>}
+            {jobs.length > 0 ? (
+                generateJobCards()
+            ) : (
+                <p className="text-center">No jobs found.</p>
+            )}
             {renderPagination()}
         </Container>
     );

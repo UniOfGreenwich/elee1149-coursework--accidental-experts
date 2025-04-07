@@ -5,13 +5,8 @@
 
 ---
 
-## Log in Designs:
-![Log In Screen](Images/LogIn.png)
-
----
-
-## Sign up Designs:
-![Sign Up Screen](Images/SignUp.png)
+## Log in / Sign Up Designs:
+![Log In/Sign Up Screen](Images/LogIn.png)
 
 ---
 

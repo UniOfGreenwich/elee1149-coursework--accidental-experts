@@ -1,6 +1,7 @@
 import './JobSearchCard.scss';
 import React, {JSX, useState} from 'react';
 import {Button, Card, Col, Container, Row} from 'react-bootstrap';
+import {IoIosBriefcase} from "react-icons/io";
 
 interface Job {
     id: number;
@@ -109,11 +110,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                 <Card.Body>
                     <Row className="mb-2 align-items-center">
                         <Col xs={"auto"}>
-                            <img
-                                className="image rounded-icon company-logo-placeholder"
-                                src={process.env.PUBLIC_URL + '/logo512.png'}
-                                alt="Company Placeholder"
-                            />
+                            <IoIosBriefcase />
                         </Col>
                     </Row>
                     <Card.Title className={'card-title text-colour'}>

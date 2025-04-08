@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './destyle.css';
 import HomePage from './Pages/HomePage/home.tsx';
 import JobSearchPage from './Pages/JobSearchPage/JobSearchPage.tsx';
@@ -8,6 +8,7 @@ import LoginAndRegistration from './Pages/LoginAndRegistrationPage/login-and-reg
 import { RoutesProvider, useRoutes } from './RoutesContext';
 import JobSeekerDashboard from './Pages/JobSeekerDashboard/JobSeekerDashboard.tsx';
 import Footer from './Components/Footer/Footer.tsx';
+import EmployerDashboardPage from './Pages/EmployerDashboardPage/employerDashboard.tsx';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ const RoutesComponent = () => {
         jobSearchPath,
         loginAndRegistrationPath,
         jobSeekerDashboardPath,
+        employerDashboardPath,
     } = useRoutes();
 
     return (
@@ -42,6 +44,10 @@ const RoutesComponent = () => {
             <Route
                 path={loginAndRegistrationPath}
                 element={<LoginAndRegistration />}
+            />
+            <Route
+                path={employerDashboardPath}
+                element={<EmployerDashboardPage />}
             />
         </Routes>
     );

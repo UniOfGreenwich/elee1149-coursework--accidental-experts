@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './loginComponent.scss';
+import { authenticate, retrieveAccountInfo } from '../../dataGateway.ts';
+import {useNavigate} from "react-router-dom";
 
 type Inputs = {
     email: string;
@@ -15,9 +17,37 @@ const LoginComponent: React.FC = () => {
         formState: { errors },
     } = useForm<Inputs>();
 
+    const navigate = useNavigate()
+
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        authenticate(data.password, data.email)
+            .then((responseData) => {
+                console.log(responseData);
+                sessionStorage.setItem('userID', responseData);
+                const currentUserId = sessionStorage.getItem('userID');
+                authUser(currentUserId);
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const authUser = (userid) => {
+        retrieveAccountInfo(userid)
+            .then((responseData) => {
+                console.log(responseData);
+                const profile = responseData.profile;
+                sessionStorage.setItem('firstName', profile.firstName);
+                sessionStorage.setItem('lastName', profile.lastName);
+                sessionStorage.setItem('userType', profile.userType);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div className="loginComponentWrapper">
@@ -72,5 +102,4 @@ const LoginComponent: React.FC = () => {
         </div>
     );
 };
-
 export default LoginComponent;

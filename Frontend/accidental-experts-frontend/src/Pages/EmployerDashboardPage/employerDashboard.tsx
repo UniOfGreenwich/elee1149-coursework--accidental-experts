@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import CreateJobListingForm from '../../Components/JobListingForm/CreateJobListingForm';
 import './EmployerDashboardPage.scss';
 import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo";
-import SupportComponent from "../../Components/SeekerSupport/SupportComponent.tsx";
+import SupportComponent from "../../Components/SupportComponent/SupportComponent.tsx";
 import { retrieveAccountInfo } from "../../dataGateway";
 import { Job } from "../../Components/JobCarousel/JobCarousel";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";

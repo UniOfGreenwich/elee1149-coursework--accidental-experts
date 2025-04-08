@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/elee1149-coursework--accidental-experts/static/css/main.9b38ef44.css",
-    "main.js": "/elee1149-coursework--accidental-experts/static/js/main.a2671141.js",
+    "main.css": "/elee1149-coursework--accidental-experts/static/css/main.12bf1e34.css",
+    "main.js": "/elee1149-coursework--accidental-experts/static/js/main.d1402898.js",
     "index.html": "/elee1149-coursework--accidental-experts/index.html",
-    "main.9b38ef44.css.map": "/elee1149-coursework--accidental-experts/static/css/main.9b38ef44.css.map",
-    "main.a2671141.js.map": "/elee1149-coursework--accidental-experts/static/js/main.a2671141.js.map"
+    "main.12bf1e34.css.map": "/elee1149-coursework--accidental-experts/static/css/main.12bf1e34.css.map",
+    "main.d1402898.js.map": "/elee1149-coursework--accidental-experts/static/js/main.d1402898.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b38ef44.css",
-    "static/js/main.a2671141.js"
+    "static/css/main.12bf1e34.css",
+    "static/js/main.d1402898.js"
   ]
 }

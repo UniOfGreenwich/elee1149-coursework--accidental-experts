@@ -94,10 +94,6 @@ const LoginComponent: React.FC = () => {
                         value="Sign In"
                     />
                 </form>
-                <div className="registerButtonWrapper">
-                    <p>Need to make an account?</p>
-                    <button className={'registerButton'}>Sign In</button>
-                </div>
             </div>
         </div>
     );

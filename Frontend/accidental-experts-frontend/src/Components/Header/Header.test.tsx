@@ -86,7 +86,7 @@ describe('Header Component', () => {
         expect(sessionStorage.getItem('firstName')).toBeNull();
 
         expect(mockedNavigate).toHaveBeenCalledTimes(1);
-        expect(mockedNavigate).toHaveBeenCalledWith('/'); // Assumes logout navigates to root
+        expect(mockedNavigate).toHaveBeenCalledWith('/');
     });
 
     test('renders main navigation links', () => {
@@ -99,7 +99,7 @@ describe('Header Component', () => {
         const homeLink = getByText('Home');
         const searchLink = getByText('Job Search');
         const employerLink = getByText('Employer Dashboard');
-        const dashboardLink = getByText('Dashboard'); // Assuming this is a separate link
+        const dashboardLink = getByText('Dashboard');
 
         expect(homeLink).toBeInTheDocument();
         expect(searchLink).toBeInTheDocument();

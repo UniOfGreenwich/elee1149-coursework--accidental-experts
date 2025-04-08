@@ -1,9 +1,8 @@
 import React from 'react';
-import {Card, Container } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import './SupportComponent.scss';
 
 export default function SupportComponent() {
-
     return (
         <Container className={'accountContainer'}>
             <Card className={'support-card'}>

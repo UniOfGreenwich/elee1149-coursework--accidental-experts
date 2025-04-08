@@ -2,10 +2,9 @@ import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
 import { registerNewUser, retrieveAccountInfo } from '../../dataGateway.ts';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import LoadingSpinnerOverlay from '../Common/LoadingSpinnerOverlay';
 import ResponseModal from '../Common/ResponseModal';
-
 
 type Inputs = {
     email: string;
@@ -18,7 +17,6 @@ type Inputs = {
 
 type ResponseStatus = 'idle' | 'success' | 'error';
 
-
 const SignupComponent: React.FC = () => {
     const {
         register,
@@ -27,15 +25,15 @@ const SignupComponent: React.FC = () => {
         watch,
     } = useForm<Inputs>({
         defaultValues: {
-            userType: 'job_seeker'
-        }
+            userType: 'job_seeker',
+        },
     });
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [responseStatus, setResponseStatus] = React.useState<ResponseStatus>('idle');
+    const [responseStatus, setResponseStatus] =
+        React.useState<ResponseStatus>('idle');
     const [responseMessage, setResponseMessage] = React.useState<string>('');
-
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         setIsLoading(true);
@@ -52,34 +50,37 @@ const SignupComponent: React.FC = () => {
 
             const newUserId = registrationResponse?.id;
             if (!newUserId) {
-                throw new Error("Registration response did not contain a user ID.");
+                throw new Error(
+                    'Registration response did not contain a user ID.'
+                );
             }
 
             sessionStorage.setItem('userID', newUserId.toString());
 
-            const accountInfoResponse = await retrieveAccountInfo(newUserId.toString());
+            const accountInfoResponse = await retrieveAccountInfo(
+                newUserId.toString()
+            );
             const profile = accountInfoResponse.profile;
             sessionStorage.setItem('firstName', profile.firstName);
             sessionStorage.setItem('lastName', profile.lastName);
             sessionStorage.setItem('userType', profile.userType);
 
             navigate('/');
-
         } catch (error: any) {
-            console.error("Signup Error:", error);
-            setResponseMessage('Registration failed. Please try again. Your email may already be in use.');
+            console.error('Signup Error:', error);
+            setResponseMessage(
+                'Registration failed. Please try again. Your email may already be in use.'
+            );
             setResponseStatus('error');
         } finally {
             setIsLoading(false);
         }
     };
 
-
     const handleModalClose = () => {
         setResponseStatus('idle');
         setResponseMessage('');
     };
-
 
     const password = watch('password');
     const userType = watch('userType');
@@ -153,7 +154,6 @@ const SignupComponent: React.FC = () => {
                                 value="job_seeker"
                                 {...register('userType', { required: true })}
                                 disabled={isLoading}
-
                             />
                             <label htmlFor="job_seeker">Job Seeker</label>
                             <input

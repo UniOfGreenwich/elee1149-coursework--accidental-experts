@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import CreateJobListingForm from '../../Components/JobListingForm/CreateJobListingForm';
 import './EmployerDashboardPage.scss';
-import EditAccountInfo from "../../Components/EditAccountInfo/EditAccountInfo";
-import SupportComponent from "../../Components/SupportComponent/SupportComponent.tsx";
-import { retrieveAccountInfo } from "../../dataGateway";
-import { Job } from "../../Components/JobCarousel/JobCarousel";
-import LoadingScreen from "../LoadingScreen/LoadingScreen";
-import { useNavigate } from "react-router-dom";
+import EditAccountInfo from '../../Components/EditAccountInfo/EditAccountInfo';
+import SupportComponent from '../../Components/SupportComponent/SupportComponent.tsx';
+import { retrieveAccountInfo } from '../../dataGateway';
+import { Job } from '../../Components/JobCarousel/JobCarousel';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import { useNavigate } from 'react-router-dom';
 
 interface ProfileInfo {
     [key: string]: any;
@@ -24,32 +24,36 @@ const EmployerDashboardPage: React.FC = () => {
     const fetchAccountInfoEffectRan = useRef<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-
     useEffect(() => {
         const fetchAccountInfo = async () => {
-                try {
-                    const userID = sessionStorage.getItem("userID");
-                    if (userID) {
-                        const response = await retrieveAccountInfo(userID);
-                        if (response && response.profile) {
-                            setAccountInfo(response as AccountInfo);
-                        } else {
-                            console.error("Fetched account info is missing expected structure:", response);
-                            setAccountInfo(null);
-                        }
+            try {
+                const userID = sessionStorage.getItem('userID');
+                if (userID) {
+                    const response = await retrieveAccountInfo(userID);
+                    if (response && response.profile) {
+                        setAccountInfo(response as AccountInfo);
                     } else {
-                        console.warn("UserID not found in sessionStorage for fetching.");
+                        console.error(
+                            'Fetched account info is missing expected structure:',
+                            response
+                        );
                         setAccountInfo(null);
                     }
-                } catch (error) {
-                    console.error("Failed to fetch account info:", error);
+                } else {
+                    console.warn(
+                        'UserID not found in sessionStorage for fetching.'
+                    );
                     setAccountInfo(null);
-                } finally {
-                    setIsLoading(false);
                 }
-            };
-            fetchAccountInfo();
-            fetchAccountInfoEffectRan.current = true;
+            } catch (error) {
+                console.error('Failed to fetch account info:', error);
+                setAccountInfo(null);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchAccountInfo();
+        fetchAccountInfoEffectRan.current = true;
     }, []);
 
     const handleShowFormClick = () => {
@@ -58,7 +62,10 @@ const EmployerDashboardPage: React.FC = () => {
 
     if (isLoading) {
         return (
-            <Container fluid className="enrollment-page vh-100 d-flex justify-content-center align-items-center">
+            <Container
+                fluid
+                className="enrollment-page vh-100 d-flex justify-content-center align-items-center"
+            >
                 <LoadingScreen text="Loading account information..." />
             </Container>
         );
@@ -69,7 +76,8 @@ const EmployerDashboardPage: React.FC = () => {
             <Container className="mt-4">
                 <h1 className="text-center">Employer Dashboard</h1>
                 <p className="text-danger text-center mt-4">
-                    Error: Could not load account information. Please try refreshing the page or logging in again.
+                    Error: Could not load account information. Please try
+                    refreshing the page or logging in again.
                 </p>
             </Container>
         );
@@ -92,7 +100,9 @@ const EmployerDashboardPage: React.FC = () => {
                     </div>
                 ) : (
                     <>
-                        <h2 className="form-box-heading">Create New Job Listing</h2>
+                        <h2 className="form-box-heading">
+                            Create New Job Listing
+                        </h2>
                         <CreateJobListingForm />
                     </>
                 )}

@@ -14,7 +14,9 @@ export default function LoginAndRegistration() {
         const userId = sessionStorage.getItem('userID');
 
         if (userId) {
-            console.log('User logged in, redirecting from Login/Registration page...');
+            console.log(
+                'User logged in, redirecting from Login/Registration page...'
+            );
             navigate(homePath, { replace: true });
         } else {
             setIsLoading(false);

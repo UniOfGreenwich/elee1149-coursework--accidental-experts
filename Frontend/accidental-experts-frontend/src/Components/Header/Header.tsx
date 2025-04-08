@@ -43,18 +43,23 @@ export default function Header() {
     useEffect(() => {
         const redirectUnauthorizedAccess = () => {
             const unauthorizedAccessMap = {
-                employer: [homePath],
-                job_seeker: [homePath],
+                employer: [jobSearchPath],
+                job_seeker: [employerDashboardPath],
             };
 
-            const currentPath = location.pathname;
-            const unauthorizedPaths =
-                unauthorizedAccessMap[
-                    currentUserType as keyof typeof unauthorizedAccessMap
-                ] || [];
+            if (currentUserType) {
+                const currentPath = location.pathname;
+                const unauthorizedPaths =
+                    unauthorizedAccessMap[
+                        currentUserType as keyof typeof unauthorizedAccessMap
+                        ] || [];
 
-            if (unauthorizedPaths.includes(currentPath)) {
-                window.location.href = 'https://tinyurl.com/403-unauthorised';
+                if (unauthorizedPaths.includes(currentPath)) {
+                    navigate(homePath);
+                    setTimeout(() => {
+                        window.location.href = 'https://tinyurl.com/403-unauthorised';
+                    }, 500);
+                }
             }
         };
 
@@ -64,6 +69,8 @@ export default function Header() {
         location.pathname,
         jobSearchPath,
         employerDashboardPath,
+        homePath,
+        navigate,
     ]);
 
     function handleLogout() {

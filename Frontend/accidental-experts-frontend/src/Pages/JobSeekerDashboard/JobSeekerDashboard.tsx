@@ -6,7 +6,7 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import JobCarousel from '../../Components/JobCarousel/JobCarousel';
 import { Job } from '../../Components/JobCarousel/JobCarousel';
 import EditAccountInfo from '../../Components/EditAccountInfo/EditAccountInfo';
-import SupportComponent from '../../Components/SeekerSupport/SupportComponent.tsx';
+import SupportComponent from '../../Components/SupportComponent/SupportComponent.tsx';
 import { useNavigate } from "react-router-dom";
 
 interface ProfileInfo {

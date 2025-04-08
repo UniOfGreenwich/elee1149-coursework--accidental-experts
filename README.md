@@ -1,4 +1,34 @@
 # ELEE1149-Project-Template
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Technologies Used](#technologies-used)
+- [Backend Setup](#backend-setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Backend](#running-the-backend)
+- [Frontend Setup](#frontend-setup)
+  - [Prerequisites](#prerequisites-1)
+  - [Installation](#installation-1)
+  - [Running the Frontend](#running-the-frontend)
+- [Future Work](#future-work)
+- [To Do](#to-do)
+- [License](#license)
+- [References](#references)
+
+## Project Overview
+This project is a basic-level web application designed to facilitate job listings and applications. Users can sign up as either a job seeker or a recruiter, with each role having different functionalities enabled on the site.
+
+- **Job Seekers** can:
+    - Create job postings.
+
+- **Recruiters** can:
+    - Browse job postings.
+
+- **General Features**:
+    - Users can sign up and log in.
+    - The application can be browsed without being signed in.
+
+Note: Users cannot manage their profiles once created, and job tracking is not yet implemented.
 
 ## Installaling the frontend application
 

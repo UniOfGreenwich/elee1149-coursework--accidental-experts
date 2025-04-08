@@ -4,7 +4,7 @@ import './Footer.scss'; // Import the footer styling
 
 export default function Footer() {
     return (
-        <div className="footerWrapper">
+        <div className="footerWrapper" data-testid="footerWrapper">
             <div className="footer">
                 <div className="website-nameWrapper">
                     <div className="website-name">

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './loginComponent.scss';
 import { authenticate, login, retrieveAccountInfo } from '../../dataGateway.ts';
-import { Link } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
 
 type Inputs = {
     email: string;
@@ -17,6 +17,8 @@ const LoginComponent: React.FC = () => {
         formState: { errors },
     } = useForm<Inputs>();
 
+    const navigate = useNavigate()
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -26,6 +28,7 @@ const LoginComponent: React.FC = () => {
                 sessionStorage.setItem('userID', responseData);
                 const currentUserId = sessionStorage.getItem('userID');
                 authUser(currentUserId);
+                navigate('/');
             })
             .catch((error) => {
                 console.log(error);

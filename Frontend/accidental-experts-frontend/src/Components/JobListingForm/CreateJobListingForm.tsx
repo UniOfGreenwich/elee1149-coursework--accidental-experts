@@ -27,6 +27,7 @@ const initialFormData: JobListingFormData = {
     expiryDate: '',
 };
 
+
 const CreateJobListingForm: React.FC = () => {
     const [formData, setFormData] =
         useState<JobListingFormData>(initialFormData);

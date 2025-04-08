@@ -9,7 +9,7 @@ interface RoutesContextValue {
     employerDashboardPath: string;
 }
 
-const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
+export const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
 
 export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
     children,

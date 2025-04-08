@@ -121,7 +121,7 @@ const SignupComponent: React.FC = () => {
                             <input
                                 type="radio"
                                 id="recruiter"
-                                value="recruiter"
+                                value="employer"
                                 {...register('userType', { required: true })}
                             />
                             <label htmlFor="recruiter">Recruiter</label>

@@ -31,8 +31,7 @@ export default function Header() {
     }, [userId]);
 
     function handleLogout() {
-        sessionStorage.removeItem('userID');
-        setUserId(null);
+        sessionStorage.clear()
         navigate('/');
     }
 

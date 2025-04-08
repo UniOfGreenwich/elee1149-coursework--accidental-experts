@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './loginComponent.scss';
-import { authenticate, login, retrieveAccountInfo } from '../../dataGateway.ts';
+import { authenticate, retrieveAccountInfo } from '../../dataGateway.ts';
 import {useNavigate} from "react-router-dom";
 
 type Inputs = {
@@ -42,6 +42,7 @@ const LoginComponent: React.FC = () => {
                 const profile = responseData.profile;
                 sessionStorage.setItem('firstName', profile.firstName);
                 sessionStorage.setItem('lastName', profile.lastName);
+                sessionStorage.setItem('userType', profile.userType);
             })
             .catch((error) => {
                 console.log(error);

@@ -50,6 +50,7 @@ const SignupComponent: React.FC = () => {
                 const profile = responseData.profile;
                 sessionStorage.setItem('firstName', profile.firstName);
                 sessionStorage.setItem('lastName', profile.lastName);
+                sessionStorage.setItem('userType', profile.userType);
             })
             .catch((error) => {
                 console.log(error);

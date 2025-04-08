@@ -7,7 +7,6 @@ interface RoutesContextValue {
     jobSeekerDashboardPath: string;
     loginAndRegistrationPath: string;
     employerDashboardPath: string;
-
 }
 
 const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);

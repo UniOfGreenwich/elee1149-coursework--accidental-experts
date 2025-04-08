@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
-import { registerNewUser } from '../../dataGateway.ts';
+import { registerNewUser, retrieveAccountInfo } from '../../dataGateway.ts';
+import {useNavigate} from "react-router-dom";
 
 type Inputs = {
     email: string;
@@ -20,6 +21,8 @@ const SignupComponent: React.FC = () => {
         watch,
     } = useForm<Inputs>();
 
+    const navigate = useNavigate()
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         registerNewUser(
             data.password,
@@ -31,6 +34,22 @@ const SignupComponent: React.FC = () => {
             .then((responseData) => {
                 console.log(responseData);
                 sessionStorage.setItem('userID', responseData.id);
+                const currentUserId = sessionStorage.getItem('userID');
+                authUser(currentUserId);
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const authUser = (userid) => {
+        retrieveAccountInfo(userid)
+            .then((responseData) => {
+                console.log(responseData);
+                const profile = responseData.profile;
+                sessionStorage.setItem('firstName', profile.firstName);
+                sessionStorage.setItem('lastName', profile.lastName);
             })
             .catch((error) => {
                 console.log(error);

@@ -4,13 +4,12 @@ import {
     Card,
     Col,
     Container,
-    Dropdown,
-    DropdownToggle,
     Form,
     Row,
 } from 'react-bootstrap';
 import './EditAccountInfo.scss';
 import DOMPurify from 'dompurify';
+import {saveInformation} from "../../dataGateway.ts";
 
 interface EditAccountInfoProps {
     accountInfo: any;
@@ -23,14 +22,10 @@ export default function EditAccountInfo(
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [accountStatus, setAccountStatus] = useState('');
     const [isFirstNameValid, setIsFirstNameValid] = useState(false);
     const [isLastNameValid, setIsLastNameValid] = useState(false);
     const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-    const phoneRegex = /^((\+44)|(0)) ?\d{4} ?\d{6}$/;
 
     const accountStatusOptions = [
         { value: 'Seeking', label: 'Seeking' },
@@ -42,8 +37,6 @@ export default function EditAccountInfo(
             setFirstName(accountInfo.firstName || '');
             setLastName(accountInfo.lastName || '');
             setEmail(accountInfo.email || '');
-            setPhoneNumber(accountInfo.phoneNumber || '');
-            setAccountStatus(accountInfo.accountStatus || '');
         }
     }, [accountInfo]);
 
@@ -51,8 +44,7 @@ export default function EditAccountInfo(
         setIsFirstNameValid(firstName.trim() !== '');
         setIsLastNameValid(lastName.trim() !== '');
         setIsEmailValid(emailRegex.test(email));
-        setIsPhoneNumberValid(phoneRegex.test(phoneNumber));
-    }, [firstName, lastName, email, phoneNumber]);
+    }, [firstName, lastName, email]);
 
     function sanitizeData(inputData: string) {
         return DOMPurify.sanitize(inputData);
@@ -76,20 +68,10 @@ export default function EditAccountInfo(
         setIsEmailValid(emailRegex.test(value));
     }
 
-    function handlePhoneNumberChange(
-        event: React.ChangeEvent<HTMLInputElement>
-    ) {
-        const value = sanitizeData(event.target.value);
-        setPhoneNumber(value);
-        setIsPhoneNumberValid(phoneRegex.test(value));
-    }
-
-    const handleAccountStatusChange = (event) => {
-        setAccountStatus(event.target.value);
-    };
 
     function handleSaveProfile() {
-        //todo call endpoint to updat
+        const userID = sessionStorage.getItem("userID");
+        saveInformation(userID, firstName, lastName, email)
     }
 
     return (
@@ -160,51 +142,6 @@ export default function EditAccountInfo(
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
-                        <Col xs={12} md={6} lg={6}>
-                            <Form.Group as={Col}>
-                                <Form.Label className="form-label">
-                                    {'Phone Number'}
-                                    <span className="form-asterisk"> *</span>
-                                </Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    className="form-input"
-                                    placeholder="Phone Number"
-                                    size="lg"
-                                    value={phoneNumber}
-                                    onChange={handlePhoneNumberChange}
-                                    isInvalid={!isPhoneNumberValid}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {'Phone Number Invalid'}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row className="mb-3">
-                        <Col xs={12} md={6} lg={6}>
-                            <Form.Group as={Col}>
-                                <Form.Label className="form-label">
-                                    {'Account Status'}
-                                    <span className="form-asterisk"> *</span>
-                                </Form.Label>
-
-                                <Form.Select
-                                    aria-label="Account Status"
-                                    value={accountStatus}
-                                    onChange={handleAccountStatusChange}
-                                >
-                                    {accountStatusOptions.map((option) => (
-                                        <option
-                                            key={option.value}
-                                            value={option.value}
-                                        >
-                                            {option.label}
-                                        </option>
-                                    ))}
-                                </Form.Select>
-                            </Form.Group>
-                        </Col>
                     </Row>
                     <div className={'top-padding'}>
                         <Button
@@ -213,8 +150,7 @@ export default function EditAccountInfo(
                             disabled={
                                 !isFirstNameValid ||
                                 !isLastNameValid ||
-                                !isEmailValid ||
-                                !isPhoneNumberValid
+                                !isEmailValid
                             }
                         >
                             Save

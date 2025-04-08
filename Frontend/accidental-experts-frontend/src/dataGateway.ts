@@ -109,7 +109,7 @@ export async function applyForJob(jobID: number, userID: string) {
         body: JSON.stringify(applicationData)
     };
     try {
-        const response = await fetch(url, requestConfig); // Await the fetch call
+        const response = await fetch(url, requestConfig);
         if (!response.ok) {
             alert("Sorry, your application could not be submitted. Please try again later.");
             return null;
@@ -119,6 +119,35 @@ export async function applyForJob(jobID: number, userID: string) {
         return responseData;
     } catch (error) {
         alert("Sorry, there was an error submitting your application. Please try again later.");
+        return null;
+    }
+}
+
+
+export async function saveInformation(userID: string, firstname: string, lastname: string, email: string) {
+
+    const userData = {
+        firstName: firstname,
+        lastName: lastname,
+        email: email
+    };
+    const url = 'https://backend-744513217594.europe-west1.run.app/users/' + userID;
+    const requestConfig = {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(userData)
+    };
+    try {
+        const response = await fetch(url, requestConfig);
+        if (!response.ok) {
+            alert("Sorry, your information could not be saved. Please try again later.");
+            return null;
+        }
+        const responseData = await response.json();
+        alert("You have successfully updated your information!");
+        return responseData;
+    } catch (error) {
+        alert("Sorry, there was an error submitting your information. Please try again later.");
         return null;
     }
 }

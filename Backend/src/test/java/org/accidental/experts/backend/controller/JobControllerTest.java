@@ -38,7 +38,7 @@ class JobControllerTest {
         job1 = new Job();
         job1.setId(1);
         job1.setTitle("Software Engineer");
-        job1.setPostingDate(Instant.parse("2023-10-01T10:00:00Z"));
+        job1.setPostingDate(Instant.parse("2025-10-01T10:00:00Z"));
     }
 
     @Test
@@ -91,7 +91,7 @@ class JobControllerTest {
         int existingId = job1.getId();
         Job updatedDetails = new Job();
         updatedDetails.setTitle("Senior Software Engineer");
-        updatedDetails.setPostingDate(Instant.parse("2023-11-01T12:00:00Z"));
+        updatedDetails.setPostingDate(Instant.parse("2025-11-01T12:00:00Z"));
 
 
         when(jobRepository.findById(existingId)).thenReturn(Optional.of(job1));
@@ -119,5 +119,23 @@ class JobControllerTest {
 
         verify(jobRepository).existsById(existingId);
         verify(jobRepository).deleteById(existingId);
+    }
+
+    @Test
+    void getActiveJobs() throws Exception {
+        Job activeJob = new Job();
+        activeJob.setId(2);
+        activeJob.setTitle("Active Job");
+        activeJob.setExpiryDate(Instant.parse("2025-12-01T00:00:00Z"));
+
+        when(jobRepository.findActiveJobs(any(Instant.class))).thenReturn(Arrays.asList(activeJob));
+
+        mockMvc.perform(get("/jobs/active").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id", is(activeJob.getId())))
+                .andExpect(jsonPath("$[0].title", is(activeJob.getTitle())));
+
+        verify(jobRepository).findActiveJobs(any(Instant.class));
     }
 }

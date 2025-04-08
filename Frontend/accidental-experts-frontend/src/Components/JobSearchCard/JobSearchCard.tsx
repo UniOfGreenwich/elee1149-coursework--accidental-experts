@@ -1,14 +1,89 @@
 import './JobSearchCard.scss';
+
 import React, { JSX, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { IoIosBriefcase } from 'react-icons/io';
+import { applyForJob } from '../../dataGateway.ts';
+
+interface Job {
+    id: number;
+    title: string;
+    description: string;
+    address: string;
+    county: string | null;
+    postcode: string | null;
+    salary: number | null;
+    employmentType: string;
+    postingDate: string | null;
+    expiryDate: string;
+}
 
 interface JobSearchCardProps {
-    jobs: any[];
+    jobs: Job[];
     numOfJobs: number;
 }
+
+const formatSalary = (salary: number | null): string => {
+    if (salary === null || salary === undefined) {
+        return 'N/A';
+    }
+    return `£${salary.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+};
+
+const formatEmploymentType = (type: string): string => {
+    if (!type) return 'N/A';
+    return type.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+};
+
+const calculateTimeDifference = (
+    dateString: string | null
+): {
+    days: number | null;
+    hours: number | null;
+    minutes: number | null;
+    totalSeconds: number | null;
+} => {
+    if (!dateString)
+        return { days: null, hours: null, minutes: null, totalSeconds: null };
+    try {
+        const targetDate = new Date(dateString);
+        const now = new Date();
+        const difference = targetDate.getTime() - now.getTime();
+
+        if (difference < 0)
+            return { days: 0, hours: 0, minutes: 0, totalSeconds: 0 };
+
+        const totalSeconds = Math.floor(difference / 1000);
+        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+        const hours = Math.floor(totalSeconds / (60 * 60)) % 24;
+        const minutes = Math.floor(totalSeconds / 60) % 60;
+
+        return { days, hours, minutes, totalSeconds };
+    } catch (e) {
+        console.error('Error parsing date:', dateString, e);
+        return { days: null, hours: null, minutes: null, totalSeconds: null };
+    }
+};
+
+const calculateDaysAgo = (dateString: string | null): number | null => {
+    if (!dateString) return null;
+    try {
+        const postDate = new Date(dateString);
+        const now = new Date();
+        const difference = now.getTime() - postDate.getTime();
+        if (difference < 0) return 0;
+        return Math.floor(difference / (1000 * 60 * 60 * 24));
+    } catch (e) {
+        console.error('Error parsing posting date:', dateString, e);
+        return null;
+    }
+};
+
 export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     const { jobs, numOfJobs } = props;
-    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+    const [expandedDescriptions, setExpandedDescriptions] = useState<
+        Record<number, boolean>
+    >({});
     const [currentPage, setCurrentPage] = useState(1);
 
     const jobsPerPage = 20;
@@ -17,54 +92,42 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
     const totalPages = Math.ceil(numOfJobs / jobsPerPage);
 
+    const toggleDescription = (jobId: number) => {
+        setExpandedDescriptions((prev) => ({
+            ...prev,
+            [jobId]: !prev[jobId],
+        }));
+    };
+
     function generateJobCards() {
-        let jobCards = [];
-        for (let i = 0; i < currentJobs.length; i++) {
-            jobCards.push(
-                <Row key={i}>
-                    <Col xs={6} md={10} className={'row-control'}>
-                        {infoGraphic(currentJobs[i])}
-                    </Col>
-                </Row>
-            );
-        }
-        return jobCards;
+        return currentJobs.map((job) => (
+            <Row key={job.id}>
+                <Col xs={12} md={10} lg={8} className={'row-control mx-auto'}>
+                    {infoGraphic(
+                        job,
+                        expandedDescriptions[job.id] || false,
+                        toggleDescription
+                    )}
+                </Col>
+            </Row>
+        ));
     }
 
-    const infoGraphic = (job: {
-        expiry_date: any;
-        description: string;
-        company_name: string;
-        title: string;
-        salary: string | number;
-        employment_type: string;
-    }) => {
-        const date = new Date();
-        const expiry_date_string = job.expiry_date;
-        let expiry_date = new Date(expiry_date_string);
-        const difference = expiry_date.getTime() - date.getTime();
-        const seconds = Math.floor(difference / 1000);
-        const minutes = Math.floor(seconds / 60) % 60;
-        const hours = Math.floor(seconds / (60 * 60)) % 24;
-        const days = Math.floor(seconds / (60 * 60 * 24));
+    const infoGraphic = (
+        job: Job,
+        isExpanded: boolean,
+        toggleExpand: (id: number) => void
+    ) => {
+        const expiryTime = calculateTimeDifference(job.expiryDate);
+        const daysPostedAgo = calculateDaysAgo(job.postingDate);
         const isDescriptionLong = job.description.length > 100;
-        const toggleDescription = () => {
-            setIsDescriptionExpanded(!isDescriptionExpanded);
-        };
 
         return (
-            <Card className={'info-box'}>
+            <Card className={'info-box mb-3'}>
                 <Card.Body>
-                    <Row>
-                        <Col>
-                            <img
-                                className="image rounded-icon"
-                                src={process.env.PUBLIC_URL + '/logo512.png'}
-                                alt="Company Image"
-                            />
-                            <span className={'left-padding text-colour'}>
-                                {job.company_name}
-                            </span>
+                    <Row className="mb-2 align-items-center">
+                        <Col xs={'auto'}>
+                            <IoIosBriefcase />
                         </Col>
                     </Row>
                     <Card.Title className={'card-title text-colour'}>
@@ -73,18 +136,15 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
 
                     {isDescriptionLong ? (
                         <div
-                            onClick={toggleDescription}
+                            onClick={() => toggleExpand(job.id)}
                             style={{ cursor: 'pointer' }}
+                            aria-expanded={isExpanded}
                         >
-                            {isDescriptionExpanded ? (
-                                <Card.Text className={'card-text text-colour'}>
-                                    {job.description}
-                                </Card.Text>
-                            ) : (
-                                <Card.Text className={'card-text text-colour'}>
-                                    {job.description.substring(0, 100)}...{' '}
-                                </Card.Text>
-                            )}
+                            <Card.Text className={'card-text text-colour'}>
+                                {isExpanded
+                                    ? job.description
+                                    : `${job.description.substring(0, 100)}...`}
+                            </Card.Text>
                         </div>
                     ) : (
                         <Card.Text className={'card-text text-colour'}>
@@ -92,34 +152,57 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                         </Card.Text>
                     )}
 
-                    <Row className={'xxx'}>
-                        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+                    <Row className={'job-details-row mt-3'}>
+                        <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Salary:</strong> £{job.salary}
+                                <strong>Salary:</strong>{' '}
+                                {formatSalary(job.salary)}
                             </Card.Text>
                         </Col>
-                        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Employment Type:</strong>{' '}
-                                {job.employment_type}
+                                <strong>Type:</strong>{' '}
+                                {formatEmploymentType(job.employmentType)}
                             </Card.Text>
                         </Col>
-                        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Col xs={12} sm={6} className="mb-2">
                             <Card.Text className="card-text text-colour">
-                                <strong>Job Posted</strong> {days} days ago
+                                <strong>Location:</strong> {job.address}
+                                {job.county ? `, ${job.county}` : ''}{' '}
+                                {job.postcode ? `(${job.postcode})` : ''}
                             </Card.Text>
                         </Col>
-                        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Card.Text className="card-text text-colour">
-                                <strong>Applications Close in: </strong> {days}{' '}
-                                days {hours} hours and {minutes} minutes
-                            </Card.Text>
-                        </Col>
+                        {daysPostedAgo !== null && (
+                            <Col xs={12} sm={6} className="mb-2">
+                                <Card.Text className="card-text text-colour">
+                                    <strong>Posted:</strong>{' '}
+                                    {daysPostedAgo === 0
+                                        ? 'Today'
+                                        : `${daysPostedAgo} day${daysPostedAgo !== 1 ? 's' : ''} ago`}
+                                </Card.Text>
+                            </Col>
+                        )}
+                        {expiryTime.totalSeconds !== null &&
+                            expiryTime.totalSeconds > 0 && (
+                                <Col xs={12} sm={6} className="mb-2">
+                                    <Card.Text className="card-text text-colour">
+                                        <strong>Closes in:</strong>{' '}
+                                        {expiryTime.days}d {expiryTime.hours}h{' '}
+                                        {expiryTime.minutes}m
+                                    </Card.Text>
+                                </Col>
+                            )}
+                        {expiryTime.totalSeconds === 0 && (
+                            <Col xs={12} sm={6} className="mb-2">
+                                <Card.Text className="card-text text-danger">
+                                    <strong>Closed</strong>
+                                </Card.Text>
+                            </Col>
+                        )}
                     </Row>
-                    <br />
                     <Button
-                        className={'rounded-icon button-style'}
-                        onClick={onApply}
+                        className={'rounded-icon button-style mt-3'}
+                        onClick={() => onApply(job.id)}
                     >
                         Apply Now!
                     </Button>
@@ -128,13 +211,19 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
         );
     };
 
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
+        setExpandedDescriptions({});
     };
 
-    const onApply = () => {
-        console.log('Apply button clicked');
-        //TODO;
+    const onApply = async (jobId: number) => {
+        const userID = sessionStorage.getItem('userID');
+
+        if (!userID) {
+            alert('Please log in to apply for jobs.');
+            return;
+        }
+        await applyForJob(jobId, userID);
     };
 
     const renderPagination = () => {
@@ -149,21 +238,20 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
                     key={pageNumber}
                     className={`page-item ${pageNumber === currentPage ? 'active' : ''}`}
                 >
-                    <a
+                    <button
                         className="page-link"
-                        href="#"
                         onClick={(e) => {
                             e.preventDefault();
                             handlePageChange(pageNumber);
                         }}
                     >
                         {pageNumber}
-                    </a>
+                    </button>
                 </li>
             );
         }
         return (
-            <nav>
+            <nav aria-label="Job search pagination">
                 <ul className="pagination justify-content-center mt-3">
                     {navigationPanelItem}
                 </ul>
@@ -172,8 +260,12 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     };
 
     return (
-        <Container fluid={true} className="pt-6 pb-6 job-search-panel">
-            {generateJobCards()}
+        <Container fluid={true} className="pt-4 pb-4 job-search-panel">
+            {jobs.length > 0 ? (
+                generateJobCards()
+            ) : (
+                <p className="text-center">No jobs found.</p>
+            )}
             {renderPagination()}
         </Container>
     );

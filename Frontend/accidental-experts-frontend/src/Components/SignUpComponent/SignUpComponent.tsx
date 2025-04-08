@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
+import { registerNewUser, retrieveAccountInfo } from '../../dataGateway.ts';
+import { useNavigate } from 'react-router-dom';
+import LoadingSpinnerOverlay from '../Common/LoadingSpinnerOverlay';
+import ResponseModal from '../Common/ResponseModal';
 
 type Inputs = {
     email: string;
@@ -11,15 +15,72 @@ type Inputs = {
     userType: string;
 };
 
+type ResponseStatus = 'idle' | 'success' | 'error';
 const SignupComponent: React.FC = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
         watch,
-    } = useForm<Inputs>();
+      
+    } = useForm<Inputs>({
+        defaultValues: {
+            userType: 'job_seeker',
+        },
+    });
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [responseStatus, setResponseStatus] =
+        React.useState<ResponseStatus>('idle');
+    const [responseMessage, setResponseMessage] = React.useState<string>('');
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        setIsLoading(true);
+        setResponseStatus('idle');
+        setResponseMessage('');
+        try {
+            const registrationResponse = await registerNewUser(
+                data.password,
+                data.email,
+                data.firstName,
+                data.surname,
+                data.userType
+            );
+
+            const newUserId = registrationResponse?.id;
+            if (!newUserId) {
+                throw new Error(
+                    'Registration response did not contain a user ID.'
+                );
+            }
+
+            sessionStorage.setItem('userID', newUserId.toString());
+
+            const accountInfoResponse = await retrieveAccountInfo(
+                newUserId.toString()
+            );
+            const profile = accountInfoResponse.profile;
+            sessionStorage.setItem('firstName', profile.firstName);
+            sessionStorage.setItem('lastName', profile.lastName);
+            sessionStorage.setItem('userType', profile.userType);
+
+            navigate('/');
+        } catch (error: any) {
+            console.error('Signup Error:', error);
+            setResponseMessage(
+                'Registration failed. Please try again. Your email may already be in use.'
+            );
+            setResponseStatus('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleModalClose = () => {
+        setResponseStatus('idle');
+        setResponseMessage('');
+    };
 
     const password = watch('password');
     const userType = watch('userType', 'job_seeker');
@@ -80,12 +141,14 @@ const SignupComponent: React.FC = () => {
                                 value="job_seeker"
                                 {...register('userType', { required: true })}
                                 defaultChecked
+                                disabled={isLoading}
+
                             />
                             <label htmlFor="job_seeker">Job Seeker</label>
                             <input
                                 type="radio"
                                 id="recruiter"
-                                value="recruiter"
+                                value="employer"
                                 {...register('userType', { required: true })}
                             />
                             <label htmlFor="recruiter">Recruiter</label>
@@ -102,10 +165,6 @@ const SignupComponent: React.FC = () => {
                         value="Sign Up"
                     />
                 </form>
-                <div className="loginWrapper">
-                    <p>Already have an account?</p>
-                    <button className={'loginButton'}>Sign In</button>
-                </div>
             </div>
         </div>
     );

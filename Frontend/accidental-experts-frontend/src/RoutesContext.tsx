@@ -6,14 +6,15 @@ interface RoutesContextValue {
     jobSearchPath: string;
     jobSeekerDashboardPath: string;
     loginAndRegistrationPath: string;
+    employerDashboardPath: string;
 }
 
-const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
+export const RoutesContext = createContext<RoutesContextValue | undefined>(undefined);
 
 export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
     children,
 }) => {
-    const baseUrl = 'elee1149-coursework--accidental-experts';
+    const baseUrl = '';
 
     const value = {
         baseUrl,
@@ -21,6 +22,7 @@ export const RoutesProvider: React.FC<{ children: ReactNode }> = ({
         jobSearchPath: `${baseUrl}/job-search`,
         jobSeekerDashboardPath: `${baseUrl}/seeker-dashboard`,
         loginAndRegistrationPath: `${baseUrl}/login-and-registration`,
+        employerDashboardPath: `${baseUrl}/employer-dashboard`,
     };
 
     return (

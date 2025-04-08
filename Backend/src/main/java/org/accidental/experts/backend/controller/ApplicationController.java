@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,7 @@ public class ApplicationController {
 
     @PostMapping
     public ResponseEntity<Application> createApplication(@RequestBody Application application) {
+        application.setApplicationDate(Instant.now());
         applicationRepository.save(application);
         return new ResponseEntity<>(application, HttpStatus.CREATED);
     }

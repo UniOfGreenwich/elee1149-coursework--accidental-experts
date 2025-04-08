@@ -1,0 +1,21 @@
+.support-card {
+    border-radius: 1rem;
+    padding: 5px;
+    height: calc(100% - 2rem);
+}
+.buttonStyle {
+    width: fit-content;
+    display: flex !important;
+    align-self: flex-start;
+    justify-self: flex-start;
+    background-color: #196357 !important;
+    border-color: #196357 !important;
+}
+
+.roundedIcon {
+    border-radius: 6px;
+}
+.bottom-stick {
+    position: absolute;
+    bottom: 15%;
+}

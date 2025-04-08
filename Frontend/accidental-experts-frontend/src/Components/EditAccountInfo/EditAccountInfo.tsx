@@ -1,15 +1,8 @@
 import React, { JSX, useEffect, useState } from 'react';
-import {
-    Button,
-    Card,
-    Col,
-    Container,
-    Form,
-    Row,
-} from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import './EditAccountInfo.scss';
 import DOMPurify from 'dompurify';
-import {saveInformation} from "../../dataGateway.ts";
+import { saveInformation } from '../../dataGateway.ts';
 
 interface EditAccountInfoProps {
     accountInfo: any;
@@ -68,10 +61,9 @@ export default function EditAccountInfo(
         setIsEmailValid(emailRegex.test(value));
     }
 
-
     function handleSaveProfile() {
-        const userID = sessionStorage.getItem("userID");
-        saveInformation(userID, firstName, lastName, email)
+        const userID = sessionStorage.getItem('userID');
+        saveInformation(userID, firstName, lastName, email);
     }
 
     return (

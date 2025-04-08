@@ -25,28 +25,32 @@ function JobSeekerDashboard() {
     const fetchAccountInfoEffectRan = useRef<boolean>(false);
 
     useEffect(() => {
-            const fetchAccountInfo = async () => {
-                setIsLoading(true);
-                try {
-                    const userID = sessionStorage.getItem("userID");
-                    if (userID) {
-                        const response = await retrieveAccountInfo(userID);
-                        setAccountInfo(response as AccountInfo);
-                    }
-                } catch (error) {
-                    setAccountInfo(null);
-                } finally {
-                    setIsLoading(false);
+        const fetchAccountInfo = async () => {
+            setIsLoading(true);
+            try {
+                const userID = sessionStorage.getItem('userID');
+                if (userID) {
+                    const response = await retrieveAccountInfo(userID);
+                    setAccountInfo(response as AccountInfo);
                 }
-            };
+            } catch (error) {
+                setAccountInfo(null);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-            fetchAccountInfo();
-            fetchAccountInfoEffectRan.current = true;
+        fetchAccountInfo();
+        fetchAccountInfoEffectRan.current = true;
     }, []);
 
     useEffect(() => {
         try {
-            if (accountInfo && accountInfo.applied && accountInfo.applied.length > 0) {
+            if (
+                accountInfo &&
+                accountInfo.applied &&
+                accountInfo.applied.length > 0
+            ) {
                 setHasUserApplied(true);
             } else {
                 setHasUserApplied(false);
@@ -69,8 +73,13 @@ function JobSeekerDashboard() {
             <Container fluid="xxl" style={{ marginTop: '2rem' }}>
                 <Row>
                     <Col>
-                        <p className="text-danger">Error: Could not load account information.</p>
-                        <p>Please try logging out and logging back in. If the problem persists, contact support.</p>
+                        <p className="text-danger">
+                            Error: Could not load account information.
+                        </p>
+                        <p>
+                            Please try logging out and logging back in. If the
+                            problem persists, contact support.
+                        </p>
                     </Col>
                 </Row>
             </Container>
@@ -79,13 +88,15 @@ function JobSeekerDashboard() {
 
     return (
         <Container fluid="xxl" style={{ marginTop: '2rem' }}>
-            {hasUserApplied && accountInfo.applied && accountInfo.applied.length > 0 && (
-                <Row className="mb-4">
-                    <Col>
-                        <JobCarousel accountInfo={accountInfo.applied} />
-                    </Col>
-                </Row>
-            )}
+            {hasUserApplied &&
+                accountInfo.applied &&
+                accountInfo.applied.length > 0 && (
+                    <Row className="mb-4">
+                        <Col>
+                            <JobCarousel accountInfo={accountInfo.applied} />
+                        </Col>
+                    </Row>
+                )}
 
             <Row>
                 {accountInfo.profile ? (

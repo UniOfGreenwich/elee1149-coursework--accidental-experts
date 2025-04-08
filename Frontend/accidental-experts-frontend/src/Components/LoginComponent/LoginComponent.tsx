@@ -25,7 +25,8 @@ const LoginComponent: React.FC = () => {
 
     const [showPassword, setShowPassword] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [responseStatus, setResponseStatus] = React.useState<ResponseStatus>('idle');
+    const [responseStatus, setResponseStatus] =
+        React.useState<ResponseStatus>('idle');
     const [responseMessage, setResponseMessage] = React.useState<string>('');
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -34,18 +35,21 @@ const LoginComponent: React.FC = () => {
         setResponseMessage('');
 
         try {
-            const userIdResponse = await authenticate(data.password, data.email);
+            const userIdResponse = await authenticate(
+                data.password,
+                data.email
+            );
             sessionStorage.setItem('userID', userIdResponse);
 
-            const accountInfoResponse = await retrieveAccountInfo(userIdResponse);
+            const accountInfoResponse =
+                await retrieveAccountInfo(userIdResponse);
             const profile = accountInfoResponse.profile;
             sessionStorage.setItem('firstName', profile.firstName);
             sessionStorage.setItem('lastName', profile.lastName);
             sessionStorage.setItem('userType', profile.userType);
             navigate('/');
-
         } catch (error: any) {
-            console.error("Login Error:", error);
+            console.error('Login Error:', error);
             setResponseMessage('Login failed. Please check your credentials.');
             setResponseStatus('error');
         } finally {
@@ -75,26 +79,38 @@ const LoginComponent: React.FC = () => {
                         className={'emailInput'}
                         placeholder={'Email'}
                         type="email"
-                        {...register('email', { required: 'Email is required' })}
+                        {...register('email', {
+                            required: 'Email is required',
+                        })}
                         disabled={isLoading}
                     />
-                    {errors.email && <span className="error-message">{errors.email.message}</span>}
-                        <input
-                            className={'passwordInput'}
-                            placeholder={'Password'}
-                            type={showPassword ? 'text' : 'password'}
-                            {...register('password', { required: 'Password is required' })}
-                            disabled={isLoading}
-                        />
-                    {errors.password && <span className="error-message">{errors.password.message}</span>}
-                        <button
-                            type="button"
-                            className="toggle-password"
-                            onClick={() => setShowPassword(!showPassword)}
-                            disabled={isLoading}
-                        >
-                            {showPassword ? 'Hide' : 'Show'}
-                        </button>
+                    {errors.email && (
+                        <span className="error-message">
+                            {errors.email.message}
+                        </span>
+                    )}
+                    <input
+                        className={'passwordInput'}
+                        placeholder={'Password'}
+                        type={showPassword ? 'text' : 'password'}
+                        {...register('password', {
+                            required: 'Password is required',
+                        })}
+                        disabled={isLoading}
+                    />
+                    {errors.password && (
+                        <span className="error-message">
+                            {errors.password.message}
+                        </span>
+                    )}
+                    <button
+                        type="button"
+                        className="toggle-password"
+                        onClick={() => setShowPassword(!showPassword)}
+                        disabled={isLoading}
+                    >
+                        {showPassword ? 'Hide' : 'Show'}
+                    </button>
                     <div className="rememberMe">
                         <label>
                             <input

@@ -66,6 +66,7 @@ public class AccountInfoService {
             AccountInfoResponse accountInfoResponse = new AccountInfoResponse();
             accountInfoResponse.setProfile(user);
             accountInfoResponse.setApplied(appliedJobInfos);
+            accountInfoResponse.getProfile().setPassword(null);
 
             return Optional.of(accountInfoResponse);
         } else {

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
+import { registerNewUser, retrieveAccountInfo } from '../../dataGateway.ts';
+import {useNavigate} from "react-router-dom";
 
 type Inputs = {
     email: string;
@@ -19,7 +21,41 @@ const SignupComponent: React.FC = () => {
         watch,
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const navigate = useNavigate()
+
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        registerNewUser(
+            data.password,
+            data.email,
+            data.firstName,
+            data.surname,
+            data.userType
+        )
+            .then((responseData) => {
+                console.log(responseData);
+                sessionStorage.setItem('userID', responseData.id);
+                const currentUserId = sessionStorage.getItem('userID');
+                authUser(currentUserId);
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const authUser = (userid) => {
+        retrieveAccountInfo(userid)
+            .then((responseData) => {
+                console.log(responseData);
+                const profile = responseData.profile;
+                sessionStorage.setItem('firstName', profile.firstName);
+                sessionStorage.setItem('lastName', profile.lastName);
+                sessionStorage.setItem('userType', profile.userType);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     const password = watch('password');
     const userType = watch('userType', 'job_seeker');

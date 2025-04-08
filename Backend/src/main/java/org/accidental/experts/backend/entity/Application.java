@@ -17,7 +17,6 @@ public class Application {
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "application_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant applicationDate;
 
     @Column(name = "application_status", nullable = false, length = Integer.MAX_VALUE)

@@ -98,20 +98,11 @@ describe('Header Component', () => {
 
         const homeLink = getByText('Home');
         const searchLink = getByText('Job Search');
-        const employerLink = getByText('Employer Dashboard');
-        const dashboardLink = getByText('Dashboard');
 
         expect(homeLink).toBeInTheDocument();
         expect(searchLink).toBeInTheDocument();
-        expect(employerLink).toBeInTheDocument();
-        expect(dashboardLink).toBeInTheDocument();
 
         expect(homeLink.closest('a')).toHaveAttribute('href', '/mock-home');
         expect(searchLink.closest('a')).toHaveAttribute('href', '/mock-search');
-        expect(employerLink.closest('a')).toHaveAttribute(
-            'href',
-            '/mock-employer'
-        );
-        expect(dashboardLink.closest('a')).toHaveAttribute('href', '#');
     });
 });

@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SeekerSupport from './SeekerSupport';
-import { Container, Card } from 'react-bootstrap';
+import SeekerSupport from './SupportComponent';
 
-describe('SeekerSupport Component', () => {
+describe('SupportComponent Component', () => {
     test('renders support information correctly', () => {
         const { getByText, container } = render(<SeekerSupport />);
 

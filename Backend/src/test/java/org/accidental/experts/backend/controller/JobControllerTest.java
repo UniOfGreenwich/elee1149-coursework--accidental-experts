@@ -42,7 +42,7 @@ class JobControllerTest {
     }
 
     @Test
-    void getAllJobs_ReturnsOkAndListOfJobs() throws Exception {
+    void getAllJobs() throws Exception {
         when(jobRepository.findAll()).thenReturn(Arrays.asList(job1, new Job()));
 
         mockMvc.perform(get("/jobs").accept(MediaType.APPLICATION_JSON))
@@ -54,7 +54,7 @@ class JobControllerTest {
     }
 
     @Test
-    void getJobById_WhenExists_ReturnsOkAndJob() throws Exception {
+    void getJobById() throws Exception {
         when(jobRepository.findById(job1.getId())).thenReturn(Optional.of(job1));
 
         mockMvc.perform(get("/jobs/{id}", job1.getId()).accept(MediaType.APPLICATION_JSON))
@@ -65,7 +65,7 @@ class JobControllerTest {
     }
 
     @Test
-    void createJob_ReturnsCreatedAndJob() throws Exception {
+    void createJob() throws Exception {
         Job newJob = new Job();
         newJob.setTitle("QA Tester");
 
@@ -87,7 +87,7 @@ class JobControllerTest {
     }
 
     @Test
-    void updateJob_WhenExists_ReturnsOkAndUpdatedJob() throws Exception {
+    void updateJob() throws Exception {
         int existingId = job1.getId();
         Job updatedDetails = new Job();
         updatedDetails.setTitle("Senior Software Engineer");
@@ -110,7 +110,7 @@ class JobControllerTest {
     }
 
     @Test
-    void deleteJob_WhenExists_ReturnsNoContent() throws Exception {
+    void deleteJob() throws Exception {
         int existingId = job1.getId();
         when(jobRepository.existsById(existingId)).thenReturn(true);
 

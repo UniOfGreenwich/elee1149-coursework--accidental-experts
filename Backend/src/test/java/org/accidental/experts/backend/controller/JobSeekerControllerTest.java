@@ -28,7 +28,7 @@ class JobSeekerControllerTest {
     @Autowired private ObjectMapper objectMapper;
 
     @Test
-    void getAccountInfo_WhenExists_ReturnsOkAndAccountInfo() throws Exception {
+    void getAccountInfo() throws Exception {
         int accountId = 1;
         AccountInfoResponse mockResponse = new AccountInfoResponse();
         User mockUserProfile = new User();

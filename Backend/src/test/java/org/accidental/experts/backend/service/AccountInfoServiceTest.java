@@ -29,7 +29,7 @@ class AccountInfoServiceTest {
     @InjectMocks AccountInfoService service;
 
     @Test
-    void getAccountInfo_WhenDataExists_ReturnsPopulatedResponse() {
+    void getAccountInfo() {
         int userId = 1, jobId = 10, employerId = 100, appId = 1000;
         User user = new User(); user.setId(userId); user.setPassword("hashed");
         Job job = new Job(); job.setId(jobId); job.setEmployer_id(employerId); job.setTitle("Dev");
@@ -52,7 +52,7 @@ class AccountInfoServiceTest {
     }
 
     @Test
-    void getAccountInfo_WhenUserNotFound_ReturnsEmpty() {
+    void getAccountInfoWhenUserNotFound() {
         when(userRepo.findById(anyInt())).thenReturn(Optional.empty());
         Optional<AccountInfoResponse> result = service.getAccountInfo(99);
         assertThat(result).isEmpty();

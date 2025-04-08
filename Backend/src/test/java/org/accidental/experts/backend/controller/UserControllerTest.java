@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-class UserControllerHyperCondensedPositiveTest {
+class UserControllerTest {
 
     @Autowired MockMvc mvc;
     @MockBean UserRepository repo;

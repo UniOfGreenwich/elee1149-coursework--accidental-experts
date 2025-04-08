@@ -40,7 +40,7 @@ class EmployerControllerTest {
     }
 
     @Test
-    void getAllEmployers_ReturnsOkAndListOfEmployers() throws Exception {
+    void getAllEmployers() throws Exception {
         when(employerRepository.findAll()).thenReturn(Arrays.asList(employer1, new Employer()));
 
         mockMvc.perform(get("/employers").accept(MediaType.APPLICATION_JSON))
@@ -52,7 +52,7 @@ class EmployerControllerTest {
     }
 
     @Test
-    void getEmployerById_WhenExists_ReturnsOkAndEmployer() throws Exception {
+    void getEmployerById() throws Exception {
         when(employerRepository.findById(employer1.getId())).thenReturn(Optional.of(employer1));
 
         mockMvc.perform(get("/employers/{id}", employer1.getId()).accept(MediaType.APPLICATION_JSON))
@@ -63,7 +63,7 @@ class EmployerControllerTest {
     }
 
     @Test
-    void createEmployer_ReturnsCreatedAndEmployer() throws Exception {
+    void createEmployer() throws Exception {
         Employer newEmployer = new Employer();
         newEmployer.setCompanyName("New Corp");
 
@@ -84,7 +84,7 @@ class EmployerControllerTest {
     }
 
     @Test
-    void updateEmployer_WhenExists_ReturnsOkAndUpdatedEmployer() throws Exception {
+    void updateEmployer() throws Exception {
         int existingId = employer1.getId();
         Employer updatedDetails = new Employer();
         updatedDetails.setCompanyName("Updated Name");
@@ -105,7 +105,7 @@ class EmployerControllerTest {
     }
 
     @Test
-    void deleteEmployer_WhenExists_ReturnsNoContent() throws Exception {
+    void deleteEmployer() throws Exception {
         int existingId = employer1.getId();
         when(employerRepository.existsById(existingId)).thenReturn(true);
 

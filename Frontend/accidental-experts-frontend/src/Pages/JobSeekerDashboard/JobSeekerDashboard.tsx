@@ -16,7 +16,8 @@ function JobSeekerDashboard() {
         async function fetchAccountInfo() {
             setIsLoading(true);
             try {
-                const response = await retrieveAccountInfo();
+                const userID = sessionStorage.getItem("userID");
+                const response = await retrieveAccountInfo(userID);
                 setAccountInfo(response);
             } finally {
                 setIsLoading(false);

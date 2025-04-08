@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateJobListingForm from "../../Components/JobListingForm/CreateJobListingForm.tsx";
+import CreateJobListingForm from '../../Components/JobListingForm/CreateJobListingForm.tsx';
 import './EmployerDashboardPage.scss';
 
 const EmployerDashboardPage: React.FC = () => {

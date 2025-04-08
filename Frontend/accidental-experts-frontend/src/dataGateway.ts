@@ -30,6 +30,7 @@ export async function retrieveJobs() {
 }
 export async function retrieveAccountInfo(userID) {
     let url = 'https://backend-744513217594.europe-west1.run.app/accountInfo/' + userID;
+  
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),

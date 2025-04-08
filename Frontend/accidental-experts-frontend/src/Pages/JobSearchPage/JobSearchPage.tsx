@@ -18,12 +18,15 @@ function JobSearchPage() {
                     setNumOfJobs(response.length);
                     setJobs(response);
                 } else {
-                    console.error("Received non-array response from retrieveJobs:", response);
+                    console.error(
+                        'Received non-array response from retrieveJobs:',
+                        response
+                    );
                     setNumOfJobs(0);
                     setJobs([]);
                 }
             } catch (error) {
-                console.error("Failed to fetch jobs:", error);
+                console.error('Failed to fetch jobs:', error);
                 setNumOfJobs(0);
                 setJobs([]);
             } finally {

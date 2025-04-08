@@ -8,7 +8,7 @@ import LoginAndRegistration from './Pages/LoginAndRegistrationPage/login-and-reg
 import { RoutesProvider, useRoutes } from './RoutesContext';
 import JobSeekerDashboard from './Pages/JobSeekerDashboard/JobSeekerDashboard.tsx';
 import Footer from './Components/Footer/Footer.tsx';
-import EmployerDashboardPage from "./Pages/EmployerDashboardPage/employerDashboard.tsx";
+import EmployerDashboardPage from './Pages/EmployerDashboardPage/employerDashboard.tsx';
 
 function App() {
     return (

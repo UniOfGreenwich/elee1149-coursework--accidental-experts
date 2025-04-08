@@ -11,6 +11,7 @@ export default function Header() {
         jobSearchPath,
         loginAndRegistrationPath,
         employerDashboardPath,
+        jobSeekerDashboardPath
     } = useRoutes();
 
     const [userId, setUserId] = useState(() =>
@@ -78,7 +79,9 @@ export default function Header() {
                         <Link to={employerDashboardPath}>
                             Employer Dashboard
                         </Link>
-                        <a href="#">Dashboard</a>
+                        <Link to={jobSeekerDashboardPath}>
+                            Job Seeker Dashboard
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,20 +1,33 @@
-.dashboardContainer {
-    padding: 20px;
-    max-width: 900px;
+.container {
+    margin-bottom: 10px;
+}
+.form-box-container {
+    width: 80%;
     margin: 20px auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #196357;
+    border-radius: 10px;
+    color: white;
 
-    h1 {
-        text-align: center;
-        margin-bottom: 10px;
-        color: #333;
+    @media (max-width: 992px) {
+        width: 90%;
     }
-    h2 {
+
+    @media (max-width: 768px) {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .form-box-heading {
         text-align: center;
-        margin-bottom: 30px;
-        color: #555;
-        font-weight: normal;
+        font-size: 1.5rem;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        font-weight: bold;
     }
 }
+

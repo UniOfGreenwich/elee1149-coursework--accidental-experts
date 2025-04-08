@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './signUpComponent.scss';
 import { registerNewUser, retrieveAccountInfo } from '../../dataGateway.ts';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinnerOverlay from '../Common/LoadingSpinnerOverlay';
+import ResponseModal from '../Common/ResponseModal';
+
 
 type Inputs = {
     email: string;
@@ -13,55 +16,84 @@ type Inputs = {
     userType: string;
 };
 
+type ResponseStatus = 'idle' | 'success' | 'error';
+
+
 const SignupComponent: React.FC = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
         watch,
-    } = useForm<Inputs>();
+    } = useForm<Inputs>({
+        defaultValues: {
+            userType: 'job_seeker'
+        }
+    });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [responseStatus, setResponseStatus] = React.useState<ResponseStatus>('idle');
+    const [responseMessage, setResponseMessage] = React.useState<string>('');
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        registerNewUser(
-            data.password,
-            data.email,
-            data.firstName,
-            data.surname,
-            data.userType
-        )
-            .then((responseData) => {
-                console.log(responseData);
-                sessionStorage.setItem('userID', responseData.id);
-                const currentUserId = sessionStorage.getItem('userID');
-                authUser(currentUserId);
-                navigate('/');
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        setIsLoading(true);
+        setResponseStatus('idle');
+        setResponseMessage('');
+        try {
+            const registrationResponse = await registerNewUser(
+                data.password,
+                data.email,
+                data.firstName,
+                data.surname,
+                data.userType
+            );
+
+            const newUserId = registrationResponse?.id;
+            if (!newUserId) {
+                throw new Error("Registration response did not contain a user ID.");
+            }
+
+            sessionStorage.setItem('userID', newUserId.toString());
+
+            const accountInfoResponse = await retrieveAccountInfo(newUserId.toString());
+            const profile = accountInfoResponse.profile;
+            sessionStorage.setItem('firstName', profile.firstName);
+            sessionStorage.setItem('lastName', profile.lastName);
+            sessionStorage.setItem('userType', profile.userType);
+
+            navigate('/');
+
+        } catch (error: any) {
+            console.error("Signup Error:", error);
+            setResponseMessage('Registration failed. Please try again. Your email may already be in use.');
+            setResponseStatus('error');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const authUser = (userid) => {
-        retrieveAccountInfo(userid)
-            .then((responseData) => {
-                console.log(responseData);
-                const profile = responseData.profile;
-                sessionStorage.setItem('firstName', profile.firstName);
-                sessionStorage.setItem('lastName', profile.lastName);
-                sessionStorage.setItem('userType', profile.userType);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
+    const handleModalClose = () => {
+        setResponseStatus('idle');
+        setResponseMessage('');
     };
+
 
     const password = watch('password');
-    const userType = watch('userType', 'job_seeker');
+    const userType = watch('userType');
 
     return (
         <div className="SignupComponentWrapper">
+            {isLoading && <LoadingSpinnerOverlay />}
+            {responseStatus === 'error' && (
+                <ResponseModal
+                    status={responseStatus}
+                    message={responseMessage}
+                    onClose={handleModalClose}
+                />
+            )}
             <h2>Register today</h2>
             <div className="signupFormWrapper">
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,6 +102,7 @@ const SignupComponent: React.FC = () => {
                         placeholder={'Email'}
                         type="email"
                         {...register('email', { required: true })}
+                        disabled={isLoading}
                     />
                     {errors.email && <span>Email is required</span>}
                     <input
@@ -77,6 +110,7 @@ const SignupComponent: React.FC = () => {
                         placeholder={'First Name'}
                         type="text"
                         {...register('firstName', { required: true })}
+                        disabled={isLoading}
                     />
                     {errors.firstName && <span>First Name is required</span>}
                     <input
@@ -84,6 +118,7 @@ const SignupComponent: React.FC = () => {
                         placeholder={'Surname'}
                         type="text"
                         {...register('surname', { required: true })}
+                        disabled={isLoading}
                     />
                     {errors.surname && <span>Surname is required</span>}
                     <input
@@ -91,6 +126,7 @@ const SignupComponent: React.FC = () => {
                         placeholder={'Password'}
                         type="password"
                         {...register('password', { required: true })}
+                        disabled={isLoading}
                     />
                     {errors.password && <span>Password is required</span>}
                     <input
@@ -102,6 +138,7 @@ const SignupComponent: React.FC = () => {
                             validate: (value) =>
                                 value === password || 'Passwords do not match',
                         })}
+                        disabled={isLoading}
                     />
                     {errors.passwordCheck && (
                         <span>{errors.passwordCheck.message}</span>
@@ -115,18 +152,20 @@ const SignupComponent: React.FC = () => {
                                 id="job_seeker"
                                 value="job_seeker"
                                 {...register('userType', { required: true })}
-                                defaultChecked
+                                disabled={isLoading}
+
                             />
                             <label htmlFor="job_seeker">Job Seeker</label>
                             <input
                                 type="radio"
                                 id="recruiter"
-                                value="recruiter"
+                                value="employer"
                                 {...register('userType', { required: true })}
+                                disabled={isLoading}
                             />
                             <label htmlFor="recruiter">Recruiter</label>
                             <div
-                                className={`sliderControl ${userType === 'recruiter' ? 'recruiter' : 'job_seeker'}`}
+                                className={`sliderControl ${userType === 'employer' ? 'recruiter' : 'job_seeker'}`}
                             ></div>
                         </div>
                         {errors.userType && <span>User type is required</span>}
@@ -135,12 +174,20 @@ const SignupComponent: React.FC = () => {
                     <input
                         className={'submitFormButton'}
                         type="submit"
-                        value="Sign Up"
+                        value={isLoading ? 'Registering...' : 'Sign Up'}
+                        disabled={isLoading}
                     />
                 </form>
                 <div className="loginWrapper">
                     <p>Already have an account?</p>
-                    <button className={'loginButton'}>Sign In</button>
+                    <button
+                        className={'loginButton'}
+                        onClick={() => navigate('/login-and-registration')}
+                        disabled={isLoading}
+                        type="button"
+                    >
+                        Sign In
+                    </button>
                 </div>
             </div>
         </div>

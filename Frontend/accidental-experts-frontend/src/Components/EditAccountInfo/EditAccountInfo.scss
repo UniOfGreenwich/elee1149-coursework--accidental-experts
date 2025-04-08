@@ -1,0 +1,44 @@
+.accountContainer {
+    margin-top: 3rem;
+    display: contents !important;
+    align-self: flex-start;
+    justify-self: flex-start;
+}
+
+.header {
+    font-size: 2.8rem;
+    line-height: 3.6rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.marginBottom {
+    margin-bottom: 15px;
+}
+
+.buttonStyle {
+    width: fit-content;
+    display: flex !important;
+    align-self: flex-start;
+    justify-self: flex-start;
+    background-color: #196357 !important;
+    border-color: #196357 !important;
+}
+
+.account-info-card {
+    width: auto;
+    border-radius: 1rem;
+    padding: 5px;
+}
+
+.top-padding {
+    padding-top: 10px;
+}
+
+.roundedIcon {
+    border-radius: 6px;
+}
+
+.account-title {
+    font-weight: bold;
+}

@@ -1,0 +1,119 @@
+@import '../../global.scss';
+
+.headerWrapper {
+    padding: 0 150px;
+    background-color: $jaguar-green;
+
+    .header {
+        color: white;
+        padding: 35px 0;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: space-between;
+
+        .logoWrapper {
+            max-height: 150px; // Stops logo taking up too much space on mobile
+            flex: 1;
+
+            .logo-area {
+                display: flex;
+                align-items: center;
+                height: 100%; // Logo area uses 100% of the height available in logoWrapper
+
+                .logo {
+                    margin-right: 30px;
+                    object-fit: contain;
+                    height: 100%; // Logo uses 100% of the height available in logo-area
+
+                    @media (max-width: 768px) {
+                        height: 50px; // Adjust the height for mobile view
+                        margin-right: 15px; // Adds space between logo and website name
+                    }
+                }
+
+                .website-name {
+                    font-size: 40px;
+                    font-weight: bold;
+                    line-height: 1.2;
+
+                    @media (max-width: 1024px) and (min-width: 768px) {
+                        font-size: 36px;
+                    }
+
+                    @media (max-width: 768px) {
+                        font-size: 32px;
+                    }
+                }
+            }
+
+            @media (max-width: 768px) {
+                max-height: 80px;
+            }
+        }
+
+        .linksWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex: 2;
+            line-height: 1.2;
+            padding: 16px 0;
+
+            .login-signup {
+                font-weight: bolder;
+                display: flex;
+                justify-content: flex-end;
+                font-size: 16px;
+
+                a {
+                    padding-right: 15px;
+                    color: white;
+                    text-decoration: none;
+                }
+
+                button {
+                    margin: 0 15px;
+                }
+            }
+
+            .nav-links {
+                font-size: 16px;
+                font-weight: bolder;
+                display: flex;
+                justify-content: flex-end;
+
+                a {
+                    color: white;
+                    margin: 0 15px;
+                    text-decoration: none;
+                }
+
+                @media (max-width: 1024px) and (min-width: 768px) {
+                    font-size: 14px;
+                }
+
+                @media (max-width: 768px) {
+                    padding-top: 16px;
+                    font-size: 12px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+        padding: 0 50px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
+}

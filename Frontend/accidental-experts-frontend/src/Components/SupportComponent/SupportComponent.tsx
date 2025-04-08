@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
-import './SeekerSupport.scss';
+import React from 'react';
+import {Card, Container } from 'react-bootstrap';
+import './SupportComponent.scss';
 
-export default function SeekerSupport() {
+export default function SupportComponent() {
 
     return (
         <Container className={'accountContainer'}>

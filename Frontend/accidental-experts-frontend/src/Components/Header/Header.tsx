@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Header.scss'; // Import the SCSS file
 import { useRoutes } from '../../RoutesContext.tsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const logoURL =
@@ -17,6 +17,8 @@ export default function Header() {
         sessionStorage.getItem('userID')
     );
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             const currentUserId = sessionStorage.getItem('userID');
@@ -31,6 +33,7 @@ export default function Header() {
     function handleLogout() {
         sessionStorage.removeItem('userID');
         setUserId(null);
+        navigate('/');
     }
 
     return (

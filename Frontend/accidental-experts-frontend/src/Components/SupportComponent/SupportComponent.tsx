@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
-import './SeekerSupport.scss';
+import React from 'react';
+import {Card, Container } from 'react-bootstrap';
+import './SupportComponent.scss';
 
-export default function SeekerSupport() {
-    const [index, setIndex] = useState(0);
-
-    function openSupportModal() {
-        console.log('Support Modal opened');
-    }
+export default function SupportComponent() {
 
     return (
         <Container className={'accountContainer'}>
@@ -29,13 +24,6 @@ export default function SeekerSupport() {
                         <br />
                         {'SW1A 2AA'}
                     </Card.Text>
-
-                    <Button
-                        className={'roundedIcon buttonStyle bottom-stick'}
-                        onClick={openSupportModal}
-                    >
-                        Direct Contact
-                    </Button>
                 </Card.Body>
             </Card>
         </Container>

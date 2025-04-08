@@ -16,8 +16,9 @@ export async function retrieveJobs() {
         //TODO
     }
 }
-export async function retrieveAccountInfo() {
-    let url = 'https://backend-744513217594.europe-west1.run.app/accountInfo/1';
+export async function retrieveAccountInfo(userID) {
+    let url = 'https://backend-744513217594.europe-west1.run.app/accountInfo/' + userID;
+  
     let requestConfig = {
         method: 'GET',
         headers: getStandardRequestHeaders(),
@@ -29,7 +30,6 @@ export async function retrieveAccountInfo() {
         );
     } catch (error) {
         console.log(error);
-        //navigate to error page
     }
 }
 
@@ -79,5 +79,61 @@ export async function registerNewUser(
         );
     } catch (error) {
         //TODO
+    }
+}
+
+export async function applyForJob(jobID: number, userID: string) {
+
+    const applicationData = {
+        job_id: jobID,
+        user_id: parseInt(userID, 10),
+        applicationStatus: "applied",
+    };
+    const url = 'https://backend-744513217594.europe-west1.run.app/applications';
+    const requestConfig = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(applicationData)
+    };
+    try {
+        const response = await fetch(url, requestConfig);
+        if (!response.ok) {
+            alert("Sorry, your application could not be submitted. Please try again later.");
+            return null;
+        }
+        const responseData = await response.json();
+        alert("You have successfully applied for this job!");
+        return responseData;
+    } catch (error) {
+        alert("Sorry, there was an error submitting your application. Please try again later.");
+        return null;
+    }
+}
+
+export async function saveInformation(userID: string, firstname: string, lastname: string, email: string) {
+
+    const userData = {
+        firstName: firstname,
+        lastName: lastname,
+        email: email
+    };
+    const url = 'https://backend-744513217594.europe-west1.run.app/users/' + userID;
+    const requestConfig = {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(userData)
+    };
+    try {
+        const response = await fetch(url, requestConfig);
+        if (!response.ok) {
+            alert("Sorry, your information could not be saved. Please try again later.");
+            return null;
+        }
+        const responseData = await response.json();
+        alert("You have successfully updated your information!");
+        return responseData;
+    } catch (error) {
+        alert("Sorry, there was an error submitting your information. Please try again later.");
+        return null;
     }
 }

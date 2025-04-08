@@ -25,7 +25,7 @@ import { CiBatteryFull } from 'react-icons/ci';
 import { TiTick } from 'react-icons/ti';
 import { ImCross } from 'react-icons/im';
 import { MdPending } from 'react-icons/md';
-interface Job {
+export interface Job {
     title: string;
     companyName: string;
     description: string;

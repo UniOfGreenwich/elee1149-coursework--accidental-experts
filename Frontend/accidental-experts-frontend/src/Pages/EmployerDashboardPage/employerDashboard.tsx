@@ -21,32 +21,12 @@ interface AccountInfo {
 const EmployerDashboardPage: React.FC = () => {
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [accountInfo, setAccountInfo] = useState<AccountInfo | null>(null);
-    const navigate = useNavigate();
-    const verifyUserEffectRan = useRef<boolean>(false);
     const fetchAccountInfoEffectRan = useRef<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        if (verifyUserEffectRan.current === false) {
-            const userID = sessionStorage.getItem('userID');
-            const userType = sessionStorage.getItem('userType');
-            const verifyUser = () => {
-                if (userID === null) {
-                    alert("Please log in before entering the recruiter dashboard");
-                    return navigate('/');
-                } else if (userType !== "employer") {
-                    alert("You are a job seeker, please view the job seeker dashboard");
-                    return navigate('/');
-                }
-            };
-            verifyUser();
-            verifyUserEffectRan.current = true;
-        }
-    }, [navigate]);
 
     useEffect(() => {
-        if (fetchAccountInfoEffectRan.current === false) {
-            const fetchAccountInfo = async () => {
+        const fetchAccountInfo = async () => {
                 try {
                     const userID = sessionStorage.getItem("userID");
                     if (userID) {
@@ -70,7 +50,6 @@ const EmployerDashboardPage: React.FC = () => {
             };
             fetchAccountInfo();
             fetchAccountInfoEffectRan.current = true;
-        }
     }, []);
 
     const handleShowFormClick = () => {

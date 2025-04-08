@@ -7,7 +7,6 @@ import JobCarousel from '../../Components/JobCarousel/JobCarousel';
 import { Job } from '../../Components/JobCarousel/JobCarousel';
 import EditAccountInfo from '../../Components/EditAccountInfo/EditAccountInfo';
 import SupportComponent from '../../Components/SupportComponent/SupportComponent.tsx';
-import { useNavigate } from "react-router-dom";
 
 interface ProfileInfo {
     [key: string]: any;
@@ -18,38 +17,14 @@ interface AccountInfo {
     applied: Job[];
 }
 
-
 function JobSeekerDashboard() {
     const [accountInfo, setAccountInfo] = useState<AccountInfo | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [hasUserApplied, setHasUserApplied] = useState<boolean>(false);
-    const navigate = useNavigate();
 
-    const verifyUserEffectRan = useRef<boolean>(false);
     const fetchAccountInfoEffectRan = useRef<boolean>(false);
 
     useEffect(() => {
-        if (verifyUserEffectRan.current === false) {
-            const userID = sessionStorage.getItem('userID');
-            const userType = sessionStorage.getItem('userType');
-
-            const verifyUser = () => {
-                if (userID === null) {
-                    alert("Please log in before entering the job seeker dashboard");
-                    return navigate('/');
-                } else if (userType !== "job_seeker") {
-                    alert("You are a Recruiter, please view the recruiter dashboard");
-                    return navigate('/');
-                }
-            };
-
-            verifyUser();
-            verifyUserEffectRan.current = true;
-        }
-    }, [navigate]);
-
-    useEffect(() => {
-        if (fetchAccountInfoEffectRan.current === false) {
             const fetchAccountInfo = async () => {
                 setIsLoading(true);
                 try {
@@ -67,7 +42,6 @@ function JobSeekerDashboard() {
 
             fetchAccountInfo();
             fetchAccountInfoEffectRan.current = true;
-        }
     }, []);
 
     useEffect(() => {
@@ -78,7 +52,6 @@ function JobSeekerDashboard() {
                 setHasUserApplied(false);
             }
         } catch (e) {
-            console.error("Error checking applied status:", e);
             setHasUserApplied(false);
         }
     }, [accountInfo]);

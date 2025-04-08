@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const logoURL = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWZvYXg5empwNDhtY3I5ZG5xOTBjOWlqMWNwN2FwaWw1azVqdWVuZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VQXdNn4MMLmNtkhPCV/giphy.gif';
-    const { homePath, jobSearchPath, loginAndRegistrationPath, employerDashboardPath } = useRoutes();
+    const { homePath, jobSearchPath, loginAndRegistrationPath, employerDashboardPath, jobSeekerDashboardPath } = useRoutes();
     const [currentUserType, setCurrentUserType] = useState<string | null>(null);
 
     const [userId, setUserId] = useState(() => sessionStorage.getItem('userID'));
@@ -85,12 +85,19 @@ export default function Header() {
                     </div>
                     <div className="nav-links">
                         <Link to={homePath}>Home</Link>
+
+                        {currentUserType === null ? (
+                            <Link to={jobSearchPath}>Job Search</Link>
+                        ) : currentUserType === 'job_seeker' ? (
+                            <Link to={jobSearchPath}>Job Search</Link>
+                        ) : null}
+
                         {currentUserType === 'employer' ? (
                             <Link to={employerDashboardPath}>Employer Dashboard</Link>
-                        ) : (
-                            <Link to={jobSearchPath}>Job Search</Link>
-                        )}
-                        <a href="#">Dashboard</a>
+                        ) : currentUserType === 'job_seeker' ? (
+                            <Link to={jobSeekerDashboardPath}>Job Seeker Dashboard</Link>
+                        ) : null}
+
                     </div>
                 </div>
             </div>

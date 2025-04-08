@@ -1,0 +1,61 @@
+.carousel-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #196357;
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        width: 95%;
+    }
+
+    .swiper {
+        .swiper-slide {
+            .swiper-slide-content {
+                padding: 25px;
+                background-color: #1c4532;
+                color: white;
+                border-radius: 10px;
+                .job-title {
+                    margin-left: 100px;
+                    font-size: 1.75rem;
+                    margin-bottom: 16px;
+                    color: white;
+
+                    @media (max-width: 768px) {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .job-details {
+                margin-left: 100px;
+
+                @media (max-width: 768px) {
+                    margin-left: 44px;
+                }
+
+                @media (max-width: 550px) {
+                    margin-left: 22px;
+                }
+
+                p {
+                    margin-bottom: 12px;
+                    font-size: 0.8rem;
+                    line-height: 1.4;
+                    strong {
+                        font-weight: bold;
+                        margin-right: 8px;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    padding-right: 10px;
+    padding-top: 10px;
+}

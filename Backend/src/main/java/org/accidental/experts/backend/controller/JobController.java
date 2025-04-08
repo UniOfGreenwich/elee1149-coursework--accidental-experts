@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +65,11 @@ public class JobController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/active")
+    public List<Job> getActiveJobs() {
+        Instant currentDate = Instant.now();
+        return jobRepository.findActiveJobs(currentDate);
     }
 }

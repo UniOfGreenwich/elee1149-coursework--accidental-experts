@@ -1,5 +1,4 @@
 # ELEE1149-Project-Template
-
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Technologies Used](#technologies-used)
@@ -31,6 +30,27 @@ This project is a basic-level web application designed to facilitate job listing
 
 Note: Users cannot manage their profiles once created, and job tracking is not yet implemented.
 
+## Installaling the frontend application
+
+Navigate to the the following directory usinng the commands below:
+
+```
+cd Frontend/accidental-experts-frontend
+```
+
+Before running the project it is important to have NPM(Node Package Manager) installed on your device. Once you have NPM and node.js configured on your device run the following command in your terminal.
+
+### Recommended node version
+
+- node.js: v20.15.0
+- NPM: v10.8.2
+
+<<<<<<< Updated upstream
+```bash
+  npm install
+  npm run start
+```
+=======
 ## Future Work
 - **Profile Management**: Allow users to update and manage their profiles after creation.
 - **Job Tracking**: Implement functionality for job seekers to track their applications.
@@ -90,12 +110,14 @@ The frontend application is hosted on GitHub Pages, and the backend API and data
     ```
 
 ### Running the Backend
-1. Start the backend server:
+1. Update Application.properties with the relevent database inforation
+
+2. Start the backend server:
     ```bash
     ./gradlew bootRun
     ```
 
-2. The backend server will be running at `http://localhost:8080`.
+3. The backend server will be running at `http://localhost:8080`.
 
 ## Frontend Setup
 
@@ -150,3 +172,4 @@ SOFTWARE.
 
 ## References
 MIT License. (2023). Available at: https://opensource.org/licenses/MIT (Accessed: 21 March 2025).
+>>>>>>> Stashed changes

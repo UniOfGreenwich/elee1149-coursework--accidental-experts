@@ -21,11 +21,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Integer id) {
         Optional<User> user = userRepository.findById(id);

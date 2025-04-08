@@ -67,4 +67,10 @@ public class JobController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/active")
+    public List<Job> getActiveJobs() {
+        Instant currentDate = Instant.now();
+        return jobRepository.findActiveJobs(currentDate);
+    }
 }

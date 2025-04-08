@@ -2,9 +2,8 @@ import './JobSearchCard.scss';
 
 import React, { JSX, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import {IoIosBriefcase} from "react-icons/io";
-import {applyForJob} from "../../dataGateway.ts";
-
+import { IoIosBriefcase } from 'react-icons/io';
+import { applyForJob } from '../../dataGateway.ts';
 
 interface Job {
     id: number;
@@ -127,7 +126,7 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
             <Card className={'info-box mb-3'}>
                 <Card.Body>
                     <Row className="mb-2 align-items-center">
-                        <Col xs={"auto"}>
+                        <Col xs={'auto'}>
                             <IoIosBriefcase />
                         </Col>
                     </Row>
@@ -218,16 +217,14 @@ export default function JobSearchCard(props: JobSearchCardProps): JSX.Element {
     };
 
     const onApply = async (jobId: number) => {
-        const userID = sessionStorage.getItem("userID");
+        const userID = sessionStorage.getItem('userID');
 
         if (!userID) {
-            alert("Please log in to apply for jobs.");
+            alert('Please log in to apply for jobs.');
             return;
         }
-        await applyForJob(jobId, userID)
-    }
-
-
+        await applyForJob(jobId, userID);
+    };
 
     const renderPagination = () => {
         if (totalPages <= 1) {
